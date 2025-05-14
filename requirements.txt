@@ -14,6 +14,9 @@ pydantic
 pydantic-settings
 python-dateutil
 
+#로그
+loguru
+
 # 테스트
 pytest
 pytest-asyncio
