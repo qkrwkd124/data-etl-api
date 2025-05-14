@@ -1,0 +1,26 @@
+# FastAPI 및 서버
+fastapi
+uvicorn[standard]
+
+# 데이터 처리
+pandas
+openpyxl
+
+# 데이터베이스
+sqlalchemy
+
+# 유틸리티
+pydantic
+pydantic-settings
+python-dateutil
+
+# 테스트
+pytest
+pytest-asyncio
+httpx
+
+# 개발 도구
+black==23.11.0
+isort==5.12.0
+mypy==1.7.1
+ruff==0.1.6 
