@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     # 로깅 설정
     LOG_DIR: str = "app/logs"
     LOG_LEVEL: str = "INFO"
-    LOG_FORMAT: str = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level: <8}</level> | <cyan>{name}</cyan>:<cyan>{function}</cyan>:<cyan>{line}</cyan> - <level>{message}</level>"
+    LOG_FORMAT: str = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level}</level> | <yellow>PID:{process}</yellow> | <cyan>\"{name}\"</cyan>, <cyan>{function}</cyan>, <cyan>{line}</cyan> : <level>{message}</level>"
     DATE_FORMAT: str = '%Y/%m/%d %H:%M:%S'  
     
     # 파일 처리 설정
