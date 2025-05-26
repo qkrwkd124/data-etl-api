@@ -1,8 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.endpoints import data_processor
 from app.core.settings import get_settings
-from app.core.logger import setup_logger,get_logger
+from app.core.logger import setup_logger, get_logger
+import time
+import uuid
 
 settings = get_settings()
 
@@ -16,7 +18,46 @@ app = FastAPI(
     debug=settings.DEBUG
 )
 
-logger.info(f"Starting {settings.APP_NAME} v{settings.VERSION}")
+# 로깅 미들웨어
+@app.middleware("http")
+async def logging_middleware(request: Request, call_next):
+    # 고유 요청 ID 생성
+    request_id = request.headers.get("X-Request-ID", str(uuid.uuid4()))
+    
+    # 요청 시작 시간
+    start_time = time.time()
+    
+    # 요청 정보
+    path = request.url.path
+    method = request.method
+    client_ip = request.client.host if request.client else "N/A"
+    user_agent = request.headers.get("User-Agent", "N/A")
+    
+    # 요청 시작 로그
+    logger.info(f"[{request_id}] Request started | {method} {path} | IP: {client_ip} | User-Agent: {user_agent}")
+    
+    try:
+        # 요청 처리
+        response = await call_next(request)
+        
+        # 처리 시간 계산
+        process_time = time.time() - start_time
+        
+        # 응답 로그
+        logger.info(
+            f"[{request_id}] Request completed | {method} {path} | "
+            f"Status: {response.status_code} | Time: {process_time:.3f}s"
+        )
+        
+        return response
+    except Exception as e:
+        # 에러 발생 시 로그
+        process_time = time.time() - start_time
+        logger.error(
+            f"[{request_id}] Request failed | {method} {path} | "
+            f"Error: {str(e)} | Time: {process_time:.3f}s"
+        )
+        raise
 
 # CORS 설정
 app.add_middleware(
@@ -33,7 +74,6 @@ app.include_router(data_processor.router, prefix="/api/v1", tags=["data"])
 # container health 체크
 @app.get("/health")
 async def health_check():
-    logger.info("Health check endpoint accessed")
     return {"status":"ok"}
 
 @app.get("/")
