@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.endpoints import data_processor
+from app.api.endpoints import eiu
 from app.core.settings import get_settings
 from app.core.logger import setup_logger, get_logger
 import time
@@ -69,7 +69,7 @@ app.add_middleware(
 )
 
 # 라우터 등록
-app.include_router(data_processor.router, prefix="/api/v1", tags=["data"])
+app.include_router(eiu.router, tags=["data"])
 
 # container health 체크
 @app.get("/health")
