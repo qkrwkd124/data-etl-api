@@ -2,23 +2,13 @@ from pydantic import BaseModel, Field, field_validator
 from enum import Enum
 from typing import Optional, Dict, Any, List
 
-CODES = ["PSBR", "DCPI", "CARA", "BALC", "XRPD", "XPP1", "XPP2", "XPP3", "XPP4", "FRES", "MEXP", "MIMP", "MPP1","MPP2", "MPP3","PUDP","DGDP","TDPY","BALM"]
-
-class DataType(str, Enum):
-    """데이터 타입 구분"""
-    ACTUAL = "ACT"      # 실제 데이터
-    ESTIMATE = "EST"    # 예측 데이터
-    FORECAST = "FOR"    # 미래 데이터
-    UNKNOWN = "?"       # 알수 없는 데이터터
-    MISSING = "–"       # 누락 데이터
-    
-
+from app.core.constants.eiu import EIUDataType
     
 class ProcessedYearData(BaseModel):
     """처리된 연도별 데이터"""
     year: str = Field(..., description="연도")
     value: Optional[str] = Field(None, description="원본 값")
-    data_type: DataType = Field(..., description="데이터 타입")
+    data_type: EIUDataType = Field(..., description="데이터 타입")
     processed_value: Optional[str] = Field(default=None, description="처리된 값 (타입|값)")
     
     
@@ -32,9 +22,9 @@ class ProcessedYearData(BaseModel):
         data_type = data.get('data_type')
         value = data.get('value')
 
-        if value and value != DataType.MISSING.value:
+        if value and value != EIUDataType.MISSING.value:
             return f"{data_type.value}|{value}"
-        return DataType.MISSING.value
+        return EIUDataType.MISSING.value
     
 class ExcelRowData(BaseModel):
     """Excel에서 읽어온 원본 행 데이터"""
@@ -48,12 +38,28 @@ class ExcelRowData(BaseModel):
     note: Optional[str] = Field(None, description="노트")
     published: Optional[str] = Field(None, description="발행일")
     year_data: Dict[str, Any] = Field(default_factory=dict, description="연도별 데이터")
-    
-    # @field_validator('code')
-    # def validate_code(cls, v):
-    #     if v and v not in CODES:
-    #         raise ValueError(f"지원하지 않는 코드: {v}")
-    #     return v
+
+    def to_dataframe_dict(self, year_columns: List[str]) -> Dict[str, Any]:
+        """
+        DataFrame 행 형식으로 변환
+        _convert_to_dataframe 함수의 로직을 기반으로 구현
+        """
+        # 기본 필드 매핑
+        row_dict = {
+            "eiu_country_code": self.country_code,
+            "eiu_series_title": self.series,
+            "eiu_code": self.code,
+            "eiu_currency": self.currency,
+            "eiu_units": self.units,
+        }
+
+        # 연도 데이터 처리
+        for year in year_columns:
+            year_col = f"eiu_year{int(year) % 100}"
+            # year_data에서 값을 가져오거나 MISSING 기본값 사용
+            row_dict[year_col] = self.year_data.get(year, EIUDataType.MISSING.value)
+
+        return row_dict
     
 class ProcessedExcelRow(BaseModel):
     """가공된 Excel 행 데이터"""
