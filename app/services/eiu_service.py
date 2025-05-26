@@ -8,20 +8,9 @@ from openpyxl.styles import PatternFill
 from openpyxl.utils.cell import get_column_letter
 import sys
 
-# app 폴더를 sys.path에 추가하여 모듈을 찾을 수 있도록 합니다.
-# 현재 파일의 경로를 기준으로 app 폴더의 부모 디렉토리를 추가합니다.
-# 이 코드는 노트북이 app/services/ 내에 있다고 가정합니다.
-# 만약 다른 위치에 있다면 경로를 적절히 수정해야 합니다.
-current_file_path = Path(os.getcwd()) # Jupyter Notebook에서는 os.getcwd()가 현재 노트북 파일이 위치한 디렉토리를 반환합니다.
-if str(current_file_path) not in sys.path:
-    sys.path.insert(0, str(current_file_path))
+from app.schemas.eiu_schemas import ProcessedExcelRow, ExcelRowData
+from app.core.constants.eiu import EIU_CODES, EIU_COLUMN_MAPPING, EIU_ESTIMATE_COLOR, EIUDataType
 
-from app.schemas.eiu_schemas import ProcessedExcelRow, ProcessedYearData, DataType, ExcelRowData
-
-
-file_path = "/appdata/storage/research/original/2. EIU_AllDataByGeography_로데이터.xlsx"
-CODES = ["PSBR", "DCPI", "CARA", "BALC", "XRPD", "XPP1", "XPP2", "XPP3", "XPP4", "FRES", "MEXP", "MIMP", "MPP1","MPP2", "MPP3","PUDP","DGDP","TDPY","BALM"]
-HEADER = ["Country_Code","Series", "Code", "Currency", "Units"]
 
 def _get_cell_color(cell) -> Optional[str]:
         """
@@ -68,18 +57,6 @@ def _create_excel_row_from_sheet_data(
     country_code: str
 ) -> Optional[ExcelRowData]:
      
-      # Excel 컬럼명 → 스키마 필드명 매핑
-    COLUMN_MAPPING = {
-        "Series": "series",
-        "Code": "code", 
-        "Currency": "currency",
-        "Units": "units",
-        "Source": "source",
-        "Definition": "definition", 
-        "Note": "note",
-        "Published": "published"
-    }
-
     row_data = {
         "country_code": country_code,
         "year_data": {}
@@ -90,22 +67,22 @@ def _create_excel_row_from_sheet_data(
         cell_value = str(cell.value)
 
         #일반 필드 처리
-        if col_name in COLUMN_MAPPING:
-            row_data[COLUMN_MAPPING[col_name]] = cell_value
+        if col_name in EIU_COLUMN_MAPPING:
+            row_data[EIU_COLUMN_MAPPING[col_name]] = cell_value
             
         #연도 데이터 처리
         elif isinstance(col_name, str) and col_name.strip().isdigit():
             color = _get_cell_color(cell)
             if cell_value != "–" :
-                if color == "0000588D" : # 블루
-                    year_value = f"{DataType.ESTIMATE.value}|{cell_value}"
+                if color == EIU_ESTIMATE_COLOR : # 블루
+                    year_value = f"{EIUDataType.ESTIMATE.value}|{cell_value}"
                 else :
-                    year_value = f"{DataType.ACTUAL.value}|{cell_value}"
+                    year_value = f"{EIUDataType.ACTUAL.value}|{cell_value}"
             else :
-                year_value = DataType.MISSING.value
+                year_value = EIUDataType.MISSING.value
             
             row_data["year_data"][col_name] = year_value
-            
+    
     excel_row = ExcelRowData(**row_data)
     
     return excel_row
@@ -115,7 +92,7 @@ def _create_default_excel_row(code: str, country_code: str, year_columns: List[s
     """
     누락된 코드에 대한 기본 스키마 객체 생성
     """
-    default_year_data = {year: DataType.MISSING.value for year in year_columns}
+    default_year_data = {year: EIUDataType.MISSING.value for year in year_columns}
     
     return ExcelRowData(
         country_code=country_code,
@@ -139,22 +116,7 @@ def _convert_to_dataframe(excel_rows: List[ExcelRowData],year_columns: List[str]
     if not excel_rows :
         return pd.DataFrame()
     
-    df_data = []
-
-    for excel_row in excel_rows :
-        row_dict = {
-            "eiu_country_code": excel_row.country_code,
-            "eiu_series_title": excel_row.series,
-            "eiu_code": excel_row.code,
-            "eiu_currency": excel_row.currency,
-            "eiu_units": excel_row.units,
-        }
-
-        for year in year_columns :
-            year_col = f"eiu_year_{int(year) % 100}"
-            row_dict[year_col] = excel_row.year_data.get(year, DataType.MISSING.value)
-
-        df_data.append(row_dict)
+    df_data = [excel_row.to_dataframe_dict(year_columns) for excel_row in excel_rows]
     
     df = pd.DataFrame(df_data)
 
@@ -163,7 +125,7 @@ def _convert_to_dataframe(excel_rows: List[ExcelRowData],year_columns: List[str]
         max_YY = max_year % 100
 
         for i in range(max_YY + 1, 52) :
-            df[f"eiu_year{i}"] = DataType.FORECAST.value
+            df[f"eiu_year{i}"] = EIUDataType.FORECAST.value
 
     return df
 
@@ -208,12 +170,12 @@ async def process_data(file_path:str) :
                 sheet, row_idx, column_names, sheet_name
             )
 
-            if excel_row and excel_row.code and excel_row.code in CODES :
+            if excel_row and excel_row.code and excel_row.code in EIU_CODES :
                 sheet_data_by_code[excel_row.code] = excel_row
 
 
         # 누락된 코드에 대한 기본 데이터 생성
-        for code in CODES :
+        for code in EIU_CODES :
             if code not in sheet_data_by_code :
                 default_row = _create_default_excel_row(code, sheet_name, year_columns)
                 sheet_data_by_code[code] = default_row
@@ -229,6 +191,13 @@ async def process_data(file_path:str) :
     
 
 if __name__ == "__main__" :
+
+    # current_file_path = Path(os.getcwd()) 
+    # if str(current_file_path) not in sys.path:
+    #     sys.path.insert(0, str(current_file_path))
+
+    file_path = "/appdata/storage/research/original/2. EIU_AllDataByGeography_로데이터.xlsx"
+
     data = asyncio.run(process_data(file_path))
-    print(data)
+    print( data[data["eiu_country_code"] == "CA"][['eiu_year20','eiu_year21','eiu_year22','eiu_year23','eiu_year24']] )
     
