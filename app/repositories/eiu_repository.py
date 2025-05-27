@@ -1,11 +1,11 @@
-from typing import List, Optional
+from typing import List, Optional, Dict
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, delete, insert, update
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 import pandas as pd
 from datetime import datetime
 
-from app.models.EIU import EconomicData
+from app.models.EIU import EconomicData, COUNTRY_INFO
 from app.core.logger import get_logger
 
 logger = get_logger()
@@ -30,11 +30,11 @@ class EIUEconomicIndicatorRepository:
             # DataFrame을 딕셔너리 리스트로 변환
             records = df.to_dict('records')
             
-            # 현재 시간 추가
-            current_time = datetime.now()
-            for record in records:
-                record['created_at'] = current_time
-                record['updated_at'] = current_time
+            # # 현재 시간 추가
+            # current_time = datetime.now()
+            # for record in records:
+            #     record['created_at'] = current_time
+            #     record['updated_at'] = current_time
             
             # 대량 삽입
             insert_stmt = insert(EconomicData).values(records)
@@ -97,6 +97,31 @@ class EIUEconomicIndicatorRepository:
         except Exception as e:
             await self.session.rollback()
             logger.error(f"데이터 전체 교체 중 오류: {str(e)}")
+            raise
+
+    async def get_country_mapping(self) -> Dict[str, str]:
+        """
+        tb_mzz100에서 국가 코드와 국가영문명 매핑 조회
+        
+        Returns:
+            {country_code: country_name_en} 딕셔너리
+        """
+
+        try:
+            stmt = select(
+                COUNTRY_INFO.std_infrm_ctry_cd,
+                COUNTRY_INFO.trgtpsn_eng_nm
+                          ).where(
+                              EconomicData.eiu_country_code == COUNTRY_INFO.std_infrm_ctry_cd
+                          )
+            result = await self.session.execute(stmt)
+            mapping = dict(result.fetchall())
+
+            logger.info(f"국가 매핑 {len(mapping)}개 조회 완료")
+            return mapping
+
+        except Exception as e:
+            logger.error(f"국가 매핑 조회 중 오류: {str(e)}")
             raise
     
     async def delete_by_country(self, country_code: str) -> int:
@@ -258,3 +283,20 @@ class EIUEconomicIndicatorRepository:
         except Exception as e:
             logger.error(f"국가별 레코드 수 조회 중 오류: {str(e)}")
             raise
+
+if __name__ == "__main__":
+    import asyncio
+    from app.db.base import get_main_db
+    async def main():
+        async for session in get_main_db():
+            try : 
+                repo = EIUEconomicIndicatorRepository(session)
+                mapping = await repo.get_country_mapping()
+                print(mapping)
+            except Exception as e:
+                print(f"에러 발생 {str(e)}")
+                break
+            finally:
+                break
+
+    asyncio.run(main())
