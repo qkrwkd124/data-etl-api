@@ -5,14 +5,9 @@ from app.core.settings import get_settings
 
 settings = get_settings()
 
-# SQLAlchemy 엔진 생성
-engine = create_async_engine(
-    
-)
-
 engines = {
     "main": create_async_engine(
-        settings.DBPRSR_URL or "sqlite+aiosqlite:///./app.db",  # 데이터베이스 연결 URL, 설정 파일에서 가져오거나 기본 SQLite 경로 사용
+        url=settings.CPIDB_DBPRSR,  # 데이터베이스 연결 URL, 설정 파일에서 가져옴
         echo=False,  # SQL 쿼리 로깅 비활성화 (True로 설정 시 모든 SQL 쿼리가 콘솔에 출력됨)
         future=True  # SQLAlchemy 2.0 스타일의 실행을 활성화 (SQLAlchemy 1.4 이상에서 권장)
     ),
