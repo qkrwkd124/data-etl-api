@@ -16,7 +16,6 @@ from app.core.logger import get_logger
 
 logger = get_logger()
 
-
 def _get_cell_color(cell) -> Optional[str]:
         """
         셀의 배경색 RGB 값을 반환
@@ -78,7 +77,8 @@ def _create_excel_row_from_sheet_data(
         #연도 데이터 처리
         elif isinstance(col_name, str) and col_name.strip().isdigit():
             color = _get_cell_color(cell)
-            if cell_value != "–" :
+            if cell_value and cell_value != "–" :
+                cell_value = round(float(cell_value), 1)
                 if color == EIU_ESTIMATE_COLOR : # 블루
                     year_value = f"{EIUDataType.ESTIMATE.value}|{cell_value}"
                 else :
@@ -93,7 +93,7 @@ def _create_excel_row_from_sheet_data(
     return excel_row
 
 
-def _create_default_excel_row(code: str, country_code: str, year_columns: List[str]) -> ExcelRowData:
+def _create_default_excel_row(code: str, country_code: str, series: str, year_columns: List[str]) -> ExcelRowData:
     """
     누락된 코드에 대한 기본 스키마 객체 생성
     """
@@ -102,7 +102,7 @@ def _create_default_excel_row(code: str, country_code: str, year_columns: List[s
     return ExcelRowData(
         country_code=country_code,
         code=code,
-        series="",
+        series=series,
         currency="", 
         units="",
         source="",
@@ -175,14 +175,14 @@ async def process_data(file_path:str) :
                 sheet, row_idx, column_names, sheet_name
             )
 
-            if excel_row and excel_row.code and excel_row.code in EIU_CODES :
+            if excel_row and excel_row.code and excel_row.code in list(EIU_CODES.keys()) :
                 sheet_data_by_code[excel_row.code] = excel_row
 
 
         # 누락된 코드에 대한 기본 데이터 생성
-        for code in EIU_CODES :
+        for code, series in EIU_CODES.items() :
             if code not in sheet_data_by_code :
-                default_row = _create_default_excel_row(code, sheet_name, year_columns)
+                default_row = _create_default_excel_row(code, sheet_name, series, year_columns)
                 sheet_data_by_code[code] = default_row
 
         all_excel_rows.extend(sheet_data_by_code.values())
@@ -222,10 +222,14 @@ async def process_eiu_economic_indicator(
 
         if df.empty :
             raise ValueError("처리할 수 있는 데이터가 없습니다.")
+
+        #2. 국가명 매핑
+        repository = EIUEconomicIndicatorRepository(dbprsr)
+        country_mapping = await repository.get_country_mapping()
+        df["eiu_cont_en_nm"] = df["eiu_country_code"].map(country_mapping).fillna('')
         
         #. 2. 데이터베이스 저장
         logger.info("2. 데이터베이스 저장 중...")
-        repository = EIUEconomicIndicatorRepository(dbprsr)
 
         if replace_all :
             db_result = await repository.replace_all_data(df)
