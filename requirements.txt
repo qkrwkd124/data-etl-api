@@ -8,6 +8,8 @@ openpyxl
 
 # 데이터베이스
 sqlalchemy
+pymysql
+aiomysql
 
 # 유틸리티
 pydantic
