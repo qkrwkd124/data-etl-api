@@ -8,6 +8,7 @@ services:
       - "8090:8090"
     volumes:
       - .:/app
+      - /appdata/storage:/storage
       # - uv-cache:/root/.cache/uv  # UV 캐시 볼륨 추가
     environment:
       - PYTHONPATH=/app
