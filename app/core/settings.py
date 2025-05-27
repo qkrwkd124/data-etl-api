@@ -10,10 +10,10 @@ class Settings(BaseSettings):
     DESCRIPTION: str = "EIU, 관세청, 경제지수 데이터 ETL API"
     
     # API 설정
-    API_V1_STR: str = "/api/v1"
+    # API_V1_STR: str = "/api/v1"
     
     # 데이터베이스 설정
-    DATABASE_URL: Optional[str] = None
+    CPIDB_DBPRSR: Optional[str] = None
     
     # 로깅 설정
     LOG_DIR: str = "app/logs"
