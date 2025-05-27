@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.endpoints import eiu
+from app.endpoints import eiu
 from app.core.settings import get_settings
 from app.core.logger import setup_logger, get_logger
 import time
