@@ -11,11 +11,27 @@ class EIUDataType(str, Enum):
     UNKNOWN = "?"       # 알수 없는 데이터
     MISSING = "–"       # 누락 데이터 (EIU 특유의 대시 표기)
 
-# EIU 코드
-EIU_CODES: List[str] = [
-    "PSBR", "DCPI", "CARA", "BALC", "XRPD", "XPP1", "XPP2", "XPP3", "XPP4", 
-    "FRES", "MEXP", "MIMP", "MPP1", "MPP2", "MPP3", "PUDP", "DGDP", "TDPY", "BALM"
-]
+EIU_CODES:Dict[str, str] = {
+    "PSBR": "Budget balance (% of GDP)",
+    "DCPI": "Consumer prices (% change pa; av)",
+    "CARA": "Current-account balance (% of GDP)",
+    "BALC": "Current-account balance (US$)",
+    "XRPD": "Exchange rate LCU:US$ (av)",
+    "XPP1": "Export 1 (% share)",
+    "XPP2": "Export 2 (% share)",
+    "XPP3": "Export 3 (% share)",
+    "XPP4": "Export 4 (% share)",
+    "FRES": "Foreign-exchange reserves (US$)",
+    "MEXP": "Goods: exports BOP (US$)",
+    "MIMP": "Goods: imports BOP (US$)",
+    "MPP1": "Import 1 (% share)",
+    "MPP2": "Import 2 (% share)",
+    "MPP3": "Import 3 (% share)",
+    "PUDP": "Public debt  (% of GDP)",
+    "DGDP": "Real GDP (% change pa)",
+    "TDPY": "Total debt/GDP (%)",
+    "BALM": "Trade balance (US$)",
+}
 
 # EIU 컬럼 매핑
 EIU_COLUMN_MAPPING: Dict[str, str] = {
