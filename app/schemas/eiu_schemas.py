@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, field_validator
 from enum import Enum
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, Tuple
 
 from app.core.constants.eiu import EIUDataType
     
@@ -86,6 +86,22 @@ class ProcessedExcelRow(BaseModel):
             result[f"eiu_year{year_num}"] = year_data.processed_value
             
         return result
+    
+
+
+class TradePartnerData(BaseModel):
+    """주요 수출입 파트너 데이터"""
+    country_code: Optional[str] = None
+    partner_name: Optional[str] = None
+    partner_rate: Optional[float] = 0.0
+    trade_type: str  # 'export' or 'import'
+
+class CountryTradeData(BaseModel):
+    """국가별 통합 수출입 데이터"""
+    country_code: str
+    import_partners: List[Tuple[str, float]]
+    export_partners: List[Tuple[str, float]]
+
 
 class ProcessingResult(BaseModel):
     """처리 결과"""
