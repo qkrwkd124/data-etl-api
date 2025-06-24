@@ -8,16 +8,10 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional, Dict, List
 from itertools import zip_longest
 
-# current_file_path = Path(os.getcwd()) # Jupyter Notebook에서는 os.getcwd()가 현재 노트북 파일이 위치한 디렉토리를 반환합니다.
-# project_root = current_file_path.parent.parent # app/services/ -> app -> project_root
-# if str(project_root) not in sys.path:
-#     sys.path.insert(0, str(project_root))
-    
 from app.core.constants.eiu import EIUDataType
 from app.schemas.eiu_schemas import TradePartnerData, CountryTradeData
-
-
-# from app.services.major_trade_partner_service import major_trade_partner_service
+from app.models.EIU import EIU_PARTNER_ISO
+from app.repositories.eiu_repository import EIUPartnerRepository
 from app.core.logger import get_logger
 
 logger = get_logger()
@@ -33,9 +27,10 @@ def _extract_partner_from_definition(sheet_name: str, definition: str) -> Option
     if not definition or pd.isna(definition):
         return None
     
-    export_pattern = re.compile(r'exports?\s+to\s+([^,.( ]+)', re.IGNORECASE)
-    import_pattern = re.compile(r'imports?\s+from\s+([^,.( ]+)', re.IGNORECASE)
-        
+
+    export_pattern = re.compile(r'Exports (?:from|to) ([^,]+?)(?:,)?\s*as', re.IGNORECASE)
+    import_pattern = re.compile(r'Imports (?:from|to) ([^,]+?)(?:,)?\s*as', re.IGNORECASE)
+
     definition = str(definition).strip()
 
     if sheet_name.startswith("XPM"):
@@ -96,7 +91,7 @@ def _aggregate_country_data(trade_data_list: List[TradePartnerData]) -> Dict[str
         if trade_data.partner_name is None or trade_data.partner_rate <= 0:
             continue
 
-        country_code = trade_data.country_code
+        country_code = trade_data.country_code.strip()
         
         country_data.setdefault(country_code, CountryTradeData(
             country_code=country_code,
@@ -104,7 +99,7 @@ def _aggregate_country_data(trade_data_list: List[TradePartnerData]) -> Dict[str
             export_partners=[]
         ))
         
-        partner_info = (trade_data.partner_name, trade_data.partner_rate)
+        partner_info = (trade_data.partner_name.lower(), trade_data.partner_rate)
         
         if trade_data.trade_type == "export":
             country_data[country_code].export_partners.append(partner_info)
@@ -119,50 +114,75 @@ def _aggregate_country_data(trade_data_list: List[TradePartnerData]) -> Dict[str
     return country_data
 
 
-def _create_integrated_dataframe(country_data: Dict[str, CountryTradeData]) -> pd.DataFrame:
+async def _create_integrated_dataframe(country_data: Dict[str, CountryTradeData],partner_repository: EIUPartnerRepository) -> pd.DataFrame:
     """통합 데이터프레임 생성"""
     all_rows = []
     
+    # 주요수출입국가명 ISO 매핑정보
+    partner_iso_mapping = await partner_repository.get_partner_ISO_mapping()
+
+    # ISO값을 무역보험공사 한글국가명으로 매핑정보
+    partner_name_mapping = await partner_repository.get_partner_name()
+
     for country_code, data in country_data.items():
         # 수출입 총합 계산
         export_total = sum(rate for _, rate in data.export_partners)
         import_total = sum(rate for _, rate in data.import_partners)
         
+        # 수출/수입 데이터 존재 여부 확인
+        has_export_data = len(data.export_partners) > 0
+        has_import_data = len(data.import_partners) > 0
+
         # zip_longest로 수출/수입 데이터를 동시에 처리
         country_rows = []
-        
+        country_name = partner_name_mapping.get(country_code, '')
+
         for exp_data, imp_data in zip_longest(data.export_partners, data.import_partners, fillvalue=(None, None)):
-            row = {"CONT_NM": country_code}
+            row = {"cont_code": country_code, "cont_nm": country_name}
 
             exp_partner, exp_rate = exp_data if exp_data is not None else (None, None)
             imp_partner, imp_rate = imp_data if imp_data is not None else (None, None)
 
-            # 수출 파트너명이 있는 경우만 컬럼 추가
-            if exp_partner is not None:
-                row["MAJ_EXP_CONT_NM"] = exp_partner
-                row["EXP_RATE"] = f"{exp_rate:.2f}%"
+            # 수출,수입국 ISO 매핑
+            exp_partner_iso = partner_iso_mapping.get(exp_partner, '')
+            imp_partner_iso = partner_iso_mapping.get(imp_partner, '')
 
-            # 수입 파트너명이 있는 경우만 컬럼 추가
+            # 수출 파트너명이 있는 경우
+            if exp_partner is not None:
+                # row["MAJ_EXP_CONT_CODE"] = exp_partner_iso
+                row["maj_exp_cont_nm"] = partner_name_mapping.get(exp_partner_iso, '')
+                row["exp_rate"] = f"{exp_rate:.3f}%"
+
+            # 수입 파트너명이 있는 경우
             if imp_partner is not None:
-                row["MAJ_IMP_CONT_NM"] = imp_partner
-                row["IMP_RATE"] = f"{imp_rate:.2f}%"
+                # row["MAJ_IMP_CONT_CODE"] = imp_partner_iso
+                row["maj_imp_cont_nm"] = partner_name_mapping.get(imp_partner_iso, '')
+                row["imp_rate"] = f"{imp_rate:.3f}%"
 
             country_rows.append(row)
-        
-        if export_total < 100 or import_total < 100:
-            etc_row = {"CONT_NM": country_code}
 
-            etc_row["MAJ_IMP_CONT_NM"] = "ETC"
-            etc_row["IMP_RATE"] = f"{100 - import_total:.2f}%"
+        etc_row = {"cont_code": country_code, "cont_nm": country_name}
 
-            etc_row["MAJ_EXP_CONT_NM"] = "ETC"
-            etc_row["EXP_RATE"] = f"{100 - export_total:.2f}%"
+        # 수출 데이터가 있고 100% 미만인 경우
+        if has_export_data and export_total < 100:
+            etc_row["maj_exp_cont_nm"] = "기타"
+            etc_row["exp_rate"] = f"{100 - export_total:.3f}%"
 
+        # 수입 데이터가 있고 100% 미만인 경우
+        if has_import_data and import_total < 100:
+            etc_row["maj_imp_cont_nm"] = "기타"
+            etc_row["imp_rate"] = f"{100 - import_total:.3f}%"
+
+        # ETC 행에 데이터가 있는 경우에만 추가
+        if "maj_exp_cont_nm" in etc_row or "maj_imp_cont_nm" in etc_row:
             country_rows.append(etc_row)
-
+        
         all_rows.extend(country_rows)
 
-    return pd.DataFrame(all_rows)
+    df = pd.DataFrame(all_rows)
+    df.where(pd.notna(df), None, inplace=True)
+
+    return df
             
 
 
@@ -231,7 +251,9 @@ async def process_data(
 async def process_eiu_major_trade_partner(
         file_path: str,
         file_name: str,
-        db_session: AsyncSession) -> pd.DataFrame:
+        dbprsr: AsyncSession,
+        replace_all: bool = True
+        ) -> pd.DataFrame:
     """
     EIU 주요 수출입국 데이터를 처리하여 통합 데이터프레임을 생성
     
@@ -246,7 +268,7 @@ async def process_eiu_major_trade_partner(
     Args:
         file_path: 파일이 위치한 디렉토리 경로
         file_name: EIU 엑셀 파일명
-        db_session: 데이터베이스 세션 (현재 미사용)
+        dbprsr: 데이터베이스 세션
         
     Returns:
         pd.DataFrame: 통합된 주요 수출입국 데이터프레임
@@ -257,6 +279,9 @@ async def process_eiu_major_trade_partner(
     try:
         file_full_path = Path(file_path) / file_name
         logger.info(f"EIU Major Export and Import Partner 파일 처리 시작: {file_full_path}")
+
+        # Repository 객체 한 번만 생성
+        partner_repository = EIUPartnerRepository(dbprsr)
 
         # 1. 원본 데이터 추출
         logger.info("1단계: 원본 데이터 추출 중...")
@@ -270,10 +295,19 @@ async def process_eiu_major_trade_partner(
 
         # 3. 통합 데이터프레임 생성
         logger.info("3단계: 통합 데이터프레임 생성 중...")
-        final_df = _create_integrated_dataframe(country_data)
+        final_df = await _create_integrated_dataframe(country_data, partner_repository)
         logger.info(f"최종 데이터프레임 생성 완료: {final_df.shape[0]}행 x {final_df.shape[1]}열")
 
-        # 4. 결과 요약 로그
+        # 4. 데이터베이스 저장
+        logger.info("4단계: 데이터베이스 저장 중...")
+        if replace_all :
+            db_result = await partner_repository.replace_all_data(final_df)
+        else :
+            insert_count = await partner_repository.insert_dataframe(final_df)
+            await dbprsr.commit()
+        logger.info("데이터베이스 저장 완료")
+
+        # 5. 결과 요약 로그
         total_countries = len(country_data)
         countries_with_both = sum(1 for data in country_data.values() 
                                  if len(data.export_partners) > 0 and len(data.import_partners) > 0)
@@ -296,6 +330,20 @@ async def process_eiu_major_trade_partner(
 
 
 if __name__ == "__main__":
-    file_path = "/appdata/storage/research/original/EIU_AllDataBySeries_주요수출입국 원본파일.xlsx"
+    file_path = "/appdata/storage/research/original"
+    file_name = "EIU_AllDataBySeries_주요수출입국 원본파일.xlsx"
+    file_full_path = Path(file_path,file_name)
+    from app.db.base import get_main_db
 
-    df = process_eiu_major_trade_partner()
+    async def main():
+        async for dbprsr in get_main_db():
+
+            # partner_repository = EIUPartnerRepository(dbprsr)
+            # trade_data_list = await process_data(str(file_full_path))
+            # country_data = _aggregate_country_data(trade_data_list)
+            # df = await _create_integrated_dataframe(country_data, partner_repository)
+            df = await process_eiu_major_trade_partner(file_path, file_name, dbprsr, replace_all=True)
+            print(df[df['cont_nm'] == '앙골라'])
+            break
+
+    asyncio.run(main())
