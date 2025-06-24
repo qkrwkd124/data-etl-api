@@ -73,7 +73,7 @@ class MajorTradePartner(Base):
     __tablename__ = "tb_rhr150"
 
     cont_nm = Column(String(150), comment="국가명")
-    maj_imp_cont_nm = Column(String(150) comment="주요수입국가명")
+    maj_imp_cont_nm = Column(String(150), comment="주요수입국가명")
     imp_rate = Column(String(10), comment="수입비율")
     maj_exp_cont_nm = Column(String(150), comment="주요수출국가명")
     exp_rate = Column(String(10), comment="수출비율")
