@@ -7,7 +7,7 @@ from app.schemas.eiu_schemas import EIUDataType
 class EconomicData(Base):
     """경제 데이터 모델 - EIU 데이터 저장"""
     __tablename__ = "tb_rhr100"
-    
+
     eiu_cont_en_nm = Column(String(200), index=True, comment="EIU국가영문명")
     eiu_country_code = Column(String(2), primary_key=True, index=True, comment="EIU국가코드")
     eiu_currency = Column(String(10), comment="EIU통화명")
@@ -69,6 +69,15 @@ class EconomicData(Base):
     created_at = Column(DateTime, default=datetime.now, comment="생성일")
     updated_at = Column(DateTime, default=datetime.now, comment="수정일")
 
+class MajorTradePartner(Base):
+    __tablename__ = "tb_rhr150"
+
+    cont_nm = Column(String(150), comment="국가명")
+    maj_imp_cont_nm = Column(String(150) comment="주요수입국가명")
+    imp_rate = Column(String(10), comment="수입비율")
+    maj_exp_cont_nm = Column(String(150), comment="주요수출국가명")
+    exp_rate = Column(String(10), comment="수출비율")
+
 class COUNTRY_INFO(Base):
     __tablename__ = "tw_rhm_ria010"
     
@@ -114,3 +123,9 @@ class COUNTRY_INFO(Base):
     trgtpsn_cd = Column(String(3), comment="대상국가주요정책")
     std_infrm_ctry_cd = Column(String(2), comment="대상국가주요정책")
     oecd_entry_yn = Column(String(1), comment="대상국가주요정책")
+
+class EIU_PARTNER_ISO(Base):
+    __tablename__ = "tb_rhr350"
+
+    eng_ctry_nm = Column(String(200), primary_key=True, nullable=True, comment="영문국가명")
+    std_infrm_ctry_cd = Column(String(2), primary_key=True, nullable=True, comment="표준약식국가코드")
