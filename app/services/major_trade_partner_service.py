@@ -28,8 +28,8 @@ def _extract_partner_from_definition(sheet_name: str, definition: str) -> Option
         return None
     
 
-    export_pattern = re.compile(r'Exports (?:from|to) ([^,]+?)(?:,)?\s*as', re.IGNORECASE)
-    import_pattern = re.compile(r'Imports (?:from|to) ([^,]+?)(?:,)?\s*as', re.IGNORECASE)
+    export_pattern = re.compile(r'Exports (?:from|to) (?:the\s+)?([^,]+?)(?:,)?\s*(?:as a percentage|as percentage)', re.IGNORECASE)
+    import_pattern = re.compile(r'Imports (?:from|to) (?:the\s+)?([^,]+?)(?:,)?\s*(?:as a percentage|as percentage)', re.IGNORECASE)
 
     definition = str(definition).strip()
 
@@ -183,7 +183,6 @@ async def _create_integrated_dataframe(country_data: Dict[str, CountryTradeData]
     df.where(pd.notna(df), None, inplace=True)
 
     return df
-            
 
 
 async def process_data(
@@ -197,7 +196,7 @@ async def process_data(
         if sheet_name.startswith(("XPM", "MPM")):
             logger.info(f"시트 처리 중: {sheet_name}")
 
-            df = pd.read_excel(file_path, sheet_name=sheet_name, header=None)
+            df = pd.read_excel(file_path, sheet_name=sheet_name, header=None, keep_default_na=False, na_values=[])
 
             header_idx = _find_header_idx(df)
 
@@ -232,10 +231,6 @@ async def process_data(
                 
                 partner_name = _extract_partner_from_definition(sheet_name, definition)
                 
-                # print(f"{country_name} -> {partner_name} : {rate_value}")
-                # if not partner_name:
-                #     logger.warning(f"파트너 이름을 찾을 수 없음: {definition}")
-
                 trade_partner_data = TradePartnerData(
                     country_code=str(country_code).strip(),
                     partner_name=partner_name,
@@ -331,7 +326,7 @@ async def process_eiu_major_trade_partner(
 
 if __name__ == "__main__":
     file_path = "/appdata/storage/research/original"
-    file_name = "EIU_AllDataBySeries_주요수출입국 원본파일.xlsx"
+    file_name = "EIU_AllDataBySeries_주요수출입국 원본파일_수정본.xlsx"
     file_full_path = Path(file_path,file_name)
     from app.db.base import get_main_db
 
@@ -344,6 +339,6 @@ if __name__ == "__main__":
             # df = await _create_integrated_dataframe(country_data, partner_repository)
             df = await process_eiu_major_trade_partner(file_path, file_name, dbprsr, replace_all=True)
             print(df[df['cont_nm'] == '앙골라'])
-            break
+            break 
 
     asyncio.run(main())
