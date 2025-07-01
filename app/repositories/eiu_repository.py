@@ -5,7 +5,8 @@ from sqlalchemy.dialects.postgresql import insert as pg_insert
 import pandas as pd
 from datetime import datetime
 
-from app.models.EIU import EconomicData, COUNTRY_INFO, EIU_PARTNER_ISO, MajorTradePartner
+from app.models.EIU import EconomicData, EIU_PARTNER_ISO, MajorTradePartner
+from app.models.shared_models import COUNTRY_INFO
 from app.core.logger import get_logger
 
 logger = get_logger()
