@@ -91,6 +91,9 @@ def _aggregate_country_data(trade_data_list: List[TradePartnerData]) -> Dict[str
         if trade_data.partner_name is None or trade_data.partner_rate <= 0:
             continue
 
+        if trade_data.partner_name is not None:
+            trade_data.partner_name = trade_data.partner_name.strip().lower()
+
         country_code = trade_data.country_code.strip()
         
         country_data.setdefault(country_code, CountryTradeData(
@@ -99,7 +102,7 @@ def _aggregate_country_data(trade_data_list: List[TradePartnerData]) -> Dict[str
             export_partners=[]
         ))
         
-        partner_info = (trade_data.partner_name.lower(), trade_data.partner_rate)
+        partner_info = (trade_data.partner_name, trade_data.partner_rate)
         
         if trade_data.trade_type == "export":
             country_data[country_code].export_partners.append(partner_info)
@@ -137,7 +140,7 @@ async def _create_integrated_dataframe(country_data: Dict[str, CountryTradeData]
         country_rows = []
         country_name = partner_name_mapping.get(country_code, '')
 
-        for exp_data, imp_data in zip_longest(data.export_partners, data.import_partners, fillvalue=(None, None)):
+        for exp_data, imp_data in zip_longest(data.export_partners, data.import_partners, fillvalue=(None, 0)):
             row = {"cont_code": country_code, "cont_nm": country_name}
 
             exp_partner, exp_rate = exp_data if exp_data is not None else (None, None)
@@ -148,16 +151,16 @@ async def _create_integrated_dataframe(country_data: Dict[str, CountryTradeData]
             imp_partner_iso = partner_iso_mapping.get(imp_partner, '')
 
             # 수출 파트너명이 있는 경우
-            if exp_partner is not None:
+            # if exp_partner is not None:
                 # row["MAJ_EXP_CONT_CODE"] = exp_partner_iso
-                row["maj_exp_cont_nm"] = partner_name_mapping.get(exp_partner_iso, '')
-                row["exp_rate"] = f"{exp_rate:.3f}%"
+            row["maj_exp_cont_nm"] = partner_name_mapping.get(exp_partner_iso, '')
+            row["exp_rate"] = f"{exp_rate:.3f}%" if exp_rate != 0 else "0%"
 
             # 수입 파트너명이 있는 경우
-            if imp_partner is not None:
+            # if imp_partner is not None:
                 # row["MAJ_IMP_CONT_CODE"] = imp_partner_iso
-                row["maj_imp_cont_nm"] = partner_name_mapping.get(imp_partner_iso, '')
-                row["imp_rate"] = f"{imp_rate:.3f}%"
+            row["maj_imp_cont_nm"] = partner_name_mapping.get(imp_partner_iso, '')
+            row["imp_rate"] = f"{imp_rate:.3f}%" if imp_rate != 0 else "0%"
 
             country_rows.append(row)
 
