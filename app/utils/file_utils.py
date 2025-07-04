@@ -33,7 +33,7 @@ def save_dataframe_to_csv(
         
         # 파일명 생성
         if add_timestamp:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
             filename = f"{filename_prefix}_{timestamp}.csv"
         else:
             filename = f"{filename_prefix}.csv"
