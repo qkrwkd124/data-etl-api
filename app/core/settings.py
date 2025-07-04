@@ -22,8 +22,9 @@ class Settings(BaseSettings):
     DATE_FORMAT: str = '%Y/%m/%d %H:%M:%S'  
     
     # 파일 처리 설정
-    UPLOAD_DIR: str = "uploads"
-    MAX_UPLOAD_SIZE: int = 10 * 1024 * 1024  # 10MB
+    CSV_OUTPUT_DIR: str = "/storage/research"
+    CSV_OUPUT_ENCOFING: str = "utf-8"
+    CSV_OUPUT_NA_REP: str = "NULL"
     
     class Config:
         env_file = ".env"
