@@ -129,7 +129,7 @@ async def _create_final_output(
     try:
         # 최종 형태로 데이터 변환
         final_df = df.rename(columns=Config.get_final_column_mapping())
-
+        
         # 필수 컬럼 확인 (모델 정의 참고)
         final_df = final_df[Config.get_output_columns()].copy()
         
