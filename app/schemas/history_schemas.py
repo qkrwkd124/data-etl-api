@@ -18,6 +18,8 @@ class DataUploadAutoHistoryCreate(BaseModel):
     refl_file_nm: Optional[str] = Field(None, description="반영파일명")  # Optional: 값이 없어도 됨
     reg_usr_id: str = Field(..., description="등록사용자ID")
     reg_dtm: datetime = Field(..., description="등록일시")
+    mod_usr_id: str = Field(..., description="수정사용자ID")
+    mod_dtm: datetime = Field(..., description="수정일시")
 
 
 class DataUploadAutoHistoryUpdate(BaseModel):
