@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     
     # 데이터베이스 설정
     CPIDB_DBPRSR: Optional[str] = None
+    CPIDB_DBPDTM: Optional[str] = None
     
     # 로깅 설정
     LOG_DIR: str = "app/logs"
