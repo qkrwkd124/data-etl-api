@@ -1,16 +1,17 @@
 import pandas as pd
-import os
 import asyncio
 from typing import List, Dict, Any, Optional, Tuple
 from sqlalchemy.ext.asyncio import AsyncSession
 from pathlib import Path
-import sys
+from datetime import datetime
 
 from app.models.customs import CountryMapping, ExportImportStatByCountry
 from app.models.shared_models import COUNTRY_INFO
 from app.repositories.customs_repository import ExportImportStatByCountryRepository
-from app.db.base import get_main_db
+from app.repositories.history_repository import DataUploadAutoHistoryRepository
 from app.core.constants.customs import CustomsCountryConfig as Config
+from app.schemas.history_schemas import DataUploadAutoHistoryCreate, DataUploadAutoHistoryUpdate, JobType
+from app.db.base import get_main_db, get_dbpdtm_db
 from app.core.logger import get_logger
 from app.utils.file_utils import save_dataframe_to_csv
 
@@ -145,6 +146,7 @@ async def process_data(
         file_path: str,
         file_name: str,
         dbprsr: AsyncSession,
+        dbpdtm: AsyncSession,
         replace_all: bool = True,
 )-> pd.DataFrame:
     try :
@@ -153,6 +155,21 @@ async def process_data(
 
         # repository 초기화
         expimp_repository = ExportImportStatByCountryRepository(dbprsr)
+        history_repository = DataUploadAutoHistoryRepository(dbpdtm)
+
+        # 0. 이력 데이터 삽입
+        seq = await history_repository.get_next_seq()
+        history_data = DataUploadAutoHistoryCreate(
+            data_wrk_no=seq,
+            data_wrk_nm=JobType.CUSTOMS_COUNTRY,
+            strt_dtm=datetime.now(),
+            refl_file_nm=file_path.name,
+            reg_usr_id="system",
+            reg_dtm=datetime.now(),
+            mod_usr_id="system",
+            mod_dtm=datetime.now()
+        )
+        await history_repository.insert_history(seq, history_data)
 
         # 1. 파일 유효성 검사
         if not await _validate_file(file_path):
@@ -178,11 +195,31 @@ async def process_data(
             await expimp_repository.insert_dataframe(final_df)
 
         # 7. 파일 저장
-        save_dataframe_to_csv(final_df, "customs_country_data.csv")
+        final_file_path = save_dataframe_to_csv(final_df, filename_prefix="customs_country_data", add_timestamp=True)
+
+        # 8. 이력 업데이트
+        await history_repository.update_history(seq, DataUploadAutoHistoryUpdate(
+            end_dtm=datetime.now(),
+            fin_yn="Y",
+            scr_file_nm=final_file_path,
+            rslt_tab_nm="tb_bpc220",
+            proc_cnt=len(final_df),
+            mod_usr_id="system",
+            mod_dtm=datetime.now()
+        ))
 
         return final_df
     except Exception as e:
         logger.error(f"Error processing {file_name}: {e}")
+
+        await history_repository.update_history(seq, DataUploadAutoHistoryUpdate(
+            end_dtm=datetime.now(),
+            fin_yn="N",
+            rmk_ctnt=str(e),
+            mod_usr_id="system",
+            mod_dtm=datetime.now()
+        ))
+
         raise e
 
 
@@ -192,12 +229,25 @@ if __name__ == "__main__":
     # file_full_path = Path(file_path,file_name)
 
     async def main():
-        try :
-            async for dbprsr in get_main_db():    
-                df = await process_data(file_path, file_name, dbprsr, replace_all=True)
+
+        from app.db.base import session_factories
+
+        async with session_factories["main"]() as main_db, session_factories["dbpdtm"]() as dbpdtm_db:
+            try :
+                df = await process_data(
+                    file_path=file_path,
+                    file_name=file_name,
+                    dbprsr=main_db,
+                    dbpdtm=dbpdtm_db,
+                    replace_all=True
+                )
                 print(df)
-                break
-        finally :
-            await dbprsr.close()
+                await main_db.commit()
+                await dbpdtm_db.commit()
+            except Exception as e:
+                await main_db.rollback()
+                await dbpdtm_db.rollback()
+                logger.error(f"Error: {e}")
+                raise e
 
     asyncio.run(main())
