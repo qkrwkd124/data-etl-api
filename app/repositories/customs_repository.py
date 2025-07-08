@@ -4,8 +4,8 @@ import pandas as pd
 from sqlalchemy import select, insert, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.customs import CountryMapping, ExportImportStatByCountry, KoreaCountryMapping
-from app.models.shared_models import COUNTRY_INFO
+from app.models.customs import ExportImportStatByCountry
+from app.models.shared_models import COUNTRY_INFO, CountryMapping
 from app.db.base import get_main_db
 from app.core.logger import get_logger
 
@@ -18,8 +18,8 @@ class ExportImportStatByCountryRepository:
     async def get_country_name_mapping(self) -> Dict[str,str]:
         try:
             stmt = select(
-                KoreaCountryMapping.kcs_kor_ctry_nm,
-                KoreaCountryMapping.std_infrm_ctry_cd
+                CountryMapping.kcs_kor_ctry_nm,
+                CountryMapping.std_infrm_ctry_cd
             )
             result = await self.dbprsr.execute(stmt)
             return dict(result.fetchall())

@@ -5,8 +5,8 @@ from sqlalchemy.dialects.postgresql import insert as pg_insert
 import pandas as pd
 from datetime import datetime
 
-from app.models.EIU import EconomicData, EIU_PARTNER_ISO, MajorTradePartner
-from app.models.shared_models import COUNTRY_INFO
+from app.models.EIU import EconomicData, MajorTradePartner
+from app.models.shared_models import COUNTRY_INFO, CountryMapping
 from app.core.logger import get_logger
 
 logger = get_logger()
@@ -163,8 +163,8 @@ class EIUPartnerRepository:
         """
         try:
             stmt = select(
-                EIU_PARTNER_ISO.eng_ctry_nm,
-                EIU_PARTNER_ISO.std_infrm_ctry_cd
+                CountryMapping.eng_ctry_nm,
+                CountryMapping.std_infrm_ctry_cd
             )
             result = await self.session.execute(stmt)
             mapping = {}

@@ -5,8 +5,6 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from pathlib import Path
 from datetime import datetime
 
-from app.models.customs import CountryMapping, ExportImportStatByCountry
-from app.models.shared_models import COUNTRY_INFO
 from app.repositories.customs_repository import ExportImportStatByCountryRepository
 from app.repositories.history_repository import DataUploadAutoHistoryRepository
 from app.core.constants.customs import CustomsCountryConfig as Config
@@ -129,7 +127,7 @@ async def _create_final_output(
     try:
         # 최종 형태로 데이터 변환
         final_df = df.rename(columns=Config.get_final_column_mapping())
-        
+
         # 필수 컬럼 확인 (모델 정의 참고)
         final_df = final_df[Config.get_output_columns()].copy()
         
@@ -202,7 +200,7 @@ async def process_data(
             end_dtm=datetime.now(),
             fin_yn="Y",
             scr_file_nm=final_file_path,
-            rslt_tab_nm="tb_bpc220",
+            rslt_tab_nm="tb_rhr140",
             proc_cnt=len(final_df),
             mod_usr_id="system",
             mod_dtm=datetime.now()

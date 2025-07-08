@@ -3,6 +3,7 @@ import os
 import asyncio
 import re
 import pandas as pd
+from datetime import datetime
 from pathlib import Path
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional, Dict, List
@@ -10,8 +11,10 @@ from itertools import zip_longest
 
 from app.core.constants.eiu import EIUDataType
 from app.schemas.eiu_schemas import TradePartnerData, CountryTradeData
-from app.models.EIU import EIU_PARTNER_ISO
+from app.schemas.history_schemas import DataUploadAutoHistoryCreate, JobType, DataUploadAutoHistoryUpdate
 from app.repositories.eiu_repository import EIUPartnerRepository
+from app.repositories.history_repository import DataUploadAutoHistoryRepository
+from app.utils.file_utils import save_dataframe_to_csv
 from app.core.logger import get_logger
 
 logger = get_logger()
@@ -197,7 +200,7 @@ async def process_data(
 
     for sheet_name in sheet_names:
         if sheet_name.startswith(("XPM", "MPM")):
-            logger.info(f"시트 처리 중: {sheet_name}")
+            # logger.info(f"시트 처리 중: {sheet_name}")
 
             df = pd.read_excel(file_path, sheet_name=sheet_name, header=None, keep_default_na=False, na_values=[])
 
@@ -250,6 +253,7 @@ async def process_eiu_major_trade_partner(
         file_path: str,
         file_name: str,
         dbprsr: AsyncSession,
+        dbpdtm: AsyncSession,
         replace_all: bool = True
         ) -> pd.DataFrame:
     """
@@ -280,6 +284,21 @@ async def process_eiu_major_trade_partner(
 
         # Repository 객체 한 번만 생성
         partner_repository = EIUPartnerRepository(dbprsr)
+        history_repository = DataUploadAutoHistoryRepository(dbpdtm)
+
+        # 0. 이력 데이터 삽입
+        seq = await history_repository.get_next_seq()
+        history_data = DataUploadAutoHistoryCreate(
+            data_wrk_no=seq,
+            data_wrk_nm=JobType.EIU_PARTNER,
+            strt_dtm=datetime.now(),
+            refl_file_nm=str(file_full_path),
+            reg_usr_id="system",
+            reg_dtm=datetime.now(),
+            mod_usr_id="system",
+            mod_dtm=datetime.now()
+        )
+        await history_repository.insert_history(seq, history_data)
 
         # 1. 원본 데이터 추출
         logger.info("1단계: 원본 데이터 추출 중...")
@@ -305,7 +324,10 @@ async def process_eiu_major_trade_partner(
             await dbprsr.commit()
         logger.info("데이터베이스 저장 완료")
 
-        # 5. 결과 요약 로그
+        # 5. 파일 저장
+        final_file_path = save_dataframe_to_csv(final_df, filename_prefix="eiu_major_trade_partner_data", add_timestamp=True)
+
+        # 6. 결과 요약 로그
         total_countries = len(country_data)
         countries_with_both = sum(1 for data in country_data.values() 
                                  if len(data.export_partners) > 0 and len(data.import_partners) > 0)
@@ -320,11 +342,30 @@ async def process_eiu_major_trade_partner(
         logger.info(f"  - 수출만 있는 국가: {countries_export_only}")
         logger.info(f"  - 수입만 있는 국가: {countries_import_only}")
 
+        # 7. 이력 업데이트
+        await history_repository.update_history(seq, DataUploadAutoHistoryUpdate(
+            end_dtm=datetime.now(),
+            fin_yn="Y",
+            scr_file_nm=final_file_path,
+            rslt_tab_nm="tb_rhr150",
+            proc_cnt=len(final_df),
+            mod_usr_id="system",
+            mod_dtm=datetime.now()
+        ))
+
         return final_df
         
     except Exception as e:
         logger.error(f"EIU 주요 수출입국 데이터 처리 중 오류 발생: {str(e)}")
-        raise
+
+        await history_repository.update_history(seq, DataUploadAutoHistoryUpdate(
+            end_dtm=datetime.now(),
+            fin_yn="N",
+            rmk_ctnt=str(e),
+            mod_usr_id="system",
+            mod_dtm=datetime.now()
+        ))
+        raise e
 
 
 if __name__ == "__main__":
