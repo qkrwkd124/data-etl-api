@@ -46,3 +46,10 @@ class COUNTRY_INFO(Base):
     trgtpsn_cd = Column(String(3), comment="대상국가주요정책")
     std_infrm_ctry_cd = Column(String(2), comment="대상국가주요정책")
     oecd_entry_yn = Column(String(1), comment="대상국가주요정책")
+
+class CountryMapping(Base):
+    __tablename__ = "tb_rhr350"
+
+    eng_ctry_nm = Column(String(200), primary_key=True, nullable=True, comment="영문국가명")
+    std_infrm_ctry_cd = Column(String(2), primary_key=True, nullable=True, comment="표준약식국가코드")
+    kcs_kor_ctry_nm = Column(String(100), comment="관세청한글국가명")
