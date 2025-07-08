@@ -80,8 +80,8 @@ class MajorTradePartner(Base):
     exp_rate = Column(String(10), comment="수출비율")
 
 
-class EIU_PARTNER_ISO(Base):
-    __tablename__ = "tb_rhr350"
+# class EIU_PARTNER_ISO(Base):
+#     __tablename__ = "tb_rhr350"
 
-    eng_ctry_nm = Column(String(200), primary_key=True, nullable=True, comment="영문국가명")
-    std_infrm_ctry_cd = Column(String(2), primary_key=True, nullable=True, comment="표준약식국가코드")
+#     eng_ctry_nm = Column(String(200), primary_key=True, nullable=True, comment="영문국가명")
+#     std_infrm_ctry_cd = Column(String(2), primary_key=True, nullable=True, comment="표준약식국가코드")
