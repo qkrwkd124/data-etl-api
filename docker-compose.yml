@@ -13,6 +13,7 @@ services:
     environment:
       - PYTHONPATH=/app
       - UV_CACHE_DIR=/app/.cache/uv
+      - TZ=Asia/Seoul
     user: "1000:1000"
     command: uv run uvicorn main:app --host 0.0.0.0 --port 8090 --reload
 
