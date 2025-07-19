@@ -78,3 +78,65 @@ class CustomsCountryConfig:
     
 # 싱글톤 인스턴스 (편의를 위해)
 CONFIG = CustomsCountryConfig()
+
+@dataclass(frozen=True)
+class CustomsTypeConfig:
+
+    # 엑셀 원본 컬럼명
+    EXCEL_YEAR: str = "기간"
+    EXCEL_FLAG: str = "수출입구분"
+    EXCEL_COUNTRY: str = "국가"
+    EXCEL_CATEGORY: str = "성질명"
+    EXCEL_WEIGHT: str = "중량"
+    EXCEL_MONEY: str = "금액"
+
+    # 임시 컬럼 (변환 과정에서 생성)
+    TEMP_ISO_CODE: str = "ISO코드"
+
+    # DB 컬럼명
+    DB_YEAR: str = "impexp_year"
+    DB_FLAG: str = "impexp_flag"
+    DB_COUNTRY: str = "impexp_nation_nm"
+    DB_CATEGORY: str = "impexp_item_nm"
+    DB_WEIGHT: str = "impexp_item_weight"
+    DB_MONEY: str = "impexp_item_money"
+    DB_ISO_CODE: str = "impexp_nation_code"
+
+    # 성질명 분류
+    MAJOR_CATEGORY_REGEX: str = r"^(1|2)\.\s*"
+    SUB_CATEGORY_REGEX: str = r"(^[가-하]\.)(\s*)"
+
+    @classmethod
+    def get_header_columns(cls) -> List[str]:
+        """헤더 검증용 컬럼"""
+        return [cls.EXCEL_YEAR, cls.EXCEL_FLAG, cls.EXCEL_COUNTRY, cls.EXCEL_CATEGORY]
+    
+    @classmethod
+    def get_required_excel_columns(cls) -> List[str]:
+        """필수 엑셀 컬럼 목록"""
+        return [
+            cls.EXCEL_YEAR,
+            cls.EXCEL_FLAG,
+            cls.EXCEL_COUNTRY,
+            cls.EXCEL_CATEGORY,
+            cls.EXCEL_WEIGHT,
+            cls.EXCEL_MONEY
+        ]
+    
+    @classmethod
+    def get_sort_columns(cls) -> List[str]:
+        """정렬용 컬럼"""
+        return [cls.DB_COUNTRY, cls.DB_MONEY]
+    
+    @classmethod
+    def get_final_column_mapping(cls) -> Dict[str, str]:
+        """최종 컬럼 매핑 (엑셀 -> DB)"""
+        return {
+            cls.EXCEL_YEAR: cls.DB_YEAR,
+            cls.EXCEL_FLAG: cls.DB_FLAG,
+            cls.EXCEL_COUNTRY: cls.DB_COUNTRY,
+            cls.EXCEL_CATEGORY: cls.DB_CATEGORY,
+            cls.EXCEL_WEIGHT: cls.DB_WEIGHT,
+            cls.EXCEL_MONEY: cls.DB_MONEY,
+            cls.TEMP_ISO_CODE: cls.DB_ISO_CODE
+        }
