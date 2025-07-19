@@ -5,9 +5,10 @@ from enum import Enum
 
 class JobType(str, Enum):
     """작업 유형 열거형"""
-    CUSTOMS_COUNTRY = "국세청 주요 수출수입품"
-    EIU_ECONOMIC = "EIU 주요 경제지표"
-    EIU_PARTNER = "EIU 주요 수출수입국"
+    CUSTOMS_COUNTRY = "국가별 수출입규모(관세청)"
+    CUSTOMS_ITEM = "주요 수출/수입품(관세청) - {{flag}}실적"
+    EIU_ECONOMIC = "주요 경제지표(EIU)"
+    EIU_PARTNER = "주요 수출/수입국(EIU)"
 
 
 class DataUploadAutoHistoryCreate(BaseModel):
