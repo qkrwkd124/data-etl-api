@@ -1,12 +1,17 @@
 import pandas as pd
 from pathlib import Path
 from datetime import datetime
-from typing import Optional
 from app.core.logger import get_logger
 from app.core.settings import get_settings
 
 settings = get_settings()
 logger = get_logger()
+
+
+async def validate_file(
+        file_path: str
+)-> bool:
+    return Path(file_path).exists()
 
 def save_dataframe_to_csv(
     df: pd.DataFrame,
