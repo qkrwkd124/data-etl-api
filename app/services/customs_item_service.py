@@ -1,19 +1,17 @@
 import pandas as pd
 import asyncio
-from typing import List, Dict, Any, Optional, Tuple,Literal
+from typing import Literal
 from sqlalchemy.ext.asyncio import AsyncSession
 from pathlib import Path
 from datetime import datetime
-import os
-import sys
 
-from app.schemas.history_schemas import DataUploadAutoHistoryCreate, JobType
 from app.core.logger import get_logger
 from app.utils.excel_utils import read_excel_file
 from app.utils.file_utils import validate_file, save_dataframe_to_csv
 from app.core.constants.customs import CustomsTypeConfig as Config
 from app.repositories.customs_repository import ExportImportItemByCountryRepository
-from app.repositories.history_repository import DataUploadAutoHistoryRepository,DataUploadAutoHistoryUpdate
+from app.repositories.history_repository import DataUploadAutoHistoryRepository
+from app.models.customs import ExportImportItemByCountry
 
 
 logger = get_logger()
@@ -129,8 +127,7 @@ async def _create_final_output(
     
 
 async def process_data(
-    file_path: str,
-    file_name: str,
+    seq: int,
     flag: str = Literal["수출", "수입"],
     dbprsr: AsyncSession = None,
     dbpdtm: AsyncSession = None,
@@ -138,26 +135,19 @@ async def process_data(
 )-> pd.DataFrame:
     
     try :
-        file_path = Path(file_path,file_name)
-        logger.info(f"관세청 수출/수입품 파일 처리 시작:{file_path}")
-
         # repository 초기화
         expimptype_repository = ExportImportItemByCountryRepository(dbprsr)
         history_repository = DataUploadAutoHistoryRepository(dbpdtm)
 
+        history_info = await history_repository.get_history_info(seq)
+        file_path = history_info.file_path_nm
+        file_name = history_info.file_nm
+
+        file_path = Path(file_path,file_name)
+        logger.info(f"관세청 수출/수입품 파일 처리 시작:{file_path}")
+
         # 0. 이력 데이터 삽입
-        seq = await history_repository.get_next_seq()
-        history_data = DataUploadAutoHistoryCreate(
-            data_wrk_no=seq,
-            data_wrk_nm=JobType.CUSTOMS_ITEM.format(flag=flag),
-            strt_dtm=datetime.now(),
-            refl_file_nm=file_path.name,
-            reg_usr_id="system",
-            reg_dtm=datetime.now(),
-            mod_usr_id="system",
-            mod_dtm=datetime.now()
-        )
-        await history_repository.insert_history(seq, history_data)
+        await history_repository.start_processing(seq)
 
         # 1. 파일 유효성 검사
         if not await validate_file(file_path):
@@ -187,27 +177,13 @@ async def process_data(
         final_file_path = save_dataframe_to_csv(final_df, filename_prefix="customs_type_data", add_timestamp=True)
 
         # 8. 이력 업데이트
-        await history_repository.update_history(seq, DataUploadAutoHistoryUpdate(
-            end_dtm=datetime.now(),
-            fin_yn="Y",
-            scr_file_nm=final_file_path,
-            rslt_tab_nm="tb_rhr130",
-            proc_cnt=len(final_df),
-            mod_usr_id="system",
-            mod_dtm=datetime.now()
-        ))
+        await history_repository.success_processing(seq, result_table_name=ExportImportItemByCountry.__tablename__, process_count=len(final_df))
 
         return final_df
     
     except Exception as e:
         logger.error(f"Error processing {file_name}: {e}")
 
-        await history_repository.update_history(seq, DataUploadAutoHistoryUpdate(
-            end_dtm=datetime.now(),
-            fin_yn="N",
-            rmk_ctnt=str(e),
-            mod_usr_id="system",
-            mod_dtm=datetime.now()
-        ))
+        await history_repository.fail_processing(seq)
 
         raise e
