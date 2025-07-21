@@ -1,11 +1,11 @@
 from pydantic import BaseModel, Field
 
-class UploadRequest(BaseModel):
-    file_path: str = Field(..., description="파일 경로")
-    file_name: str = Field(..., description="파일 이름")
+# class UploadRequest(BaseModel):
+#     file_path: str = Field(..., description="파일 경로")
+#     file_name: str = Field(..., description="파일 이름")
 
-class UploadRequest2(BaseModel):
-    seq: str = Field(..., description="순번")
+class UploadRequest(BaseModel):
+    file_seq: int = Field(..., description="순번")
 
 class UploadResponse(BaseModel):
     success: bool = Field(..., description="성공 여부")

@@ -33,8 +33,7 @@ async def upload_customs_country(
 
         # 데이터 처리
         result = await process_data_country(
-            file_path=request.file_path,
-            file_name=request.file_name,
+            seq=request.file_seq,
             dbprsr=dbprsr,
             dbpdtm=dbpdtm,
             replace_all=True
@@ -72,8 +71,7 @@ async def upload_customs_type(
 
         # 데이터 처리
         result = await process_data_item(
-            file_path=request.file_path,
-            file_name=request.file_name,
+            seq=request.file_seq,
             flag="수출",
             dbprsr=dbprsr,
             dbpdtm=dbpdtm,
@@ -112,8 +110,7 @@ async def upload_customs_type(
 
         # 데이터 처리
         result = await process_data_item(
-            file_path=request.file_path,
-            file_name=request.file_name,
+            seq=request.file_seq,
             flag="수입",
             dbprsr=dbprsr,
             dbpdtm=dbpdtm,
