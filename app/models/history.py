@@ -6,6 +6,7 @@ class DataUploadAutoHistory(Base):
     __tablename__ = "tb_bpc220"
 
     file_seq = Column(Numeric(10), primary_key=True, comment="파일순번")
+    data_wrk_no = Column(Numeric(10), comment="데이터작업번호")
     data_wrk_nm = Column(String(400), primary_key=True, comment="데이터작업명")
     strt_dtm = Column(DateTime, comment="시작일시")
     end_dtm = Column(DateTime, comment="종료일시")

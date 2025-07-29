@@ -1,17 +1,97 @@
+"""파일 관련 공통 기능 유틸리티.
+
+파일 검증, 저장 등의 공통 기능을 제공합니다.
+보안과 안정성을 고려한 파일 처리를 포함합니다.
+"""
+
 import pandas as pd
 from pathlib import Path
 from datetime import datetime
+from typing import List
+import traceback
+
 from app.core.logger import get_logger
-from app.core.settings import get_settings
+from app.core.setting import get_settings
+from app.core.constants.error import ErrorMessages, ErrorCode
+from app.core.exceptions import FileException
 
 settings = get_settings()
 logger = get_logger()
 
 
 async def validate_file(
-        file_path: str
-)-> bool:
-    return Path(file_path).exists()
+        file_path: str,
+        file_exts_nm: str
+)-> None:
+    """파일 유효성 검사.
+    
+    파일 확장자와 존재 여부를 검증합니다.
+    보안을 위해 허용된 확장자만 처리합니다.
+    
+    Args:
+        file_path (str): 검증할 파일 경로
+        file_exts_nm (str): 파일 확장자
+        
+    Raises:
+        FileException:
+            - 지원하지 않는 확장자일 때 (FILE_EXTENSION_ERROR)
+            - 파일이 존재하지 않을 때 (FILE_NOT_FOUND)
+            
+    Note:
+        현재 지원하는 확장자: XLSX, CSV
+    """
+    if file_exts_nm.upper() not in ["XLSX", "CSV"]:
+        logger.error(f"파일 확장자가 올바르지 않습니다: {file_path}")
+        raise FileException(
+            message=ErrorMessages.get_message(ErrorCode.FILE_EXTENSION_ERROR),
+            error_code=ErrorCode.FILE_EXTENSION_ERROR,
+            detail={
+                "file_path": file_path,
+                "file_exts_nm": file_exts_nm
+            }
+        )
+    
+    if not Path(file_path).exists():
+        logger.error(f"파일이 존재하지 않습니다: {file_path}")
+        raise FileException(
+            message=ErrorMessages.get_message(ErrorCode.FILE_NOT_FOUND),
+            error_code=ErrorCode.FILE_NOT_FOUND,
+            detail={
+                "file_path": file_path
+            }
+        )
+    
+def read_csv_file(
+        file_path: str,
+        required_cols: List[str],
+        sep: str = ",",
+        line_terminator: str = "\n",
+        skiprows: int = None
+    ) -> pd.DataFrame:
+    try :
+        df = pd.read_csv(file_path, sep=sep, lineterminator=line_terminator, skiprows=skiprows)
+
+        for col in required_cols:
+            if col not in df.columns:
+                raise FileException(
+                    message=ErrorMessages.get_message(ErrorCode.FILE_HEADER_NOT_FOUND),
+                    error_code=ErrorCode.FILE_HEADER_NOT_FOUND,
+                    detail={
+                        "file_path": file_path,
+                    }
+                )
+
+        return df
+    
+    except Exception as e:
+        logger.error(f"Error reading CSV file: \n{traceback.format_exc()}")
+        raise FileException(
+            message=ErrorMessages.get_message(ErrorCode.FILE_READ_ERROR),
+            error_code=ErrorCode.FILE_READ_ERROR,
+            detail={
+                "file_path": file_path,
+            }
+        )
 
 def save_dataframe_to_csv(
     df: pd.DataFrame,
@@ -57,5 +137,5 @@ def save_dataframe_to_csv(
         return str(file_path)
         
     except Exception as e:
-        logger.error(f"CSV 저장 중 오류 발생: {str(e)}")
+        logger.error(f"CSV 저장 중 오류 발생: \n{traceback.format_exc()}")
         raise

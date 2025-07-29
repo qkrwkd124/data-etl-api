@@ -1,21 +1,27 @@
-import sys
-import os
 import asyncio
 import re
 import pandas as pd
-from datetime import datetime
 from pathlib import Path
 from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional, Dict, List
 from itertools import zip_longest
+import traceback
 
 from app.core.constants.eiu import EIUDataType
 from app.schemas.eiu_schemas import TradePartnerData, CountryTradeData
-from app.schemas.history_schemas import DataUploadAutoHistoryCreate, JobType, DataUploadAutoHistoryUpdate
+from app.models.EIU import MajorTradePartner
 from app.repositories.eiu_repository import EIUPartnerRepository
 from app.repositories.history_repository import DataUploadAutoHistoryRepository
-from app.utils.file_utils import save_dataframe_to_csv
+from app.utils.file_utils import save_dataframe_to_csv, validate_file
 from app.core.logger import get_logger
+from app.core.constants.error import ErrorMessages, ErrorCode
+from app.core.exceptions import (
+    DataProcessingException,
+    DatabaseException,
+    FileException,
+    DataNotFoundException,
+    ValidationException
+)
 
 logger = get_logger()
 
@@ -191,7 +197,7 @@ async def _create_integrated_dataframe(country_data: Dict[str, CountryTradeData]
     return df
 
 
-async def process_data(
+async def _extract_raw_data(
         file_path:str,
 ):
     excel_file = pd.ExcelFile(file_path)
@@ -208,7 +214,14 @@ async def process_data(
 
             if header_idx is None:
                 logger.error(f"헤더 행을 찾을 수 없음: {sheet_name}")
-                return []
+                raise FileException(
+                    message=ErrorMessages.get_message(ErrorCode.FILE_HEADER_NOT_FOUND),
+                    error_code=ErrorCode.FILE_HEADER_NOT_FOUND,
+                    detail={
+                        "file_path": file_path,
+                        "sheet_name": sheet_name
+                    }
+                )
             
             header_row = df.iloc[header_idx]
             column_indices = _get_column_indices(header_row)
@@ -220,7 +233,7 @@ async def process_data(
                 trade_type = "import"
             else :
                 logger.error(f"잘못된 시트 이름: {sheet_name}")
-                return []
+                raise ValueError(ErrorMessages.FILE_READ_ERROR)
             
             for idx in range(header_idx + 1, len(df)):
                 row = df.iloc[idx]
@@ -249,9 +262,8 @@ async def process_data(
     return trade_data_list
 
 
-async def process_eiu_major_trade_partner(
-        file_path: str,
-        file_name: str,
+async def process_data(
+        seq: int,
         dbprsr: AsyncSession,
         dbpdtm: AsyncSession,
         replace_all: bool = True
@@ -279,55 +291,68 @@ async def process_eiu_major_trade_partner(
         Exception: 파일 처리 중 오류 발생 시
     """
     try:
-        file_full_path = Path(file_path) / file_name
-        logger.info(f"EIU Major Export and Import Partner 파일 처리 시작: {file_full_path}")
-
         # Repository 객체 한 번만 생성
         partner_repository = EIUPartnerRepository(dbprsr)
         history_repository = DataUploadAutoHistoryRepository(dbpdtm)
 
-        # 0. 이력 데이터 삽입
-        seq = await history_repository.get_next_seq()
-        history_data = DataUploadAutoHistoryCreate(
-            data_wrk_no=seq,
-            data_wrk_nm=JobType.EIU_PARTNER,
-            strt_dtm=datetime.now(),
-            refl_file_nm=str(file_full_path),
-            reg_usr_id="system",
-            reg_dtm=datetime.now(),
-            mod_usr_id="system",
-            mod_dtm=datetime.now()
-        )
-        await history_repository.insert_history(seq, history_data)
+        history_info = await history_repository.get_history_info(seq)
+        file_path = str(Path(history_info.file_path_nm,history_info.file_nm))
+        logger.info(f"EIU Major Export and Import Partner 파일 처리 시작: {file_path}")
 
-        # 1. 원본 데이터 추출
+        # 0. 이력 데이터 삽입
+        await history_repository.start_processing(seq)
+
+        # 1. 파일 유효성 검사
+        await validate_file(file_path, history_info.file_exts_nm)
+
+        # 2. 원본 데이터 추출
         logger.info("1단계: 원본 데이터 추출 중...")
-        trade_data_list = await process_data(str(file_full_path))
+        trade_data_list = await _extract_raw_data(str(file_path))
         logger.info(f"총 {len(trade_data_list)}개의 원본 데이터를 추출했습니다.")
 
-        # 2. 국가별 데이터 집계 및 필터링
-        logger.info("2단계: 국가별 데이터 집계 및 유효성 검사 중...")
-        country_data = _aggregate_country_data(trade_data_list)
-        logger.info(f"유효한 데이터가 있는 국가 수: {len(country_data)}")
+        try :
+            # 3. 국가별 데이터 집계 및 필터링
+            logger.info("2단계: 국가별 데이터 집계 및 유효성 검사 중...")
+            country_data = _aggregate_country_data(trade_data_list)
+            logger.info(f"유효한 데이터가 있는 국가 수: {len(country_data)}")
 
-        # 3. 통합 데이터프레임 생성
-        logger.info("3단계: 통합 데이터프레임 생성 중...")
-        final_df = await _create_integrated_dataframe(country_data, partner_repository)
-        logger.info(f"최종 데이터프레임 생성 완료: {final_df.shape[0]}행 x {final_df.shape[1]}열")
+            # 4. 통합 데이터프레임 생성
+            logger.info("3단계: 통합 데이터프레임 생성 중...")
+            final_df = await _create_integrated_dataframe(country_data, partner_repository)
+            logger.info(f"최종 데이터프레임 생성 완료: {final_df.shape[0]}행 x {final_df.shape[1]}열")
+        except Exception as e:
+            logger.error(f"data processing error: \n{traceback.format_exc()}")
+            raise DataProcessingException(
+                message=ErrorMessages.get_message(ErrorCode.DATA_PROCESSING_ERROR),
+                error_code=ErrorCode.DATA_PROCESSING_ERROR,
+                detail={
+                    "file_path": file_path,
+                }
+            )
 
-        # 4. 데이터베이스 저장
-        logger.info("4단계: 데이터베이스 저장 중...")
-        if replace_all :
-            db_result = await partner_repository.replace_all_data(final_df)
-        else :
-            insert_count = await partner_repository.insert_dataframe(final_df)
-            await dbprsr.commit()
-        logger.info("데이터베이스 저장 완료")
+        # 5. 데이터베이스 저장
+        try :
+            logger.info("5단계: 데이터베이스 저장 중...")
+            if replace_all :
+                db_result = await partner_repository.replace_all_data(final_df)
+            else :
+                insert_count = await partner_repository.insert_dataframe(final_df)
+                await dbprsr.commit()
+            logger.info("데이터베이스 저장 완료")
+        except Exception as e:
+            logger.error(f"database error: \n{traceback.format_exc()}")
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={
+                    "file_path": file_path,
+                }
+            )
 
-        # 5. 파일 저장
+        # 6. 파일 저장
         final_file_path = save_dataframe_to_csv(final_df, filename_prefix="eiu_major_trade_partner_data", add_timestamp=True)
 
-        # 6. 결과 요약 로그
+        # 7. 결과 요약 로그
         total_countries = len(country_data)
         countries_with_both = sum(1 for data in country_data.values() 
                                  if len(data.export_partners) > 0 and len(data.import_partners) > 0)
@@ -342,30 +367,22 @@ async def process_eiu_major_trade_partner(
         logger.info(f"  - 수출만 있는 국가: {countries_export_only}")
         logger.info(f"  - 수입만 있는 국가: {countries_import_only}")
 
-        # 7. 이력 업데이트
-        await history_repository.update_history(seq, DataUploadAutoHistoryUpdate(
-            end_dtm=datetime.now(),
-            fin_yn="Y",
-            scr_file_nm=final_file_path,
-            rslt_tab_nm="tb_rhr150",
-            proc_cnt=len(final_df),
-            mod_usr_id="system",
-            mod_dtm=datetime.now()
-        ))
-
+        # 8. 이력 업데이트
+        await history_repository.success_processing(seq,
+                                                    result_table_name=MajorTradePartner.__tablename__,
+                                                    process_count=len(final_df),
+                                                    message=ErrorMessages.SUCCESS)
         return final_df
-        
+    except (DataProcessingException, DatabaseException, FileException, DataNotFoundException, ValidationException) as e:
+        logger.error(f"처리 실패: {e.error_code.value} - {e.message}")
+        await history_repository.fail_processing(seq, message=e.message)
+        raise 
+    
     except Exception as e:
-        logger.error(f"EIU 주요 수출입국 데이터 처리 중 오류 발생: {str(e)}")
-
-        await history_repository.update_history(seq, DataUploadAutoHistoryUpdate(
-            end_dtm=datetime.now(),
-            fin_yn="N",
-            rmk_ctnt=str(e),
-            mod_usr_id="system",
-            mod_dtm=datetime.now()
-        ))
+        logger.error(f"예상하지 못한 시스템 오류: \n{traceback.format_exc()}")
+        await history_repository.fail_processing(seq, message=ErrorMessages.get_message(ErrorCode.SYSTEM_ERROR))
         raise e
+
 
 
 if __name__ == "__main__":
@@ -381,7 +398,7 @@ if __name__ == "__main__":
             # trade_data_list = await process_data(str(file_full_path))
             # country_data = _aggregate_country_data(trade_data_list)
             # df = await _create_integrated_dataframe(country_data, partner_repository)
-            df = await process_eiu_major_trade_partner(file_path, file_name, dbprsr, replace_all=True)
+            df = await process_data(file_path, file_name, dbprsr, replace_all=True)
             print(df[df['cont_nm'] == '앙골라'])
             break 
 

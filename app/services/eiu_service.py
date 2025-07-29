@@ -1,37 +1,66 @@
+"""EIU 주요 경제지표 데이터 ETL 처리 서비스.
+
+EIU (Economist Intelligence Unit) 주요 경제지표 데이터의 추출, 변환, 적재를 담당합니다.
+복잡한 엑셀 구조 파싱과 데이터 정규화를 포함합니다.
+"""
+
 import pandas as pd
-import os
 import asyncio
 from pathlib import Path
-from typing import Dict, Any, List, Optional, Tuple
+from typing import List, Optional
 import openpyxl
 from openpyxl.styles import PatternFill
 from openpyxl.utils.cell import get_column_letter
-import sys
+import traceback
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.repositories.eiu_repository import EIUEconomicIndicatorRepository
-from app.schemas.eiu_schemas import ProcessedExcelRow, ExcelRowData
+from app.repositories.history_repository import DataUploadAutoHistoryRepository
+from app.schemas.eiu_schemas import ExcelRowData
+from app.models.EIU import EconomicData
 from app.core.constants.eiu import EIU_CODES, EIU_COLUMN_MAPPING, EIU_ESTIMATE_COLOR, EIUDataType
+from app.core.constants.error import ErrorMessages, ErrorCode
+from app.core.exceptions import (
+    DataProcessingException,
+    DatabaseException,
+    FileException,
+    DataNotFoundException,
+    ValidationException
+)
 from app.core.logger import get_logger
+from app.utils.file_utils import validate_file
+
 
 logger = get_logger()
 
 def _get_cell_color(cell) -> Optional[str]:
-        """
-        셀의 배경색 RGB 값을 반환
+    """엑셀 셀의 배경색 RGB 값 추출.
+
+    openpyxl 셀 객체에서 배경색을 추출하여
+    예측 데이터 식별에 사용합니다.
+    
+    Args:
+        cell: openpyxl 셀 객체
         
-        Args:
-            cell: openpyxl 셀 객체
-            
-        Returns:
-            RGB 문자열 또는 None (배경색이 없는 경우)
-        """
-        if cell.fill.patternType == 'solid':
-            return cell.font.color.rgb
-        return None
+    Returns:
+        Optional[str]: RGB 문자열 또는 None (배경색이 없는 경우)
+    """
+    if cell.fill.patternType == 'solid':
+        return cell.font.color.rgb
+    return None
 
 def _find_header_row(sheet) -> Optional[int]:
-    """헤더 행 찾기 - 누락된 함수 구현"""
+    """엑셀 시트에서 헤더 행 찾기.
+    
+    'Series'와 'Code' 컬럼이 있는 행을 찾아
+    데이터 시작 위치를 파악합니다.
+    
+    Args:
+        sheet: openpyxl 워크시트 객체
+        
+    Returns:
+        Optional[int]: 헤더 행 번호 (1부터 시작) 또는 None
+    """
     for row_idx in range(1, 20): # 상위 20행 내에서 헤더 찾기기
         series_cell = sheet.cell(row=row_idx, column=1).value
         code_cell = sheet.cell(row=row_idx, column=2).value
@@ -43,7 +72,18 @@ def _find_header_row(sheet) -> Optional[int]:
 
 
 def _extract_column_names(sheet, header_row: int) -> List[str]:
-    """컬럼 이름 추출 - 기존 로직 함수화"""
+    """헤더 행에서 컬럼명 추출.
+    
+    지정된 헤더 행에서 모든 컬럼명을 추출하여
+    리스트로 반환합니다.
+    
+    Args:
+        sheet: openpyxl 워크시트 객체
+        header_row (int): 헤더 행 번호
+        
+    Returns:
+        List[str]: 컬럼명 리스트
+    """
     column_names = []
     col_idx = 1
     while True:
@@ -60,7 +100,20 @@ def _create_excel_row_from_sheet_data(
     column_names: List[str], 
     country_code: str
 ) -> Optional[ExcelRowData]:
-     
+    """시트 데이터에서 ExcelRowData 객체 생성.
+    
+    엑셀 행 데이터를 읽어서 구조화된 객체로 변환합니다.
+    연도별 데이터와 셀 색상 정보를 포함하여 처리합니다.
+    
+    Args:
+        sheet: openpyxl 워크시트 객체
+        row_idx (int): 처리할 행 번호
+        column_names (List[str]): 컬럼명 리스트
+        country_code (str): 국가 코드
+        
+    Returns:
+        Optional[ExcelRowData]: 변환된 행 데이터 객체 또는 None
+    """
     row_data = {
         "country_code": country_code,
         "year_data": {}
@@ -138,7 +191,10 @@ async def process_data(file_path:str) :
 
     logger.info(f"원본 파일 처리 시작 : {file_path}")
 
-    workbook = openpyxl.load_workbook(file_path)
+    # 확장자 오류로 인한 바이너리 스트림으로 처리
+    with open(file_path, "rb") as file:
+        workbook = openpyxl.load_workbook(file)
+
     sheet_names = workbook.sheetnames
 
     # 모든 Excel 행 데이터
@@ -154,7 +210,14 @@ async def process_data(file_path:str) :
         header_row = _find_header_row(sheet)
         if header_row is None:
             logger.error(f"헤더 행을 찾을 수 없음: {sheet_name}")
-            return Exception(f"헤더 행을 찾을 수 없음: {sheet_name}")
+            raise FileException(
+                message=ErrorMessages.get_message(ErrorCode.FILE_HEADER_NOT_FOUND),
+                error_code=ErrorCode.FILE_HEADER_NOT_FOUND,
+                detail={
+                    "file_path": file_path,
+                    "sheet_name": sheet_name
+                }
+            )
 
         # 컬럼 이름 추출
         column_names = _extract_column_names(sheet, header_row)
@@ -189,62 +252,118 @@ async def process_data(file_path:str) :
 
     df = _convert_to_dataframe(all_excel_rows, year_columns)
 
-    if df.empty :
-        raise ValueError("처리할 수 있는 데이터가 없습니다.")
-    
     return df
 
 async def process_eiu_economic_indicator(
-        file_path: str,
-        file_name: str,
+        seq: int,
         dbprsr: AsyncSession,
+        dbpdtm: AsyncSession,
         replace_all: bool = True
 ) :
-    """
-    EIU 파일 전체 처리 (가공 + Repository를 통한 DB 저장 + CSV 저장)
+    """EIU 주요 경제지표 파일 전체 처리.
+    
+    파일 검증부터 데이터 가공, 데이터베이스 저장까지
+    전체 ETL 프로세스를 수행합니다.
     
     Args:
-        file_path: 처리할 파일 경로
-        file_name: 파일명 (선택사항)
-        session: 데이터베이스 세션
-        replace_all: True면 전체 교체, False면 추가
+        seq (int): 파일 처리 순번 (이력 조회용)
+        dbprsr (AsyncSession): 메인 데이터베이스 세션
+        dbpdtm (AsyncSession): 이력 데이터베이스 세션
+        replace_all (bool): True면 전체 교체, False면 추가 (기본값: True)
         
     Returns:
-        처리 결과 딕셔너리
+        pd.DataFrame: 처리된 데이터프레임
+        
+    Raises:
+        DataProcessingException: 데이터 처리 실패 시
+        DatabaseException: 데이터베이스 작업 실패 시
+        FileException: 파일 검증 또는 읽기 실패 시
+        DataNotFoundException: 파일 정보 조회 실패 시
+        ValidationException: 데이터 검증 실패 시
     """
 
     try :
-        file_full_path = Path(file_path, file_name)
-        logger.info(f"EIU Economic Indicator 파일 처리 시작: {file_full_path}")
+        # Repository 객체 생성
+        repository = EIUEconomicIndicatorRepository(dbprsr)
+        history_repository = DataUploadAutoHistoryRepository(dbpdtm)
 
-        # 1. 데이터 가공
-        df = await process_data(file_full_path)
+        history_info = await history_repository.get_history_info(seq)
+        file_path = str(Path(history_info.file_path_nm,history_info.file_nm))
+        logger.info(f"EIU Economic Indicator 파일 처리 시작: {file_path}")
+
+        # 0. 이력 데이터 삽입
+        await history_repository.start_processing(seq)
+
+        # 1. 파일 유효성 검사
+        await validate_file(file_path, history_info.file_exts_nm)
+
+        # 2. 데이터 가공
+        df = await process_data(file_path)
 
         if df.empty :
-            raise ValueError("처리할 수 있는 데이터가 없습니다.")
+            logger.error("처리할 수 있는 데이터가 없습니다.")
+            raise DataProcessingException(
+                message=ErrorMessages.get_message(ErrorCode.DATA_PROCESSING_ERROR),
+                error_code=ErrorCode.DATA_PROCESSING_ERROR,
+                detail={
+                    "file_path": file_path,
+                }
+            )
 
-        #2. 국가명 매핑
-        repository = EIUEconomicIndicatorRepository(dbprsr)
-        country_mapping = await repository.get_country_mapping()
-        df["eiu_cont_en_nm"] = df["eiu_country_code"].map(country_mapping).fillna('')
+        try :
+            #2. 국가명 매핑
+            country_mapping = await repository.get_country_mapping()
+            df["eiu_cont_en_nm"] = df["eiu_country_code"].map(country_mapping).fillna('')
+
+        except Exception as e:
+            logger.error(f"국가명 매핑 중 오류: \n{traceback.format_exc()}")
+            raise DataProcessingException(
+                message=ErrorMessages.get_message(ErrorCode.DATA_PROCESSING_ERROR),
+                error_code=ErrorCode.DATA_PROCESSING_ERROR,
+                detail={
+                    "file_path": file_path,
+                }
+            )
         
+        try :
         #. 2. 데이터베이스 저장
-        logger.info("2. 데이터베이스 저장 중...")
+            logger.info("2. 데이터베이스 저장 중...")
 
-        if replace_all :
-            db_result = await repository.replace_all_data(df)
-        else :
-            insert_count = await repository.insert_dataframe(df)
-            await dbprsr.commit()
+            if replace_all :
+                db_result = await repository.replace_all_data(df)
+            else :
+                insert_count = await repository.insert_dataframe(df)
+                await dbprsr.commit()
 
-        logger.info(f"데이터베이스 저장 완료: {db_result}")
+            logger.info(f"데이터베이스 저장 완료: {db_result}")
+
+        except Exception as e:
+            logger.error(f"데이터베이스 저장 중 오류: \n{traceback.format_exc()}")
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={
+                    "file_path": file_path,
+                }
+            )
 
         #. 3. CSV 저장
 
-        logger.info(f"EIU Economic Indicator 파일 처리 완료: {file_full_path}")
+        logger.info(f"EIU Economic Indicator 파일 처리 완료: {file_path}")
+        await history_repository.success_processing(seq,
+                                                    result_table_name=EconomicData.__tablename__,
+                                                    process_count=len(df),
+                                                    message=ErrorMessages.SUCCESS)
+        return df
+    
+    except (DataProcessingException, DatabaseException, FileException, DataNotFoundException, ValidationException) as e:
+        logger.error(f"처리 실패: {e.error_code.value} - {e.message}")
+        await history_repository.fail_processing(seq, message=e.message)
+        raise 
     except Exception as e:
-
-        logger.error(f"EIU Economic Indicator 파일 처리 중 오류: {str(e)}")
+        logger.error(f"예상하지 못한 시스템 오류: \n{traceback.format_exc()}")
+        await history_repository.fail_processing(seq, message=ErrorMessages.get_message(ErrorCode.SYSTEM_ERROR))
+        raise e
 
 
 if __name__ == "__main__" :

@@ -3,6 +3,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.models.history import DataUploadAutoHistory
 from app.core.logger import logger
 from datetime import datetime
+from sqlalchemy.exc import NoResultFound
+from app.core.exceptions import DataNotFoundException, ErrorCode, DatabaseException
+from app.core.constants.error import ErrorMessages
 
 class DataUploadAutoHistoryRepository:
     """데이터 업로드 자동화 이력 Repository"""
@@ -28,7 +31,6 @@ class DataUploadAutoHistoryRepository:
             
             logger.info(f"시퀀스 {seq_name} 다음 값: {seq_value}")
             return seq_value
-            
         except Exception as e:
             logger.error(f"시퀀스 조회 중 오류: {str(e)}")
             raise
@@ -42,9 +44,24 @@ class DataUploadAutoHistoryRepository:
             result = await self.session.execute(select_stmt)
             file_info = result.scalar_one()
             return file_info
+        except NoResultFound:
+            logger.error(f"파일 정보 조회 중 오류: 시퀀스 값이 없습니다.")
+            raise DataNotFoundException(
+                message=ErrorMessages.get_message(ErrorCode.DATA_NOT_FOUND),
+                error_code=ErrorCode.DATA_NOT_FOUND,
+                detail={
+                    "seq": seq
+                }
+            )
         except Exception as e:
             logger.error(f"파일 정보 조회 중 오류: {str(e)}")
-            raise
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={
+                    "seq": seq
+                }
+            )
 
     async def update_history(self, seq: int, **update_data) -> None:
         """
@@ -72,7 +89,13 @@ class DataUploadAutoHistoryRepository:
         except Exception as e:
             logger.error(f"이력 데이터 업데이트 중 오류: {str(e)}")
             await self.session.rollback()
-            raise
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={
+                    "seq": seq
+                }
+            )
 
     async def start_processing(self, seq: int) -> None:
         await self.update_history(
@@ -81,21 +104,23 @@ class DataUploadAutoHistoryRepository:
             mod_dtm=datetime.now()
         )
 
-    async def success_processing(self, seq: int, result_table_name: str, process_count: int) -> None:
+    async def success_processing(self, seq: int, result_table_name: str, process_count: int, message: str = None) -> None:
         await self.update_history(
             seq,
             end_dtm=datetime.now(),
             fin_yn="Y",
+            rmk_ctnt=message,
             rslt_tab_nm=result_table_name,
             proc_cnt=process_count,
             mod_dtm=datetime.now()
         )
 
-    async def fail_processing(self, seq: int) -> None:
+    async def fail_processing(self, seq: int, message: str = None) -> None:
         await self.update_history(
             seq,
             end_dtm=datetime.now(),
             fin_yn="N",
+            rmk_ctnt=message,
             mod_dtm=datetime.now()
         )
 

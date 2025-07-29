@@ -6,77 +6,95 @@ from fastapi import Depends
 from app.db.base import get_main_db, get_dbpdtm_db
 from app.schemas.api_schemas import UploadRequest, UploadResponse
 from app.services.eiu_service import process_eiu_economic_indicator
-from app.services.major_trade_partner_service import process_eiu_major_trade_partner
+from app.services.major_trade_partner_service import process_data
+from app.core.constants.error import ErrorMessages
 
 router = APIRouter()
 
-@router.post("/eiu/economic-indicator/upload", response_model=UploadResponse)
-async def process_data(
+@router.post(
+        "/eiu/economic-indicator",
+        response_model=UploadResponse,
+        summary="EIU 주요경제지표 엑셀 파일 처리",
+        description="EIU 주요경제지표 엑셀 파일을 처리하여 데이터를 추출, 비즈니스 로직에 따라 변환하고 데이터베이스에 저장합니다.",
+        tags=["EIU"]
+    )
+async def process_economic_indicator(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db)
-) -> Dict[str, Any]:
-    """
-    엑셀 파일을 처리하는 엔드포인트
+    dbprsr = Depends(get_main_db),
+    dbpdtm = Depends(get_dbpdtm_db)
+) -> UploadResponse:
+    """EIU 주요경제지표 엑셀 파일 처리.
     
-    Args:
-        request (DataRequest): 처리할 파일 정보
+    업로드된 EIU 경제지표 엑셀 파일을 처리하여 데이터를 추출,
+    비즈니스 로직에 따라 변환하고 데이터베이스에 저장합니다.
+    
+    Args:  
+        request (UploadRequest): file_seq를 포함한 파일 처리 요청  
+        dbprsr: 메인 데이터베이스 세션 의존성 주입  
+        dbpdtm: 이력 데이터베이스 세션 의존성 주입  
         
-    Returns:
-        Dict[str, Any]: 처리 결과
+    Returns:  
+        UploadResponse: 성공 여부와 메시지가 포함된 처리 결과  
+        
+    Raises:  
+        DataProcessingException: 데이터 처리 실패 시  
+        DatabaseException: 데이터베이스 작업 실패 시  
+        FileException: 파일 검증 또는 읽기 실패 시  
     """
-    try:
 
-        # 데이터 처리
-        result = await process_eiu_economic_indicator(
-            file_path=request.file_path,
-            file_name=request.file_name,
-            dbprsr=dbprsr,
-            replace_all=True
-        )
-            
-        return UploadResponse(
-            success=True,
-            message="데이터 처리 완료",
-        )
+    # 데이터 처리
+    result = await process_eiu_economic_indicator(
+        seq=request.file_seq,
+        dbprsr=dbprsr,
+        dbpdtm=dbpdtm,
+        replace_all=True
+    )
         
-    except Exception as e:
-        return UploadResponse(
-            success=False,
-            message="데이터 처리 실패",
-        )
+    return UploadResponse(
+        success="true",
+        message=ErrorMessages.SUCCESS,
+    )
+        
     
-@router.post("/eiu/major-trade-partner/upload", response_model=UploadResponse)
+@router.post(
+        "/eiu/major-trade-partner",
+        response_model=UploadResponse,
+        summary="EIU 주요 수출/수입국 엑셀 파일 처리",
+        description="EIU 주요 수출/수입국 엑셀 파일을 처리하여 데이터를 추출, 비즈니스 로직에 따라 변환하고 데이터베이스에 저장합니다.",
+        tags=["EIU"]
+    )
 async def process_major_trade_partner(
     request: UploadRequest,
     dbprsr = Depends(get_main_db),
     dbpdtm = Depends(get_dbpdtm_db)
-) -> Dict[str, Any]:
-    """
-    EIU 주요 수출입국 엑셀 파일을 처리하는 엔드포인트
+) -> UploadResponse:
+    """EIU 주요 수출/수입국 엑셀 파일 처리.
+    
+    업로드된 EIU 주요 수출/수입국 엑셀 파일을 처리하여
+    수출/수입국 데이터를 추출하고 처리된 결과를 저장합니다.
     
     Args:
-        request (EIUUploadRequest): 처리할 파일 정보
+        request (UploadRequest): file_seq를 포함한 파일 처리 요청
+        dbprsr: 메인 데이터베이스 세션 의존성 주입
+        dbpdtm: 이력 데이터베이스 세션 의존성 주입
         
     Returns:
-        Dict[str, Any]: 처리 결과
+        UploadResponse: 성공 여부와 메시지가 포함된 처리 결과
+        
+    Raises:
+        DataProcessingException: 데이터 처리 실패 시
+        DatabaseException: 데이터베이스 작업 실패 시
+        FileException: 파일 검증 또는 읽기 실패 시
     """
-    try:
-        # 주요 수출입국 데이터 처리
-        result_df = await process_eiu_major_trade_partner(
-            file_path=request.file_path,
-            file_name=request.file_name,
-            dbprsr=dbprsr,
-            dbpdtm=dbpdtm,
-            replace_all=True
-        )
-        
-        return UploadResponse(
-            success=True,
-            message=f"주요 수출입국 데이터 처리 완료 ({result_df.shape[0]}행 처리됨)",
-        )
-        
-    except Exception as e:
-        return UploadResponse(
-            success=False,
-            message=f"주요 수출입국 데이터 처리 실패: {str(e)}",
-        )
+    # 주요 수출입국 데이터 처리
+    result_df = await process_data(
+        seq=request.file_seq,
+        dbprsr=dbprsr,
+        dbpdtm=dbpdtm,
+        replace_all=True
+    )
+    
+    return UploadResponse(
+        success="true",
+        message=ErrorMessages.SUCCESS,
+    )
