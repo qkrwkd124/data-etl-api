@@ -1,7 +1,12 @@
+"""SQLAlchemy 기반 비동기 데이터베이스 연결 관리.
+
+이중 데이터베이스 연결을 지원하며 비동기 세션 관리를 제공합니다.
+FastAPI의 의존성 주입 시스템과 연동됩니다.
+"""
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-from app.core.settings import get_settings
+from app.core.setting import get_settings
 
 settings = get_settings()
 
