@@ -12,15 +12,10 @@ settings = get_settings()
 
 engines = {
     "main": create_async_engine(
-        url=settings.CPIDB_DBPRSR,  # 데이터베이스 연결 URL, 설정 파일에서 가져옴
+        url=settings.DATABASE,  # 데이터베이스 연결 URL, 설정 파일에서 가져옴
         echo=False,  # SQL 쿼리 로깅 비활성화 (True로 설정 시 모든 SQL 쿼리가 콘솔에 출력됨)
         future=True  # SQLAlchemy 2.0 스타일의 실행을 활성화 (SQLAlchemy 1.4 이상에서 권장)
     ),
-    "dbpdtm": create_async_engine(
-        url=settings.CPIDB_DBPDTM,
-        echo=False,
-        future=True
-    )
 }
 
 # 각 데이터베이스별 세션 팩토리
@@ -44,20 +39,6 @@ async def get_main_db() -> AsyncSession:
     비동기 데이터베이스 세션을 반환하는 의존성 함수
     """
     async with session_factories["main"]() as session:
-        try:
-            yield session
-            await session.commit()
-        except Exception:
-            await session.rollback()
-            raise
-        finally:
-            await session.close()
-
-async def get_dbpdtm_db() -> AsyncSession:
-    """
-    비동기 데이터베이스 세션을 반환하는 의존성 함수
-    """
-    async with session_factories["dbpdtm"]() as session:
         try:
             yield session
             await session.commit()

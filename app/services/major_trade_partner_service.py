@@ -264,8 +264,7 @@ async def _extract_raw_data(
 
 async def process_data(
         seq: int,
-        dbprsr: AsyncSession,
-        dbpdtm: AsyncSession,
+        db: AsyncSession,
         replace_all: bool = True
         ) -> pd.DataFrame:
     """
@@ -292,8 +291,8 @@ async def process_data(
     """
     try:
         # Repository 객체 한 번만 생성
-        partner_repository = EIUPartnerRepository(dbprsr)
-        history_repository = DataUploadAutoHistoryRepository(dbpdtm)
+        partner_repository = EIUPartnerRepository(db)
+        history_repository = DataUploadAutoHistoryRepository(db)
 
         history_info = await history_repository.get_history_info(seq)
         file_path = str(Path(history_info.file_path_nm,history_info.file_nm))
@@ -337,7 +336,7 @@ async def process_data(
                 db_result = await partner_repository.replace_all_data(final_df)
             else :
                 insert_count = await partner_repository.insert_dataframe(final_df)
-                await dbprsr.commit()
+                await db.commit()
             logger.info("데이터베이스 저장 완료")
         except Exception as e:
             logger.error(f"database error: \n{traceback.format_exc()}")

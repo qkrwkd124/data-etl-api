@@ -182,8 +182,7 @@ async def _create_final_output(
 async def process_data(
     seq: int,
     flag: str = Literal["수출", "수입"],
-    dbprsr: AsyncSession = None,
-    dbpdtm: AsyncSession = None,
+    db: AsyncSession = None,
     replace_all: bool = True,
 )-> pd.DataFrame:
     """관세청 품목별 데이터 전체 처리.
@@ -209,9 +208,9 @@ async def process_data(
     """
     try :
         # repository 초기화
-        expimptype_repository = ExportImportItemByCountryRepository(dbprsr)
-        expimpcountry_repository = ExportImportStatByCountryRepository(dbprsr)
-        history_repository = DataUploadAutoHistoryRepository(dbpdtm)
+        expimptype_repository = ExportImportItemByCountryRepository(db)
+        expimpcountry_repository = ExportImportStatByCountryRepository(db)
+        history_repository = DataUploadAutoHistoryRepository(db)
 
         history_info = await history_repository.get_history_info(seq)
 

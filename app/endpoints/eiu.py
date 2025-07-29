@@ -3,7 +3,7 @@ from typing import Dict, Any
 from fastapi import APIRouter, HTTPException
 from fastapi import Depends
 
-from app.db.base import get_main_db, get_dbpdtm_db
+from app.db.base import get_main_db
 from app.schemas.api_schemas import UploadRequest, UploadResponse
 from app.services.eiu_service import process_eiu_economic_indicator
 from app.services.major_trade_partner_service import process_data
@@ -20,8 +20,7 @@ router = APIRouter()
     )
 async def process_economic_indicator(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db),
-    dbpdtm = Depends(get_dbpdtm_db)
+    db = Depends(get_main_db),
 ) -> UploadResponse:
     """EIU 주요경제지표 엑셀 파일 처리.
     
@@ -45,8 +44,7 @@ async def process_economic_indicator(
     # 데이터 처리
     result = await process_eiu_economic_indicator(
         seq=request.file_seq,
-        dbprsr=dbprsr,
-        dbpdtm=dbpdtm,
+        db=db,
         replace_all=True
     )
         
@@ -65,8 +63,7 @@ async def process_economic_indicator(
     )
 async def process_major_trade_partner(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db),
-    dbpdtm = Depends(get_dbpdtm_db)
+    db = Depends(get_main_db),
 ) -> UploadResponse:
     """EIU 주요 수출/수입국 엑셀 파일 처리.
     
@@ -89,8 +86,7 @@ async def process_major_trade_partner(
     # 주요 수출입국 데이터 처리
     result_df = await process_data(
         seq=request.file_seq,
-        dbprsr=dbprsr,
-        dbpdtm=dbpdtm,
+        db=db,
         replace_all=True
     )
     

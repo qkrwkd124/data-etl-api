@@ -3,7 +3,7 @@ from typing import Dict, Any
 from fastapi import APIRouter, HTTPException
 from fastapi import Depends
 
-from app.db.base import get_main_db, get_dbpdtm_db
+from app.db.base import get_main_db
 from app.schemas.api_schemas import UploadRequest, UploadResponse
 from app.services.customs_country_service import process_data as process_data_country
 from app.services.customs_item_service import process_data as process_data_item
@@ -24,8 +24,7 @@ router = APIRouter()
     )
 async def upload_customs_country(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db),
-    dbpdtm = Depends(get_dbpdtm_db)
+    db = Depends(get_main_db),
 ) -> UploadResponse:
     """관세청 국가별 수출입 규모 엑셀 파일 처리.
     
@@ -49,8 +48,7 @@ async def upload_customs_country(
     # 데이터 처리
     result = await process_data_country(
         seq=request.file_seq,
-        dbprsr=dbprsr,
-        dbpdtm=dbpdtm,
+        db=db,
         replace_all=True
     )
         
@@ -70,8 +68,7 @@ async def upload_customs_country(
     )
 async def upload_customs_export(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db),
-    dbpdtm = Depends(get_dbpdtm_db)
+    db = Depends(get_main_db),
 ) -> UploadResponse:
     """관세청 품목별 수출 데이터 엑셀 파일 처리.
     
@@ -96,8 +93,7 @@ async def upload_customs_export(
     result = await process_data_item(
         seq=request.file_seq,
         flag="수출",
-        dbprsr=dbprsr,
-        dbpdtm=dbpdtm,
+        db=db,
         replace_all=False
     )
         
@@ -116,8 +112,7 @@ async def upload_customs_export(
     )
 async def upload_customs_import(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db),
-    dbpdtm = Depends(get_dbpdtm_db)
+    db = Depends(get_main_db),
 ) -> UploadResponse:
     """관세청 품목별 수입 데이터 엑셀 파일 처리.
     
@@ -142,8 +137,7 @@ async def upload_customs_import(
     result = await process_data_item(
         seq=request.file_seq,
         flag="수입",
-        dbprsr=dbprsr,
-        dbpdtm=dbpdtm,
+        db=db,
         replace_all=False
     )
         

@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 from fastapi import Depends
 
-from app.db.base import get_main_db, get_dbpdtm_db
+from app.db.base import get_main_db
 from app.schemas.api_schemas import UploadRequest, UploadResponse
 from app.services.socioeconomic_index_service import process_data
 from app.core.logger import get_logger
@@ -21,8 +21,7 @@ router = APIRouter()
     )
 async def upload_socioeconomic_index_economic_freedom(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db),
-    dbpdtm = Depends(get_dbpdtm_db)
+    db = Depends(get_main_db),
 ) -> UploadResponse:
     """경제자유화지수 CSV 파일 처리.
     
@@ -46,8 +45,7 @@ async def upload_socioeconomic_index_economic_freedom(
     # 데이터 처리
     result = await process_data(
         seq=request.file_seq,
-        dbprsr=dbprsr,
-        dbpdtm=dbpdtm,
+        db=db,
         replace_all=True,
         flag="경제자유화지수"
     )
@@ -68,8 +66,7 @@ async def upload_socioeconomic_index_economic_freedom(
     )
 async def upload_socioeconomic_index_corruption_perception(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db),
-    dbpdtm = Depends(get_dbpdtm_db)
+    db = Depends(get_main_db),
 ) -> UploadResponse:
     """부패인식지수 엑셀 파일 처리.
     
@@ -94,8 +91,7 @@ async def upload_socioeconomic_index_corruption_perception(
     result = await process_data(
         seq=request.file_seq,
         flag="부패인식지수",
-        dbprsr=dbprsr,
-        dbpdtm=dbpdtm,
+        db=db,
         replace_all=True
     )
         
@@ -114,8 +110,7 @@ async def upload_socioeconomic_index_corruption_perception(
     )
 async def upload_socioeconomic_index_human_development(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db),
-    dbpdtm = Depends(get_dbpdtm_db)
+    db = Depends(get_main_db),
 ) -> UploadResponse:
     """인간개발지수 엑셀 파일 처리.
     
@@ -141,8 +136,7 @@ async def upload_socioeconomic_index_human_development(
     result = await process_data(
         seq=request.file_seq,
         flag="인간개발지수",
-        dbprsr=dbprsr,
-        dbpdtm=dbpdtm,
+        db=db,
         replace_all=True
     )
         
@@ -161,8 +155,7 @@ async def upload_socioeconomic_index_human_development(
     )
 async def upload_socioeconomic_index_world_competitiveness(
     request: UploadRequest,
-    dbprsr = Depends(get_main_db),
-    dbpdtm = Depends(get_dbpdtm_db)
+    db = Depends(get_main_db),
 ) -> UploadResponse:
     """세계경쟁력지수 엑셀 파일 처리.
     
@@ -187,8 +180,7 @@ async def upload_socioeconomic_index_world_competitiveness(
     result = await process_data(
         seq=request.file_seq,
         flag="세계경쟁력지수",
-        dbprsr=dbprsr,
-        dbpdtm=dbpdtm,
+        db=db,
         replace_all=True
     )
         

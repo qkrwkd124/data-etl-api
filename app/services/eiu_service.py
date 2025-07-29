@@ -256,8 +256,7 @@ async def process_data(file_path:str) :
 
 async def process_eiu_economic_indicator(
         seq: int,
-        dbprsr: AsyncSession,
-        dbpdtm: AsyncSession,
+        db: AsyncSession,
         replace_all: bool = True
 ) :
     """EIU 주요 경제지표 파일 전체 처리.
@@ -284,8 +283,8 @@ async def process_eiu_economic_indicator(
 
     try :
         # Repository 객체 생성
-        repository = EIUEconomicIndicatorRepository(dbprsr)
-        history_repository = DataUploadAutoHistoryRepository(dbpdtm)
+        repository = EIUEconomicIndicatorRepository(db)
+        history_repository = DataUploadAutoHistoryRepository(db)
 
         history_info = await history_repository.get_history_info(seq)
         file_path = str(Path(history_info.file_path_nm,history_info.file_nm))
@@ -333,7 +332,7 @@ async def process_eiu_economic_indicator(
                 db_result = await repository.replace_all_data(df)
             else :
                 insert_count = await repository.insert_dataframe(df)
-                await dbprsr.commit()
+                await db.commit()
 
             logger.info(f"데이터베이스 저장 완료: {db_result}")
 

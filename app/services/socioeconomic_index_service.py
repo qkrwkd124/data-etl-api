@@ -229,15 +229,14 @@ PROCESSOR_MAPPING: Dict[IndexType, Callable[[str, SocioeconomicIndexRepository, 
 async def process_data(
         seq: str,
         flag: str = Literal["경제자유화지수", "부패인식지수", "인간개발지수", "세계경쟁력지수"],
-        dbprsr: AsyncSession = None,
-        dbpdtm: AsyncSession = None,
+        db: AsyncSession = None,
         replace_all: bool = True,
     ) -> pd.DataFrame:
     
     try :
         # repository 초기화
-        history_repository = DataUploadAutoHistoryRepository(dbpdtm)
-        socioeconomic_repository = SocioeconomicIndexRepository(dbprsr, flag)
+        history_repository = DataUploadAutoHistoryRepository(db)
+        socioeconomic_repository = SocioeconomicIndexRepository(db, flag)
 
         history_info = await history_repository.get_history_info(seq)
 

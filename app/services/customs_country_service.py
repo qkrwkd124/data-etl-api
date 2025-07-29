@@ -94,14 +94,13 @@ async def _create_final_output(
 
 async def process_data(
         seq: int,
-        dbprsr: AsyncSession,
-        dbpdtm: AsyncSession,
+        db: AsyncSession,
         replace_all: bool = True,
 )-> pd.DataFrame:
     try :
         # repository 초기화
-        expimp_repository = ExportImportStatByCountryRepository(dbprsr)
-        history_repository = DataUploadAutoHistoryRepository(dbpdtm)
+        expimp_repository = ExportImportStatByCountryRepository(db)
+        history_repository = DataUploadAutoHistoryRepository(db)
 
         history_info = await history_repository.get_history_info(seq)
 
@@ -183,20 +182,17 @@ if __name__ == "__main__":
 
         from app.db.base import session_factories
 
-        async with session_factories["main"]() as main_db, session_factories["dbpdtm"]() as dbpdtm_db:
+        async with session_factories["main"]() as main_db:
             try :
                 df = await process_data(
                     seq=1,
-                    dbprsr=main_db,
-                    dbpdtm=dbpdtm_db,
+                    db=main_db,
                     replace_all=True
                 )
                 print(df)
                 await main_db.commit()
-                await dbpdtm_db.commit()
             except Exception as e:
                 await main_db.rollback()
-                await dbpdtm_db.rollback()
                 logger.error(f"Error: {e}")
                 raise e
 
