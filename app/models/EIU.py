@@ -6,7 +6,7 @@ from typing import Optional
 from app.schemas.eiu_schemas import EIUDataType
 class EconomicData(Base):
     """경제 데이터 모델 - EIU 데이터 저장"""
-    __tablename__ = "tb_rhr100"
+    __tablename__ = "major_economic_index"
 
     eiu_cont_en_nm = Column(String(200), index=True, comment="EIU국가영문명")
     eiu_country_code = Column(String(2), primary_key=True, index=True, comment="EIU국가코드")
@@ -70,7 +70,7 @@ class EconomicData(Base):
     updated_at = Column(DateTime, default=datetime.now, comment="수정일")
 
 class MajorTradePartner(Base):
-    __tablename__ = "tb_rhr150"
+    __tablename__ = "major_trade_partner"
 
     cont_code = Column(String(3), primary_key=True, comment="국가코드")
     cont_nm = Column(String(150), comment="국가명")

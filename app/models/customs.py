@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 class ExportImportStatByCountry(Base):
-    __tablename__ = "tb_rhr140"
+    __tablename__ = "export_import_stat_by_country"
 
     __table_args__ = {
         "comment": "대한민국 주요 수출/수입량",
@@ -20,7 +20,7 @@ class ExportImportStatByCountry(Base):
     impexp_trade_rate_money = Column(String(30), comment="무역수지")
 
 class ExportImportItemByCountry(Base):
-    __tablename__ = "tb_rhr130"
+    __tablename__ = "export_import_item_by_country"
 
     __table_args__ = {
         "comment": "대한민국 주요 수출/수입국",

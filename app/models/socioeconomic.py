@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 class EconomicFreedomIndex(Base):
-    __tablename__ = "tb_rhr090"
+    __tablename__ = "economic_freedom_index"
 
     __table_args__ = {
         "comment": "경제자유화지수",
@@ -18,7 +18,7 @@ class EconomicFreedomIndex(Base):
     
 
 class CorruptionPerceptionIndex(Base):
-    __tablename__ = "tb_rhr080"
+    __tablename__ = "corruption_perception_index"
 
     __table_args__ = {
         "comment": "부패인식지수",
@@ -31,7 +31,7 @@ class CorruptionPerceptionIndex(Base):
     corr_perc_rank = Column(BigInteger, comment="부패인식순위")
 
 class HumanDevelopmentIndex(Base):
-    __tablename__ = "tb_rhr110"
+    __tablename__ = "human_development_index"
 
     __table_args__ = {
         "comment": "인간개발지수",
@@ -44,7 +44,7 @@ class HumanDevelopmentIndex(Base):
     hdi_rank = Column(BigInteger, comment="인간개발순위")
 
 class WorldCompetitivenessIndex(Base):
-    __tablename__ = "tb_rhr360"
+    __tablename__ = "world_competitiveness_index"
 
     __table_args__ = {
         "comment": "세계경쟁력지수",

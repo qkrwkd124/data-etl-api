@@ -3,7 +3,7 @@ from app.db.base import Base
 
 class DataUploadAutoHistory(Base):
     """데이터 업로드 자동화 처리 이력 테이블"""
-    __tablename__ = "tb_bpc220"
+    __tablename__ = "data_upload_auto_history"
 
     file_seq = Column(Numeric(10), primary_key=True, comment="파일순번")
     data_wrk_no = Column(Numeric(10), comment="데이터작업번호")

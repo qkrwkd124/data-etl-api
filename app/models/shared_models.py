@@ -2,7 +2,7 @@ from sqlalchemy import Column, String
 from app.db.base import Base
 
 class COUNTRY_INFO(Base):
-    __tablename__ = "tw_rhm_ria010"
+    __tablename__ = "country_info"
     
     trgtpsn_no = Column(String(10), primary_key=True, index=True, comment="대상국가번호")
     trgtpsn_nm = Column(String(300), comment="대상국가명")
@@ -48,7 +48,7 @@ class COUNTRY_INFO(Base):
     oecd_entry_yn = Column(String(1), comment="대상국가주요정책")
 
 class CountryMapping(Base):
-    __tablename__ = "tb_rhr350"
+    __tablename__ = "country_mapping"
 
     eng_ctry_nm = Column(String(200), primary_key=True, nullable=True, comment="영문국가명")
     std_infrm_ctry_cd = Column(String(2), primary_key=True, nullable=True, comment="표준약식국가코드")
