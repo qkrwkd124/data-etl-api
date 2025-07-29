@@ -8,7 +8,7 @@ services:
       - "8090:8090"
     volumes:
       - .:/app
-      - /appdata/storage:/storage
+      - /appdata/storage:/appdata/storage
       # - uv-cache:/root/.cache/uv  # UV 캐시 볼륨 추가
     environment:
       - PYTHONPATH=/app
@@ -17,5 +17,39 @@ services:
     user: "1000:1000"
     command: uv run uvicorn main:app --host 0.0.0.0 --port 8090 --reload
 
+  mariadb:
+    image: mariadb:11.4
+    container_name: data-etl-mariadb
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=admin1234!
+      - MYSQL_DATABASE=etl
+      - MYSQL_USER=etl
+      - MYSQL_PASSWORD=user1234!
+    command:
+      - --default-authentication-plugin=mysql_native_password   # MySQL 8.x 호환 인증 플러그인 사용
+      - --innodb_buffer_pool_size=1024M                        # InnoDB 버퍼 풀 크기 (메모리 캐시)
+      - --innodb_log_file_size=1024M                           # InnoDB 로그 파일 크기
+      - --innodb_log_buffer_size=1024M                         # InnoDB 로그 버퍼 크기
+      - --innodb_flush_log_at_trx_commit=1                     # 트랜잭션 커밋 시 로그 플러시(1:최고 신뢰성)
+      - --innodb_flush_method=O_DIRECT                         # 디스크 I/O 직접 처리로 성능 향상
+      - --innodb_file_per_table=1                              # 테이블별 파일 분리 저장
+      - --join_buffer_size=64M                                 # 조인 버퍼 크기 JOIN 연산
+      - --sort_buffer_size=16M                                 # 정렬 버퍼 크기 ORDER BY, GROUP BY 연산
+      - --read_buffer_size=8M                                  # 읽기 버퍼 크기 테이블 읽기 연산
+      - --tmp_table_size=512M                                  # 임시 테이블 최대 크기 임시 테이블 생성
+      - --max_heap_table_size=512M                             # 메모리 기반 임시 테이블 최대 크기 임시 테이블 생성
+    volumes:
+      - mariadb-data:/var/lib/mysql
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
 volumes:
-  uv-cache:  # UV 캐시를 위한 볼륨 정의 
+  uv-cache:  # UV 캐시를 위한 볼륨 정의
+  mariadb-data:
