@@ -7,7 +7,7 @@ class ExportImportStatByCountry(Base):
     __tablename__ = "export_import_stat_by_country"
 
     __table_args__ = {
-        "comment": "대한민국 주요 수출/수입량",
+        "comment": "관세청 주요 수출/수입량",
         "mysql_charset": "utf8mb4",
         "mysql_collate": "utf8mb4_unicode_ci"
     }
@@ -23,7 +23,7 @@ class ExportImportItemByCountry(Base):
     __tablename__ = "export_import_item_by_country"
 
     __table_args__ = {
-        "comment": "대한민국 주요 수출/수입국",
+        "comment": "관세청 주요 수출/수입국",
         "mysql_charset": "utf8mb4",
         "mysql_collate": "utf8mb4_unicode_ci"
     }
