@@ -1,7 +1,8 @@
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
-from app.endpoints import eiu, customs
-from app.core.settings import get_settings
+from fastapi.staticfiles import StaticFiles
+from app.endpoints import eiu, customs, admin
+from app.core.setting import get_settings
 from app.core.logger import setup_logger, get_logger
 import time
 import uuid
@@ -68,9 +69,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# 정적 파일 서비스 설정
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
 # 라우터 등록
 app.include_router(eiu.router, tags=["eiu"])
 app.include_router(customs.router, tags=["customs"])
+app.include_router(admin.router)
 
 # container health 체크
 @app.get("/health")
