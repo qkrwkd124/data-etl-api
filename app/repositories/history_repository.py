@@ -16,7 +16,7 @@ class DataUploadAutoHistoryRepository:
     def __init__(self, session: AsyncSession):
         self.session = session
 
-    async def get_next_seq(self, seq_name: str = "tb_bpc220_file_seq") -> int:
+    async def get_next_seq(self, seq_name: str = "file_seq") -> int:
         """
         다음 시퀀스 값 조회 (MariaDB용)
         
@@ -131,12 +131,19 @@ class DataUploadAutoHistoryRepository:
     # 새로 추가: 관리자 페이지용 조회 함수들
     # ====================================
 
-    async def get_all(self, limit: int = 100, offset: int = 0) -> List[DataUploadAutoHistory]:
-        """모든 이력 조회 (페이징)"""
+    async def get_all(self, limit: int = 100, offset: int = 0, filters: Dict[str, Any] = None) -> List[DataUploadAutoHistory]:
+        """모든 이력 조회 (페이징, 필터링 지원)"""
         try:
+            stmt = select(DataUploadAutoHistory)
+            
+            # 필터 조건 추가
+            if filters:
+                for field, value in filters.items():
+                    if hasattr(DataUploadAutoHistory, field) and value is not None:
+                        stmt = stmt.where(getattr(DataUploadAutoHistory, field) == value)
+            
             stmt = (
-                select(DataUploadAutoHistory)
-                .order_by(desc(DataUploadAutoHistory.reg_dtm))
+                stmt.order_by(desc(DataUploadAutoHistory.reg_dtm))
                 .limit(limit)
                 .offset(offset)
             )
@@ -147,20 +154,28 @@ class DataUploadAutoHistoryRepository:
             raise DatabaseException(
                 message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
                 error_code=ErrorCode.DATABASE_ERROR,
-                detail={"limit": limit, "offset": offset}
+                detail={"limit": limit, "offset": offset, "filters": filters}
             )
 
-    async def get_count(self) -> int:
-        """전체 이력 개수"""
+    async def get_count(self, filters: Dict[str, Any] = None) -> int:
+        """전체 이력 개수 (필터링 지원)"""
         try:
             stmt = select(func.count(DataUploadAutoHistory.file_seq))
+            
+            # 필터 조건 추가
+            if filters:
+                for field, value in filters.items():
+                    if hasattr(DataUploadAutoHistory, field) and value is not None:
+                        stmt = stmt.where(getattr(DataUploadAutoHistory, field) == value)
+            
             result = await self.session.execute(stmt)
             return result.scalar() or 0
         except Exception as e:
             logger.error(f"이력 개수 조회 중 오류: {str(e)}")
             raise DatabaseException(
                 message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
-                error_code=ErrorCode.DATABASE_ERROR
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={"filters": filters}
             )
 
     async def get_by_status(self, fin_yn: str) -> List[DataUploadAutoHistory]:
