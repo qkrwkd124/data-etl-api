@@ -25,3 +25,6 @@ Thumbs.db
 
 .cursorrules
 *.log
+
+#폴더
+app/static/uploads/*
