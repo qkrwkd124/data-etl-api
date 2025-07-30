@@ -16,6 +16,11 @@ pydantic
 pydantic-settings
 python-dateutil
 
+# 웹 관련 (새로 추가)
+jinja2
+python-multipart
+aiofiles
+
 #로그
 loguru
 
