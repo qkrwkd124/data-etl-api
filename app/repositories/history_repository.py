@@ -1,9 +1,12 @@
-from sqlalchemy import text, insert, update, select
+from datetime import datetime
+from typing import List, Dict, Any, Optional
+
+from sqlalchemy import text, update, select, desc, func, delete
 from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.exc import NoResultFound
+
 from app.models.history import DataUploadAutoHistory
 from app.core.logger import logger
-from datetime import datetime
-from sqlalchemy.exc import NoResultFound
 from app.core.exceptions import DataNotFoundException, ErrorCode, DatabaseException
 from app.core.constants.error import ErrorMessages
 
@@ -124,32 +127,149 @@ class DataUploadAutoHistoryRepository:
             mod_dtm=datetime.now()
         )
 
-    # async def insert_history(self, seq: int, history_data) -> None:
-    #     """
-    #     이력 데이터 삽입
-        
-    #     Args:
-    #         history_data: 삽입할 이력 데이터
-            
-    #     Returns:
-    #         삽입된 이력 객체
-    #     """
-    #     try:
-    #         # 이력 데이터 생성
-    #         history_dict = history_data.model_dump()
-    #         history_dict['data_wrk_no'] = seq
-            
-    #         # 삽입 실행
-    #         insert_stmt = insert(DataUploadAutoHistory).values(history_dict)
-    #         await self.session.execute(insert_stmt)
+     # ====================================
+    # 새로 추가: 관리자 페이지용 조회 함수들
+    # ====================================
 
-    #         # commit
-    #         await self.session.commit()
+    async def get_all(self, limit: int = 100, offset: int = 0) -> List[DataUploadAutoHistory]:
+        """모든 이력 조회 (페이징)"""
+        try:
+            stmt = (
+                select(DataUploadAutoHistory)
+                .order_by(desc(DataUploadAutoHistory.reg_dtm))
+                .limit(limit)
+                .offset(offset)
+            )
+            result = await self.session.execute(stmt)
+            return list(result.scalars().all())
+        except Exception as e:
+            logger.error(f"이력 목록 조회 중 오류: {str(e)}")
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={"limit": limit, "offset": offset}
+            )
+
+    async def get_count(self) -> int:
+        """전체 이력 개수"""
+        try:
+            stmt = select(func.count(DataUploadAutoHistory.file_seq))
+            result = await self.session.execute(stmt)
+            return result.scalar() or 0
+        except Exception as e:
+            logger.error(f"이력 개수 조회 중 오류: {str(e)}")
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR
+            )
+
+    async def get_by_status(self, fin_yn: str) -> List[DataUploadAutoHistory]:
+        """상태별 이력 조회"""
+        try:
+            stmt = (
+                select(DataUploadAutoHistory)
+                .where(DataUploadAutoHistory.fin_yn == fin_yn)
+                .order_by(desc(DataUploadAutoHistory.reg_dtm))
+            )
+            result = await self.session.execute(stmt)
+            return list(result.scalars().all())
+        except Exception as e:
+            logger.error(f"상태별 이력 조회 중 오류: {str(e)}")
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={"fin_yn": fin_yn}
+            )
+
+    async def create(self, history_data: Dict[str, Any]) -> DataUploadAutoHistory:
+        """새 이력 생성"""
+        try:
+            # file_seq가 없으면 시퀀스에서 생성
+            if 'file_seq' not in history_data or history_data['file_seq'] is None:
+                history_data['file_seq'] = await self.get_next_seq()
             
-    #         logger.info(f"이력 데이터 삽입 완료: 데이터작업번호={seq}, 데이터작업명={history_data.data_wrk_nm}")
+            # 새 이력 객체 생성
+            history = DataUploadAutoHistory(**history_data)
+            self.session.add(history)
+            await self.session.flush()  # ID 생성을 위해 flush
+            await self.session.commit()
             
-    #     except Exception as e:
-    #         logger.error(f"이력 데이터 삽입 중 오류: {str(e)}")
-    #         await self.session.rollback()
-    #         raise
+            logger.info(f"새 이력 생성 완료: file_seq={history.file_seq}")
+            return history
             
+        except Exception as e:
+            logger.error(f"이력 생성 중 오류: {str(e)}")
+            await self.session.rollback()
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail=history_data
+            )
+
+    async def update(self, file_seq: int, data_wrk_nm: str, update_data: Dict[str, Any]) -> Optional[DataUploadAutoHistory]:
+        """특정 이력 업데이트 (복합키 사용)"""
+        try:
+            # 업데이트 실행
+            stmt = (
+                update(DataUploadAutoHistory)
+                .where(
+                    DataUploadAutoHistory.file_seq == file_seq,
+                    DataUploadAutoHistory.data_wrk_nm == data_wrk_nm
+                )
+                .values(**update_data)
+            )
+            result = await self.session.execute(stmt)
+            await self.session.commit()
+            
+            if result.rowcount > 0:
+                # 업데이트된 객체 조회해서 반환
+                return await self.get_by_composite_key(file_seq, data_wrk_nm)
+            return None
+            
+        except Exception as e:
+            logger.error(f"이력 업데이트 중 오류: {str(e)}")
+            await self.session.rollback()
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={"file_seq": file_seq, "data_wrk_nm": data_wrk_nm}
+            )
+
+    async def get_by_composite_key(self, file_seq: int, data_wrk_nm: str) -> Optional[DataUploadAutoHistory]:
+        """복합키로 특정 이력 조회"""
+        try:
+            stmt = select(DataUploadAutoHistory).where(
+                DataUploadAutoHistory.file_seq == file_seq,
+                DataUploadAutoHistory.data_wrk_nm == data_wrk_nm
+            )
+            result = await self.session.execute(stmt)
+            return result.scalar_one_or_none()
+        except Exception as e:
+            logger.error(f"복합키 이력 조회 중 오류: {str(e)}")
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={"file_seq": file_seq, "data_wrk_nm": data_wrk_nm}
+            )
+
+    async def delete(self, file_seq: int, data_wrk_nm: str) -> bool:
+        """이력 삭제"""
+        try:
+            stmt = delete(DataUploadAutoHistory).where(
+                DataUploadAutoHistory.file_seq == file_seq,
+                DataUploadAutoHistory.data_wrk_nm == data_wrk_nm
+            )
+            result = await self.session.execute(stmt)
+            await self.session.commit()
+            
+            logger.info(f"이력 삭제 완료: file_seq={file_seq}, data_wrk_nm={data_wrk_nm}")
+            return result.rowcount > 0
+            
+        except Exception as e:
+            logger.error(f"이력 삭제 중 오류: {str(e)}")
+            await self.session.rollback()
+            raise DatabaseException(
+                message=ErrorMessages.get_message(ErrorCode.DATABASE_ERROR),
+                error_code=ErrorCode.DATABASE_ERROR,
+                detail={"file_seq": file_seq, "data_wrk_nm": data_wrk_nm}
+            )
