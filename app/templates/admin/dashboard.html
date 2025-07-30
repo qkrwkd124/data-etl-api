@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 ETL 관리자 페이지</title>
+    <link rel="stylesheet" href="/static/admin/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- 헤더 -->
+        <header class="header">
+            <h1><i class="fas fa-database"></i> 데이터 ETL 관리자</h1>
+            <div class="status-indicator">
+                <span class="status-dot" id="connectionStatus"></span>
+                <span id="connectionText">연결 확인 중...</span>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- 좌측 사이드바 -->
+            <aside class="sidebar">
+                <h3><i class="fas fa-list"></i> 작업 유형</h3>
+                <nav class="menu-nav">
+                    <div class="menu-item active" onclick="selectJobType('주요 경제지표(EIU)')" data-job-type="주요 경제지표(EIU)">
+                        <i class="fas fa-chart-line"></i>
+                        <span>EIU 경제지표</span>
+                    </div>
+                    <div class="menu-item" onclick="selectJobType('주요 수출/수입국(EIU)')" data-job-type="주요 수출/수입국(EIU)">
+                        <i class="fas fa-globe"></i>
+                        <span>EIU 수출입국</span>
+                    </div>
+                    <div class="menu-item" onclick="selectJobType('국가별 수출입규모(관세청)')" data-job-type="국가별 수출입규모(관세청)">
+                        <i class="fas fa-flag"></i>
+                        <span>관세청 국가별</span>
+                    </div>
+                    <div class="menu-item" onclick="selectJobType('주요 수출/수입품(관세청) - 수출실적')" data-job-type="주요 수출/수입품(관세청) - 수출실적">
+                        <i class="fas fa-shipping-fast"></i>
+                        <span>관세청 수출</span>
+                    </div>
+                    <div class="menu-item" onclick="selectJobType('주요 수출/수입품(관세청) - 수입실적')" data-job-type="주요 수출/수입품(관세청) - 수입실적">
+                        <i class="fas fa-download"></i>
+                        <span>관세청 수입</span>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- 메인 콘텐츠 -->
+            <main class="main-content">
+                <!-- 현재 선택된 작업 유형 표시 -->
+                <div class="current-job-type">
+                    <h2 id="currentJobTypeName">주요 경제지표(EIU)</h2>
+                    <p class="job-description">현재 선택된 작업 유형입니다</p>
+                </div>
+
+                <!-- 파일 업로드 섹션 -->
+                <section class="upload-section">
+                    <h3><i class="fas fa-upload"></i> 파일 업로드</h3>
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                            <p>파일을 드래그하거나 클릭하여 업로드</p>
+                            <p class="upload-info">지원 형식: CSV, Excel (최대 10MB)</p>
+                            <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" hidden>
+                            <button class="btn btn-primary" onclick="selectFile()">
+                                파일 선택
+                            </button>
+                        </div>
+                    </div>
+                    <div class="upload-progress" id="uploadProgress" style="display: none;">
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+                        <span id="progressText">업로드 중...</span>
+                    </div>
+                </section>
+
+                <!-- 처리 이력 테이블 -->
+                <section class="history-section">
+                    <h3><i class="fas fa-history"></i> 처리 이력</h3>
+                <div class="table-controls">
+                    <div class="filter-group">
+                        <label for="statusFilter">상태 필터:</label>
+                        <select id="statusFilter" class="form-control" onchange="filterHistory()">
+                            <option value="">전체</option>
+                            <option value="Y">완료</option>
+                            <option value="N">진행중</option>
+                            <option value="E">에러</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-secondary" onclick="refreshHistory()">
+                        <i class="fas fa-sync-alt"></i> 새로고침
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table class="history-table" id="historyTable">
+                        <thead>
+                            <tr>
+                                <th>파일순번</th>
+                                <th>작업명</th>
+                                <th>파일명</th>
+                                <th>시작시간</th>
+                                <th>종료시간</th>
+                                <th>처리건수</th>
+                                <th>처리메세지</th>
+                                <th>상태</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTableBody">
+                            <tr>
+                                <td colspan="8" class="loading">이력을 불러오는 중...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" id="pagination"></div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- 모달 -->
+    <div class="modal" id="messageModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">알림</h3>
+                <span class="modal-close" onclick="closeModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p id="modalMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="closeModal()">확인</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 로딩 오버레이 -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p id="loadingText">처리 중...</p>
+        </div>
+    </div>
+
+    <script src="/static/admin/script.js"></script>
+</body>
+</html>
