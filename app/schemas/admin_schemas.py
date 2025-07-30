@@ -8,11 +8,15 @@ from decimal import Decimal
 
 # 간단한 작업번호 매핑 (딕셔너리로 충분)
 WORK_TYPE_MAPPING = {
-    "주요 경제지표(EIU)": {"data_wrk_no": 1, "endpoint": "/eiu/economic-indicators"},
-    "주요 수출/수입국(EIU)": {"data_wrk_no": 2, "endpoint": "/eiu/trade-partners"},
+    "주요 경제지표(EIU)": {"data_wrk_no": 1, "endpoint": "/eiu/economic-indicator"},
+    "주요 수출/수입국(EIU)": {"data_wrk_no": 2, "endpoint": "/eiu/major-trade-partner"},
     "국가별 수출입규모(관세청)": {"data_wrk_no": 3, "endpoint": "/customs/trade/country"},
     "주요 수출/수입품(관세청) - 수출실적": {"data_wrk_no": 4, "endpoint": "/customs/trade/item-country/export"},
     "주요 수출/수입품(관세청) - 수입실적": {"data_wrk_no": 5, "endpoint": "/customs/trade/item-country/import"},
+    "부패인식지수": {"data_wrk_no": 6, "endpoint": "/customs/corruption-perception-index"},
+    "경제자유화지수": {"data_wrk_no": 7, "endpoint": "/customs/economic-freedom-index"},
+    "인간개발지수": {"data_wrk_no": 8, "endpoint": "/customs/human-development-index"},
+    "세계경쟁력지수": {"data_wrk_no": 9, "endpoint": "/customs/world-competitiveness-index"},
 }
 class HistoryResponse(BaseModel):
     """히스토리 응답 스키마"""
