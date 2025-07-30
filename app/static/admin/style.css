@@ -27,7 +27,7 @@ body {
 
 /* 사이드바 */
 .sidebar {
-    width: 250px;
+    width: 280px;
     min-height: 600px;
     background: #f8f9fa;
     border-radius: 8px;
@@ -47,7 +47,27 @@ body {
 .menu-nav {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 15px;
+}
+
+/* 메뉴 섹션 */
+.menu-section {
+    border-radius: 8px;
+    background: #ffffff;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+}
+
+.menu-section-title {
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    color: #495057;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    border-bottom: 1px solid #dee2e6;
+    text-align: center;
 }
 
 .menu-item {
@@ -55,23 +75,24 @@ body {
     align-items: center;
     gap: 12px;
     padding: 12px 15px;
-    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
     background: white;
-    border: 1px solid #e9ecef;
+    border-bottom: 1px solid #f1f3f4;
+}
+
+.menu-item:last-child {
+    border-bottom: none;
 }
 
 .menu-item:hover {
     background: #e3f2fd;
-    border-color: #667eea;
-    transform: translateY(-1px);
+    color: #667eea;
 }
 
 .menu-item.active {
     background: linear-gradient(135deg, #667eea, #764ba2);
     color: white;
-    border-color: #667eea;
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 

@@ -22,28 +22,58 @@
             <!-- 좌측 사이드바 -->
             <aside class="sidebar">
                 <h3><i class="fas fa-list"></i> 작업 유형</h3>
-                <nav class="menu-nav">
-                    <div class="menu-item active" onclick="selectJobType('주요 경제지표(EIU)')" data-job-type="주요 경제지표(EIU)">
-                        <i class="fas fa-chart-line"></i>
-                        <span>EIU 경제지표</span>
-                    </div>
-                    <div class="menu-item" onclick="selectJobType('주요 수출/수입국(EIU)')" data-job-type="주요 수출/수입국(EIU)">
-                        <i class="fas fa-globe"></i>
-                        <span>EIU 수출입국</span>
-                    </div>
-                    <div class="menu-item" onclick="selectJobType('국가별 수출입규모(관세청)')" data-job-type="국가별 수출입규모(관세청)">
-                        <i class="fas fa-flag"></i>
-                        <span>관세청 국가별</span>
-                    </div>
-                    <div class="menu-item" onclick="selectJobType('주요 수출/수입품(관세청) - 수출실적')" data-job-type="주요 수출/수입품(관세청) - 수출실적">
-                        <i class="fas fa-shipping-fast"></i>
-                        <span>관세청 수출</span>
-                    </div>
-                    <div class="menu-item" onclick="selectJobType('주요 수출/수입품(관세청) - 수입실적')" data-job-type="주요 수출/수입품(관세청) - 수입실적">
-                        <i class="fas fa-download"></i>
-                        <span>관세청 수입</span>
-                    </div>
-                </nav>
+                                    <nav class="menu-nav">
+                        <!-- EIU 관련 메뉴 -->
+                        <div class="menu-section">
+                            <div class="menu-section-title">EIU 데이터</div>
+                            <div class="menu-item active" onclick="selectJobType('주요 경제지표(EIU)')" data-job-type="주요 경제지표(EIU)">
+                                <i class="fas fa-chart-line"></i>
+                                <span>경제지표</span>
+                            </div>
+                            <div class="menu-item" onclick="selectJobType('주요 수출/수입국(EIU)')" data-job-type="주요 수출/수입국(EIU)">
+                                <i class="fas fa-globe"></i>
+                                <span>수출입국</span>
+                            </div>
+                        </div>
+
+                        <!-- 관세청 관련 메뉴 -->
+                        <div class="menu-section">
+                            <div class="menu-section-title">관세청 데이터</div>
+                            <div class="menu-item" onclick="selectJobType('국가별 수출입규모(관세청)')" data-job-type="국가별 수출입규모(관세청)">
+                                <i class="fas fa-flag"></i>
+                                <span>국가별 수출입</span>
+                            </div>
+                            <div class="menu-item" onclick="selectJobType('주요 수출/수입품(관세청) - 수출실적')" data-job-type="주요 수출/수입품(관세청) - 수출실적">
+                                <i class="fas fa-shipping-fast"></i>
+                                <span>수출실적</span>
+                            </div>
+                            <div class="menu-item" onclick="selectJobType('주요 수출/수입품(관세청) - 수입실적')" data-job-type="주요 수출/수입품(관세청) - 수입실적">
+                                <i class="fas fa-download"></i>
+                                <span>수입실적</span>
+                            </div>
+                        </div>
+
+                        <!-- 지수 관련 메뉴 -->
+                        <div class="menu-section">
+                            <div class="menu-section-title">경제 지수</div>
+                            <div class="menu-item" onclick="selectJobType('부패인식지수')" data-job-type="부패인식지수">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>부패인식지수</span>
+                            </div>
+                            <div class="menu-item" onclick="selectJobType('경제자유화지수')" data-job-type="경제자유화지수">
+                                <i class="fas fa-hand-holding-usd"></i>
+                                <span>경제자유화지수</span>
+                            </div>
+                            <div class="menu-item" onclick="selectJobType('인간개발지수')" data-job-type="인간개발지수">
+                                <i class="fas fa-users"></i>
+                                <span>인간개발지수</span>
+                            </div>
+                            <div class="menu-item" onclick="selectJobType('세계경쟁력지수')" data-job-type="세계경쟁력지수">
+                                <i class="fas fa-trophy"></i>
+                                <span>세계경쟁력지수</span>
+                            </div>
+                        </div>
+                    </nav>
             </aside>
 
             <!-- 메인 콘텐츠 -->
