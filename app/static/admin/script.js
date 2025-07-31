@@ -154,74 +154,9 @@ async function uploadFile(file) {
     }
 }
 
-// 파일 목록 로드 (현재 작업 유형에 맞게) - 사용하지 않음
-async function loadFiles() {
-    // 파일 목록 섹션이 제거되어 비활성화
-    return;
-}
 
-// 파일 목록 표시 (사용하지 않음 - 파일 목록 섹션 제거됨)
-function displayFiles(files) {
-    // 파일 목록 섹션이 제거되어 비활성화
-    return;
-}
 
-// 파일 선택 드롭다운 업데이트 (사용하지 않음)
-function updateFileSelect(files) {
-    // 파일 선택 드롭다운이 제거되어 비활성화
-    return;
-}
 
-// 작업 실행
-async function executeJob() {
-    const jobType = document.getElementById('jobType').value;
-    const filePath = document.getElementById('fileSelect').value;
-    const executeBtn = document.getElementById('executeBtn');
-    
-    if (!jobType) {
-        showMessage('오류', '작업 유형을 선택해주세요.', 'error');
-        return;
-    }
-    
-    if (!filePath) {
-        showMessage('오류', '처리할 파일을 선택해주세요.', 'error');
-        return;
-    }
-    
-    try {
-        executeBtn.disabled = true;
-        executeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 처리 중...';
-        showLoading('데이터 처리 작업을 실행하고 있습니다...');
-        
-        const response = await fetch('/admin/api/execute', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                job_type: jobType,
-                file_path: filePath,
-                user_id: 'admin'
-            })
-        });
-        
-        const result = await response.json();
-        
-        if (response.ok) {
-            showMessage('성공', result.message, 'success');
-            await loadHistory(); // 히스토리 새로고침
-        } else {
-            throw new Error(result.detail || '작업 실행 실패');
-        }
-        
-    } catch (error) {
-        showMessage('오류', error.message, 'error');
-    } finally {
-        executeBtn.disabled = false;
-        executeBtn.innerHTML = '<i class="fas fa-play"></i> 작업 실행';
-        hideLoading();
-    }
-}
 
 // 히스토리 로드 (작업 유형별 필터링)
 async function loadHistory(page = 1) {
@@ -332,45 +267,7 @@ function refreshHistory() {
     loadHistory(currentPage);
 }
 
-// 파일 처리 실행
-async function processFile(filePath) {
-    const jobType = document.getElementById('jobTypeSelect').value;
-    
-    if (!jobType) {
-        alert('작업 유형을 선택해주세요.');
-        return;
-    }
-    
-    try {
-        closeModal();
-        showLoading('데이터 처리 중...');
-        
-        const response = await fetch('/admin/api/process', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                job_type: jobType,
-                file_path: filePath
-            })
-        });
-        
-        const result = await response.json();
-        
-        if (result.success) {
-            showMessage('성공', result.message, 'success');
-            await loadHistory(); // 히스토리 새로고침
-        } else {
-            showMessage('실패', result.message, 'error');
-        }
-        
-    } catch (error) {
-        showMessage('오류', `처리 중 오류가 발생했습니다: ${error.message}`, 'error');
-    } finally {
-        hideLoading();
-    }
-}
+
 
 // 히스토리 삭제
 async function deleteHistory(fileSeq, dataWrkNm) {
@@ -396,27 +293,7 @@ async function deleteHistory(fileSeq, dataWrkNm) {
     }
 }
 
-// 파일 삭제
-async function deleteFile(filename) {
-    if (!confirm('정말로 이 파일을 삭제하시겠습니까?')) {
-        return;
-    }
-    
-    try {
-        const response = await fetch(`/admin/api/files/${encodeURIComponent(filename)}`, {
-            method: 'DELETE'
-        });
-        
-        if (response.ok) {
-            showMessage('성공', '파일이 삭제되었습니다.', 'success');
-            await loadFiles();
-        } else {
-            throw new Error('파일 삭제 실패');
-        }
-    } catch (error) {
-        showMessage('오류', error.message, 'error');
-    }
-}
+
 
 // 유틸리티 함수들
 function formatFileSize(bytes) {
@@ -508,55 +385,7 @@ function selectJobType(jobType) {
     loadHistory();
 }
 
-// 작업 유형별 파일 표시
-async function showJobTypeFiles(jobType) {
-    try {
-        const url = jobType === 'all' ? '/admin/api/files' : `/admin/api/files?job_type=${encodeURIComponent(jobType)}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        
-        displayFilesByJobType(data.files, jobType);
-        
-        // 탭 활성화
-        document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        
-    } catch (error) {
-        console.error('파일 목록 로드 실패:', error);
-    }
-}
 
-// 작업 유형별 파일 표시
-function displayFilesByJobType(files, jobType) {
-    const filesList = document.getElementById('filesList');
-    
-    if (files.length === 0) {
-        filesList.innerHTML = `<div class="text-center">등록된 ${jobType === 'all' ? '' : jobType + ' '}파일이 없습니다.</div>`;
-        return;
-    }
-    
-    const filesHtml = files.map(file => `
-        <div class="file-item">
-            <div class="file-info">
-                <h4>${file.filename}</h4>
-                <div class="file-meta">
-                    크기: ${formatFileSize(file.size)} | 
-                    업로드: ${formatDate(file.created_at)}
-                </div>
-            </div>
-            <div class="file-actions">
-                <button class="btn btn-success btn-sm" onclick="executeJobByFileSeq(${file.file_seq})">
-                    <i class="fas fa-play"></i> 등록
-                </button>
-                <button class="btn btn-danger btn-sm" onclick="deleteFile('${file.filename}')">
-                    <i class="fas fa-trash"></i> 삭제
-                </button>
-            </div>
-        </div>
-    `).join('');
-    
-    filesList.innerHTML = filesHtml;
-}
 
 // file_seq로 작업 실행
 async function executeJobByFileSeq(fileSeq) {
