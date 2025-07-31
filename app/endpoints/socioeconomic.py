@@ -6,6 +6,7 @@ from app.schemas.api_schemas import UploadRequest, UploadResponse
 from app.services.socioeconomic_index_service import process_data
 from app.core.logger import get_logger
 from app.core.constants.error import ErrorMessages
+from app.schemas.admin_schemas import WORK_TYPE_MAPPING
 
 logger = get_logger()
 
@@ -13,7 +14,7 @@ router = APIRouter()
 
 
 @router.post(
-        "/socioeconomic-index/economic-freedom",
+        WORK_TYPE_MAPPING["경제자유화지수"]["endpoint"],
         response_model=UploadResponse,
         summary="경제자유화지수 CSV 파일 처리",
         description="Heritage Foundation에서 발표하는 경제자유화지수 데이터를 처리하여 데이터베이스에 저장합니다.",
@@ -58,7 +59,7 @@ async def upload_socioeconomic_index_economic_freedom(
     
 
 @router.post(
-        "/socioeconomic-index/corruption-perception",
+        WORK_TYPE_MAPPING["부패인식지수"]["endpoint"],
         response_model=UploadResponse,
         summary="부패인식지수 엑셀 파일 처리",
         description="Transparency International에서 발표하는 부패인식지수 데이터를 처리하여 데이터베이스에 저장합니다.",
@@ -102,7 +103,7 @@ async def upload_socioeconomic_index_corruption_perception(
     
 
 @router.post(
-        "/socioeconomic-index/human-development",
+        WORK_TYPE_MAPPING["인간개발지수"]["endpoint"],
         response_model=UploadResponse,
         summary="인간개발지수 엑셀 파일 처리",
         description="UNDP에서 발표하는 인간개발지수 데이터를 처리하여 데이터베이스에 저장합니다.",
@@ -147,7 +148,7 @@ async def upload_socioeconomic_index_human_development(
 
 
 @router.post(
-        "/socioeconomic-index/world-competitiveness",
+        WORK_TYPE_MAPPING["세계경쟁력지수"]["endpoint"],
         response_model=UploadResponse,
         summary="세계경쟁력지수 엑셀 파일 처리",
         description="IMD에서 발표하는 세계경쟁력지수 데이터를 처리하여 데이터베이스에 저장합니다.",
