@@ -13,10 +13,10 @@ WORK_TYPE_MAPPING = {
     "국가별 수출입규모(관세청)": {"data_wrk_no": 3, "endpoint": "/customs/trade/country"},
     "주요 수출/수입품(관세청) - 수출실적": {"data_wrk_no": 4, "endpoint": "/customs/trade/item-country/export"},
     "주요 수출/수입품(관세청) - 수입실적": {"data_wrk_no": 5, "endpoint": "/customs/trade/item-country/import"},
-    "부패인식지수": {"data_wrk_no": 6, "endpoint": "/customs/corruption-perception-index"},
-    "경제자유화지수": {"data_wrk_no": 7, "endpoint": "/customs/economic-freedom-index"},
-    "인간개발지수": {"data_wrk_no": 8, "endpoint": "/customs/human-development-index"},
-    "세계경쟁력지수": {"data_wrk_no": 9, "endpoint": "/customs/world-competitiveness-index"},
+    "부패인식지수": {"data_wrk_no": 6, "endpoint": "/socioeconomic-index/corruption-perception"},
+    "경제자유화지수": {"data_wrk_no": 7, "endpoint": "/socioeconomic-index/economic-freedom"},
+    "인간개발지수": {"data_wrk_no": 8, "endpoint": "/socioeconomic-index/human-development"},
+    "세계경쟁력지수": {"data_wrk_no": 9, "endpoint": "/socioeconomic-index/world-competitiveness"},
 }
 class HistoryResponse(BaseModel):
     """히스토리 응답 스키마"""
