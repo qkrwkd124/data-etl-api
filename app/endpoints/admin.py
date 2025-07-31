@@ -6,17 +6,19 @@ from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.ext.asyncio import AsyncSession
 import httpx
-import asyncio
+import traceback
 
 from app.db.base import get_main_db
 from app.services.history_service import HistoryService
 from app.services.file_service import FileService
 from app.schemas.admin_schemas import HistoryListResponse, FileUploadResponse, WORK_TYPE_MAPPING
 from app.core.setting import get_settings
+from app.core.logger import get_logger
 
 router = APIRouter(prefix="/admin")
 templates = Jinja2Templates(directory="app/templates")
 settings = get_settings()
+logger = get_logger()
 
 # 기본 API 서버 URL (같은 서버지만 명시적으로)
 BASE_API_URL = "http://localhost:8090"
@@ -149,7 +151,7 @@ async def execute_job_by_file_seq(
                 json={"file_seq": file_seq},
                 timeout=300.0
             )
-        
+        logger.info(f"response: {response.status_code}")
         if response.status_code == 200:
 
             response_data = response.json()
@@ -167,10 +169,12 @@ async def execute_job_by_file_seq(
         else:
             return {
                 "success": False,
-                "message": response_data.get("message", "처리 실패")
+                "message": f"HTTP {response.status_code} 오류가 발생했습니다: {response.text}"
             }
         
     except Exception as e:
+        logger.error(f"처리 중 오류가 발생했습니다: {str(e)}")
+        logger.error(traceback.format_exc())
         return {
             "success": False,
             "message": f"처리 중 오류가 발생했습니다: {str(e)}"
