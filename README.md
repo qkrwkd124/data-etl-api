@@ -480,15 +480,3 @@ if required_field is None:
 - **복구 메커니즘**: 일시적 오류에 대한 자동 재시도
 
 ---
-
-## 📞 문의 및 지원
-
-프로젝트 관련 문의사항이나 개선 제안이 있으시면 언제든 연락주세요.
-
-**개발자**: [Your Name]  
-**이메일**: your.email@example.com  
-**GitHub**: https://github.com/your-username
-
----
-
-⭐ **이 프로젝트가 도움이 되셨다면 Star를 눌러주세요!**
