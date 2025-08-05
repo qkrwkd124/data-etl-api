@@ -15,7 +15,7 @@ from app.schemas.admin_schemas import HistoryListResponse, FileUploadResponse, W
 from app.core.setting import get_settings
 from app.core.logger import get_logger
 
-router = APIRouter(prefix="/admin")
+router = APIRouter(prefix="/admin", tags=["admin"])
 templates = Jinja2Templates(directory="app/templates")
 settings = get_settings()
 logger = get_logger()
@@ -215,3 +215,16 @@ async def delete_history(
         raise
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"히스토리 삭제 실패: {str(e)}")
+    
+    
+# ... existing code ...
+@router.post("/api/create-tables")
+async def create_tables_endpoint():
+    """테이블 및 시퀀스 생성 API"""
+    try:
+        from app.utils.create_tables import create_tables
+        await create_tables()
+        return {"success": "true", "message": "✅ 테이블과 시퀀스가 성공적으로 생성되었습니다!"}
+    except Exception as e:
+        logger.error(f"테이블 생성 실패: {str(e)}")
+        return {"success": "false", "message": f"❌ 테이블 생성 실패: {str(e)}"}
