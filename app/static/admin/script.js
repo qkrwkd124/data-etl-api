@@ -370,15 +370,6 @@ window.onclick = function(event) {
     }
 }
 
-// 파일 선택 함수 수정
-function selectFile() {
-    if (!currentJobType) {
-        showMessage('오류', '작업 유형을 먼저 선택해주세요.', 'error');
-        return;
-    }
-    document.getElementById('fileInput').click();
-}
-
 // 작업 유형 선택 함수 (새로 추가)
 function selectJobType(jobType) {
     // 이전 선택 해제
