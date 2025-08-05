@@ -77,9 +77,9 @@ app.add_middleware(
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 # 라우터 등록
-app.include_router(eiu.router, tags=["eiu"])
-app.include_router(customs.router, tags=["customs"])
-app.include_router(socioeconomic.router, tags=["socioeconomic"])
+app.include_router(eiu.router)
+app.include_router(customs.router)
+app.include_router(socioeconomic.router)
 app.include_router(admin.router)
 
 @app.exception_handler(RequestValidationError)
