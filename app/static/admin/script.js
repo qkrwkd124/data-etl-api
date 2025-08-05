@@ -304,10 +304,27 @@ function formatFileSize(bytes) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 }
 
+// 날짜/시간 포맷 함수 수정
 function formatDate(dateString) {
     if (!dateString) return '-';
     const date = new Date(dateString);
-    return date.toLocaleString('ko-KR');
+    
+    // 날짜와 시간을 분리해서 표시
+    const dateStr = date.toLocaleDateString('ko-KR', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    });
+    const timeStr = date.toLocaleTimeString('ko-KR', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+    });
+    
+    return `<div class="datetime-display">
+                <div class="date-part">${dateStr}</div>
+                <div class="time-part">${timeStr}</div>
+            </div>`;
 }
 
 function getStatusBadge(status) {
