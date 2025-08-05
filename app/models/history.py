@@ -1,5 +1,6 @@
-from sqlalchemy import Column, Integer, String, DateTime, Text, BigInteger, Numeric
+from sqlalchemy import Column, Integer, String, DateTime, Text, BigInteger, Numeric, Sequence
 from app.db.base import Base
+
 
 class DataUploadAutoHistory(Base):
     """데이터 업로드 자동화 처리 이력 테이블"""
@@ -26,4 +27,6 @@ class DataUploadAutoHistory(Base):
     mod_dtm = Column(DateTime, nullable=False, comment="수정일시")
 
 
+# 시퀀스 정의
+file_seq_generator = Sequence('file_seq', start=1, increment=1, metadata=Base.metadata)
     
