@@ -16,7 +16,7 @@ class ErrorMessages:
         ErrorCode.SYSTEM_ERROR: "시스템 오류가 발생했습니다.",
     }
     
-    SUCCESS = "데이터 처리가 완료되었습니다."
+    SUCCESS = "자동화 처리가 완료되었습니다."
     
     @classmethod
     def get_message(cls, error_code: ErrorCode) -> str:
