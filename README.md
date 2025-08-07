@@ -75,7 +75,7 @@ FastAPI를 사용하여 **EIU, 관세청, 사회경제지수 데이터**를 수�
 - **국가별 수출입규모**: 국가별 총 수출입 금액 및 무역수지
 - **주요 수출/수입품**: 품목별 수출실적 및 수입실적 (수출/수입 구분 처리)
 - **출처**: [관세청 통계포털](https://unipass.customs.go.kr/ets/)
-- **특징**: 한글 국가명, 복잡한 HS 코드 체계
+- **특징**: 한글 국가명, 한글 품목명
 
 ### 3. 사회경제지수 데이터
 - **부패인식지수**: [Transparency International CPI](https://www.transparency.org/en/cpi)
