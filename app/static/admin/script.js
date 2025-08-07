@@ -198,8 +198,8 @@ function displayHistory(items) {
     const historyHtml = items.map(item => `
         <tr>
             <td>${item.file_seq}</td>
-            <td>${item.data_wrk_nm}</td>
-            <td>${item.file_nm || '-'}</td>
+            <td title="${item.data_wrk_nm || ''}">${item.data_wrk_nm}</td>
+            <td title="${item.file_nm || ''}">${item.file_nm || '-'}</td>
             <td>${formatDate(item.strt_dtm)}</td>
             <td>${item.end_dtm ? formatDate(item.end_dtm) : '-'}</td>
             <td>${item.proc_cnt || '-'}</td>

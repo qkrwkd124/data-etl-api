@@ -537,20 +537,27 @@ section h2 {
 /* 컬럼별 폭 최적화 */
 .history-table th:nth-child(1),
 .history-table td:nth-child(1) {
-    width: 120px; /* 파일순번 - 늘림 */
+    width: 80px; /* 순번 - 좁게 조정 */
 }
 
 .history-table th:nth-child(2),
 .history-table td:nth-child(2) {
-    width: 140px; /* 작업명 */
+    width: 200px; /* 작업명 - 공간 확보 */
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    position: relative;
+    cursor: help;
 }
 
 .history-table th:nth-child(3),
 .history-table td:nth-child(3) {
-    width: 200px; /* 파일명 */
-    max-width: 200px;
+    width: 180px; /* 파일명 - 약간 줄임 */
+    max-width: 180px;
     overflow: hidden;
     text-overflow: ellipsis;
+    position: relative;
+    cursor: help;
 }
 
 .history-table th:nth-child(4),
@@ -565,7 +572,7 @@ section h2 {
 
 .history-table th:nth-child(6),
 .history-table td:nth-child(6) {
-    width: 100px; /* 처리건수 - 늘림 */
+    width: 100px; /* 처리건수 */
 }
 
 .history-table th:nth-child(7),
@@ -582,6 +589,40 @@ section h2 {
     width: 100px; /* 상태 */
     text-align: center;
     padding: 8px 4px;
+}
+
+/* 툴팁 스타일 추가 */
+.history-table td[title] {
+    position: relative;
+}
+
+.history-table td[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.9);
+    color: white;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 1000;
+    max-width: 300px;
+    word-wrap: break-word;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.history-table td[title]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    border: 5px solid transparent;
+    border-top-color: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
 }
 
 /* 상태 버튼 스타일 */
