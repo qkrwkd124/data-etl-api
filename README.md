@@ -12,7 +12,7 @@ FastAPI를 사용하여 **EIU, 관세청, 사회경제지수 데이터**를 수�
 이 프로젝트는 **9가지 경제 및 무역 데이터를 자동으로 처리하는 ETL 시스템**입니다. 
 웹 대시보드에서 Excel/CSV 파일을 업로드하면 데이터 품질 검증, 국가명 표준화, 데이터 적재까지 자동으로 처리합니다.
 
-![Admin Dashboard](docs/images/dashboard-main.png)
+<img width="1200" height="600" alt="대시보드" src="https://github.com/user-attachments/assets/567b9fe7-4ad1-4e68-a234-8c18adf23796" />
 *▲ Data ETL API Admin 대시보드 - 파일 업로드부터 처리 이력 관리까지 한 화면에서*
 
 ### 주요 목적
