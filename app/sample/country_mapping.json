@@ -1,0 +1,1482 @@
+[
+  {
+    "ENG_CTRY_NM": "United Arab Emirates",
+    "STD_INFRM_CTRY_CD": "AE",
+    "KCS_KOR_CTRY_NM": "아랍에미리트 연합"
+  },
+  {
+    "ENG_CTRY_NM": "Afghanistan",
+    "STD_INFRM_CTRY_CD": "AF",
+    "KCS_KOR_CTRY_NM": "아프카니스탄"
+  },
+  {
+    "ENG_CTRY_NM": "Albania",
+    "STD_INFRM_CTRY_CD": "AL",
+    "KCS_KOR_CTRY_NM": "알바니아"
+  },
+  {
+    "ENG_CTRY_NM": "Armenia",
+    "STD_INFRM_CTRY_CD": "AM",
+    "KCS_KOR_CTRY_NM": "아르메니아"
+  },
+  {
+    "ENG_CTRY_NM": "Angola",
+    "STD_INFRM_CTRY_CD": "AO",
+    "KCS_KOR_CTRY_NM": "앙골라"
+  },
+  {
+    "ENG_CTRY_NM": "Argentina",
+    "STD_INFRM_CTRY_CD": "AR",
+    "KCS_KOR_CTRY_NM": "아르헨티나"
+  },
+  {
+    "ENG_CTRY_NM": "Austria",
+    "STD_INFRM_CTRY_CD": "AT",
+    "KCS_KOR_CTRY_NM": "오스트리아"
+  },
+  {
+    "ENG_CTRY_NM": "Australia",
+    "STD_INFRM_CTRY_CD": "AU",
+    "KCS_KOR_CTRY_NM": "호주"
+  },
+  {
+    "ENG_CTRY_NM": "Azerbaijan",
+    "STD_INFRM_CTRY_CD": "AZ",
+    "KCS_KOR_CTRY_NM": "아제르바이잔"
+  },
+  {
+    "ENG_CTRY_NM": "Bosnia and Hercegovina",
+    "STD_INFRM_CTRY_CD": "BA",
+    "KCS_KOR_CTRY_NM": "보스니아-헤르체고비나"
+  },
+  {
+    "ENG_CTRY_NM": "Barbados",
+    "STD_INFRM_CTRY_CD": "BB",
+    "KCS_KOR_CTRY_NM": "바베이도스"
+  },
+  {
+    "ENG_CTRY_NM": "Bangladesh",
+    "STD_INFRM_CTRY_CD": "BD",
+    "KCS_KOR_CTRY_NM": "방글라데시"
+  },
+  {
+    "ENG_CTRY_NM": "Belgium",
+    "STD_INFRM_CTRY_CD": "BE",
+    "KCS_KOR_CTRY_NM": "벨기에"
+  },
+  {
+    "ENG_CTRY_NM": "Burkina Faso",
+    "STD_INFRM_CTRY_CD": "BF",
+    "KCS_KOR_CTRY_NM": "부르키나 파소"
+  },
+  {
+    "ENG_CTRY_NM": "Bulgaria",
+    "STD_INFRM_CTRY_CD": "BG",
+    "KCS_KOR_CTRY_NM": "불가리아"
+  },
+  {
+    "ENG_CTRY_NM": "Bahrain",
+    "STD_INFRM_CTRY_CD": "BH",
+    "KCS_KOR_CTRY_NM": "바레인"
+  },
+  {
+    "ENG_CTRY_NM": "Burundi",
+    "STD_INFRM_CTRY_CD": "BI",
+    "KCS_KOR_CTRY_NM": "부룬디"
+  },
+  {
+    "ENG_CTRY_NM": "Benin",
+    "STD_INFRM_CTRY_CD": "BJ",
+    "KCS_KOR_CTRY_NM": "베닝"
+  },
+  {
+    "ENG_CTRY_NM": "Bolivia",
+    "STD_INFRM_CTRY_CD": "BO",
+    "KCS_KOR_CTRY_NM": "볼리비아"
+  },
+  {
+    "ENG_CTRY_NM": "Brazil",
+    "STD_INFRM_CTRY_CD": "BR",
+    "KCS_KOR_CTRY_NM": "브라질"
+  },
+  {
+    "ENG_CTRY_NM": "Bahamas",
+    "STD_INFRM_CTRY_CD": "BS",
+    "KCS_KOR_CTRY_NM": "바하마"
+  },
+  {
+    "ENG_CTRY_NM": "Botswana",
+    "STD_INFRM_CTRY_CD": "BW",
+    "KCS_KOR_CTRY_NM": "보츠와나"
+  },
+  {
+    "ENG_CTRY_NM": "Belarus",
+    "STD_INFRM_CTRY_CD": "BY",
+    "KCS_KOR_CTRY_NM": "벨라루스"
+  },
+  {
+    "ENG_CTRY_NM": "Belize",
+    "STD_INFRM_CTRY_CD": "BZ",
+    "KCS_KOR_CTRY_NM": "벨리제"
+  },
+  {
+    "ENG_CTRY_NM": "Canada",
+    "STD_INFRM_CTRY_CD": "CA",
+    "KCS_KOR_CTRY_NM": "캐나다"
+  },
+  {
+    "ENG_CTRY_NM": "Congo (Democratic Republic)",
+    "STD_INFRM_CTRY_CD": "CD",
+    "KCS_KOR_CTRY_NM": "콩고민주공화국"
+  },
+  {
+    "ENG_CTRY_NM": "Central African Republic",
+    "STD_INFRM_CTRY_CD": "CF",
+    "KCS_KOR_CTRY_NM": "중앙아프리카공화국"
+  },
+  {
+    "ENG_CTRY_NM": "Congo (Brazzaville)",
+    "STD_INFRM_CTRY_CD": "CG",
+    "KCS_KOR_CTRY_NM": "콩고"
+  },
+  {
+    "ENG_CTRY_NM": "Switzerland",
+    "STD_INFRM_CTRY_CD": "CH",
+    "KCS_KOR_CTRY_NM": "스위스"
+  },
+  {
+    "ENG_CTRY_NM": "C?te d'Ivoire",
+    "STD_INFRM_CTRY_CD": "CI",
+    "KCS_KOR_CTRY_NM": "코트디봐르"
+  },
+  {
+    "ENG_CTRY_NM": "Chile",
+    "STD_INFRM_CTRY_CD": "CL",
+    "KCS_KOR_CTRY_NM": "칠레"
+  },
+  {
+    "ENG_CTRY_NM": "Cameroon",
+    "STD_INFRM_CTRY_CD": "CM",
+    "KCS_KOR_CTRY_NM": "카메룬"
+  },
+  {
+    "ENG_CTRY_NM": "China",
+    "STD_INFRM_CTRY_CD": "CN",
+    "KCS_KOR_CTRY_NM": "중국"
+  },
+  {
+    "ENG_CTRY_NM": "Colombia",
+    "STD_INFRM_CTRY_CD": "CO",
+    "KCS_KOR_CTRY_NM": "콜롬비아"
+  },
+  {
+    "ENG_CTRY_NM": "Costa Rica",
+    "STD_INFRM_CTRY_CD": "CR",
+    "KCS_KOR_CTRY_NM": "코스타리카"
+  },
+  {
+    "ENG_CTRY_NM": "Cuba",
+    "STD_INFRM_CTRY_CD": "CU",
+    "KCS_KOR_CTRY_NM": "쿠바"
+  },
+  {
+    "ENG_CTRY_NM": "Cabo Verde",
+    "STD_INFRM_CTRY_CD": "CV",
+    "KCS_KOR_CTRY_NM": "카보 베르데"
+  },
+  {
+    "ENG_CTRY_NM": "Cyprus",
+    "STD_INFRM_CTRY_CD": "CY",
+    "KCS_KOR_CTRY_NM": "사이프러스"
+  },
+  {
+    "ENG_CTRY_NM": "Czech Republic",
+    "STD_INFRM_CTRY_CD": "CZ",
+    "KCS_KOR_CTRY_NM": "체코공화국"
+  },
+  {
+    "ENG_CTRY_NM": "Germany",
+    "STD_INFRM_CTRY_CD": "DE",
+    "KCS_KOR_CTRY_NM": "독일"
+  },
+  {
+    "ENG_CTRY_NM": "Djibouti",
+    "STD_INFRM_CTRY_CD": "DJ",
+    "KCS_KOR_CTRY_NM": "지부티"
+  },
+  {
+    "ENG_CTRY_NM": "Denmark",
+    "STD_INFRM_CTRY_CD": "DK",
+    "KCS_KOR_CTRY_NM": "덴마크"
+  },
+  {
+    "ENG_CTRY_NM": "Dominican Republic",
+    "STD_INFRM_CTRY_CD": "DO",
+    "KCS_KOR_CTRY_NM": "도미니카 공화국"
+  },
+  {
+    "ENG_CTRY_NM": "Algeria",
+    "STD_INFRM_CTRY_CD": "DZ",
+    "KCS_KOR_CTRY_NM": "알제리"
+  },
+  {
+    "ENG_CTRY_NM": "Ecuador",
+    "STD_INFRM_CTRY_CD": "EC",
+    "KCS_KOR_CTRY_NM": "에쿠아도르"
+  },
+  {
+    "ENG_CTRY_NM": "Estonia",
+    "STD_INFRM_CTRY_CD": "EE",
+    "KCS_KOR_CTRY_NM": "에스토니아"
+  },
+  {
+    "ENG_CTRY_NM": "Egypt",
+    "STD_INFRM_CTRY_CD": "EG",
+    "KCS_KOR_CTRY_NM": "이집트"
+  },
+  {
+    "ENG_CTRY_NM": "Eritrea",
+    "STD_INFRM_CTRY_CD": "ER",
+    "KCS_KOR_CTRY_NM": "에리트리아"
+  },
+  {
+    "ENG_CTRY_NM": "Spain",
+    "STD_INFRM_CTRY_CD": "ES",
+    "KCS_KOR_CTRY_NM": "스페인"
+  },
+  {
+    "ENG_CTRY_NM": "Ethiopia",
+    "STD_INFRM_CTRY_CD": "ET",
+    "KCS_KOR_CTRY_NM": "에티오피아"
+  },
+  {
+    "ENG_CTRY_NM": "Finland",
+    "STD_INFRM_CTRY_CD": "FI",
+    "KCS_KOR_CTRY_NM": "핀란드"
+  },
+  {
+    "ENG_CTRY_NM": "Fiji",
+    "STD_INFRM_CTRY_CD": "FJ",
+    "KCS_KOR_CTRY_NM": "피지"
+  },
+  {
+    "ENG_CTRY_NM": "France",
+    "STD_INFRM_CTRY_CD": "FR",
+    "KCS_KOR_CTRY_NM": "프랑스"
+  },
+  {
+    "ENG_CTRY_NM": "Gabon",
+    "STD_INFRM_CTRY_CD": "GA",
+    "KCS_KOR_CTRY_NM": "가봉"
+  },
+  {
+    "ENG_CTRY_NM": "United Kingdom",
+    "STD_INFRM_CTRY_CD": "GB",
+    "KCS_KOR_CTRY_NM": "영국"
+  },
+  {
+    "ENG_CTRY_NM": "Georgia",
+    "STD_INFRM_CTRY_CD": "GE",
+    "KCS_KOR_CTRY_NM": "조지아"
+  },
+  {
+    "ENG_CTRY_NM": "Ghana",
+    "STD_INFRM_CTRY_CD": "GH",
+    "KCS_KOR_CTRY_NM": "가나"
+  },
+  {
+    "ENG_CTRY_NM": "Gambia",
+    "STD_INFRM_CTRY_CD": "GM",
+    "KCS_KOR_CTRY_NM": "감비아"
+  },
+  {
+    "ENG_CTRY_NM": "Guinea",
+    "STD_INFRM_CTRY_CD": "GN",
+    "KCS_KOR_CTRY_NM": "기니"
+  },
+  {
+    "ENG_CTRY_NM": "Equatorial Guinea",
+    "STD_INFRM_CTRY_CD": "GQ",
+    "KCS_KOR_CTRY_NM": "적도 기니"
+  },
+  {
+    "ENG_CTRY_NM": "Greece",
+    "STD_INFRM_CTRY_CD": "GR",
+    "KCS_KOR_CTRY_NM": "그리스"
+  },
+  {
+    "ENG_CTRY_NM": "Guatemala",
+    "STD_INFRM_CTRY_CD": "GT",
+    "KCS_KOR_CTRY_NM": "과테말라"
+  },
+  {
+    "ENG_CTRY_NM": "Guyana",
+    "STD_INFRM_CTRY_CD": "GY",
+    "KCS_KOR_CTRY_NM": "가이아나"
+  },
+  {
+    "ENG_CTRY_NM": "Hong Kong",
+    "STD_INFRM_CTRY_CD": "HK",
+    "KCS_KOR_CTRY_NM": "홍콩"
+  },
+  {
+    "ENG_CTRY_NM": "Honduras",
+    "STD_INFRM_CTRY_CD": "HN",
+    "KCS_KOR_CTRY_NM": "온두라스"
+  },
+  {
+    "ENG_CTRY_NM": "Croatia",
+    "STD_INFRM_CTRY_CD": "HR",
+    "KCS_KOR_CTRY_NM": "크로아티아"
+  },
+  {
+    "ENG_CTRY_NM": "Haiti",
+    "STD_INFRM_CTRY_CD": "HT",
+    "KCS_KOR_CTRY_NM": "아이티"
+  },
+  {
+    "ENG_CTRY_NM": "Hungary",
+    "STD_INFRM_CTRY_CD": "HU",
+    "KCS_KOR_CTRY_NM": "헝가리"
+  },
+  {
+    "ENG_CTRY_NM": "Indonesia",
+    "STD_INFRM_CTRY_CD": "ID",
+    "KCS_KOR_CTRY_NM": "인도네시아"
+  },
+  {
+    "ENG_CTRY_NM": "Ireland",
+    "STD_INFRM_CTRY_CD": "IE",
+    "KCS_KOR_CTRY_NM": "아일랜드"
+  },
+  {
+    "ENG_CTRY_NM": "Israel",
+    "STD_INFRM_CTRY_CD": "IL",
+    "KCS_KOR_CTRY_NM": "이스라엘"
+  },
+  {
+    "ENG_CTRY_NM": "India",
+    "STD_INFRM_CTRY_CD": "IN",
+    "KCS_KOR_CTRY_NM": "인도"
+  },
+  {
+    "ENG_CTRY_NM": "Iraq",
+    "STD_INFRM_CTRY_CD": "IQ",
+    "KCS_KOR_CTRY_NM": "이라크"
+  },
+  {
+    "ENG_CTRY_NM": "Iran",
+    "STD_INFRM_CTRY_CD": "IR",
+    "KCS_KOR_CTRY_NM": "이란"
+  },
+  {
+    "ENG_CTRY_NM": "Iceland",
+    "STD_INFRM_CTRY_CD": "IS",
+    "KCS_KOR_CTRY_NM": "아이슬란드"
+  },
+  {
+    "ENG_CTRY_NM": "Italy",
+    "STD_INFRM_CTRY_CD": "IT",
+    "KCS_KOR_CTRY_NM": "이탈리아"
+  },
+  {
+    "ENG_CTRY_NM": "Jamaica",
+    "STD_INFRM_CTRY_CD": "JM",
+    "KCS_KOR_CTRY_NM": "자마이카"
+  },
+  {
+    "ENG_CTRY_NM": "Jordan",
+    "STD_INFRM_CTRY_CD": "JO",
+    "KCS_KOR_CTRY_NM": "요르단"
+  },
+  {
+    "ENG_CTRY_NM": "Japan",
+    "STD_INFRM_CTRY_CD": "JP",
+    "KCS_KOR_CTRY_NM": "일본"
+  },
+  {
+    "ENG_CTRY_NM": "Kenya",
+    "STD_INFRM_CTRY_CD": "KE",
+    "KCS_KOR_CTRY_NM": "케냐"
+  },
+  {
+    "ENG_CTRY_NM": "Kyrgyz Republic",
+    "STD_INFRM_CTRY_CD": "KG",
+    "KCS_KOR_CTRY_NM": "키르기스스탄"
+  },
+  {
+    "ENG_CTRY_NM": "Cambodia",
+    "STD_INFRM_CTRY_CD": "KH",
+    "KCS_KOR_CTRY_NM": "캄보디아"
+  },
+  {
+    "ENG_CTRY_NM": "Comoros",
+    "STD_INFRM_CTRY_CD": "KM",
+    "KCS_KOR_CTRY_NM": "코모로스"
+  },
+  {
+    "ENG_CTRY_NM": "South Korea",
+    "STD_INFRM_CTRY_CD": "KR",
+    "KCS_KOR_CTRY_NM": "대한민국"
+  },
+  {
+    "ENG_CTRY_NM": "Kuwait",
+    "STD_INFRM_CTRY_CD": "KW",
+    "KCS_KOR_CTRY_NM": "쿠웨이트"
+  },
+  {
+    "ENG_CTRY_NM": "Kazakhstan",
+    "STD_INFRM_CTRY_CD": "KZ",
+    "KCS_KOR_CTRY_NM": "카자흐스탄"
+  },
+  {
+    "ENG_CTRY_NM": "Laos",
+    "STD_INFRM_CTRY_CD": "LA",
+    "KCS_KOR_CTRY_NM": "라오스"
+  },
+  {
+    "ENG_CTRY_NM": "Lebanon",
+    "STD_INFRM_CTRY_CD": "LB",
+    "KCS_KOR_CTRY_NM": "레바논"
+  },
+  {
+    "ENG_CTRY_NM": "Sri Lanka",
+    "STD_INFRM_CTRY_CD": "LK",
+    "KCS_KOR_CTRY_NM": "스리랑카"
+  },
+  {
+    "ENG_CTRY_NM": "Liberia",
+    "STD_INFRM_CTRY_CD": "LR",
+    "KCS_KOR_CTRY_NM": "라이베리아"
+  },
+  {
+    "ENG_CTRY_NM": "Lesotho",
+    "STD_INFRM_CTRY_CD": "LS",
+    "KCS_KOR_CTRY_NM": "레소토"
+  },
+  {
+    "ENG_CTRY_NM": "Lithuania",
+    "STD_INFRM_CTRY_CD": "LT",
+    "KCS_KOR_CTRY_NM": "리투아니아"
+  },
+  {
+    "ENG_CTRY_NM": "Luxembourg",
+    "STD_INFRM_CTRY_CD": "LU",
+    "KCS_KOR_CTRY_NM": "룩셈부르그"
+  },
+  {
+    "ENG_CTRY_NM": "Latvia",
+    "STD_INFRM_CTRY_CD": "LV",
+    "KCS_KOR_CTRY_NM": "라트비아"
+  },
+  {
+    "ENG_CTRY_NM": "Libya",
+    "STD_INFRM_CTRY_CD": "LY",
+    "KCS_KOR_CTRY_NM": "리비아"
+  },
+  {
+    "ENG_CTRY_NM": "Morocco",
+    "STD_INFRM_CTRY_CD": "MA",
+    "KCS_KOR_CTRY_NM": "모로코"
+  },
+  {
+    "ENG_CTRY_NM": "Moldova",
+    "STD_INFRM_CTRY_CD": "MD",
+    "KCS_KOR_CTRY_NM": "몰도바"
+  },
+  {
+    "ENG_CTRY_NM": "Madagascar",
+    "STD_INFRM_CTRY_CD": "MG",
+    "KCS_KOR_CTRY_NM": "마다카스카르"
+  },
+  {
+    "ENG_CTRY_NM": "North Macedonia",
+    "STD_INFRM_CTRY_CD": "MK",
+    "KCS_KOR_CTRY_NM": "마세도니아"
+  },
+  {
+    "ENG_CTRY_NM": "Mali",
+    "STD_INFRM_CTRY_CD": "ML",
+    "KCS_KOR_CTRY_NM": "말리"
+  },
+  {
+    "ENG_CTRY_NM": "Myanmar",
+    "STD_INFRM_CTRY_CD": "MM",
+    "KCS_KOR_CTRY_NM": "미얀마"
+  },
+  {
+    "ENG_CTRY_NM": "Mongolia",
+    "STD_INFRM_CTRY_CD": "MN",
+    "KCS_KOR_CTRY_NM": "몽골"
+  },
+  {
+    "ENG_CTRY_NM": "Mauritania",
+    "STD_INFRM_CTRY_CD": "MR",
+    "KCS_KOR_CTRY_NM": "모리타니"
+  },
+  {
+    "ENG_CTRY_NM": "Malta",
+    "STD_INFRM_CTRY_CD": "MT",
+    "KCS_KOR_CTRY_NM": "몰타"
+  },
+  {
+    "ENG_CTRY_NM": "Mauritius",
+    "STD_INFRM_CTRY_CD": "MU",
+    "KCS_KOR_CTRY_NM": "모리셔스"
+  },
+  {
+    "ENG_CTRY_NM": "Maldives",
+    "STD_INFRM_CTRY_CD": "MV",
+    "KCS_KOR_CTRY_NM": "몰디브"
+  },
+  {
+    "ENG_CTRY_NM": "Malawi",
+    "STD_INFRM_CTRY_CD": "MW",
+    "KCS_KOR_CTRY_NM": "말라위"
+  },
+  {
+    "ENG_CTRY_NM": "Mexico",
+    "STD_INFRM_CTRY_CD": "MX",
+    "KCS_KOR_CTRY_NM": "멕시코"
+  },
+  {
+    "ENG_CTRY_NM": "Malaysia",
+    "STD_INFRM_CTRY_CD": "MY",
+    "KCS_KOR_CTRY_NM": "말레이시아"
+  },
+  {
+    "ENG_CTRY_NM": "Mozambique",
+    "STD_INFRM_CTRY_CD": "MZ",
+    "KCS_KOR_CTRY_NM": "모잠비크"
+  },
+  {
+    "ENG_CTRY_NM": "Namibia",
+    "STD_INFRM_CTRY_CD": NaN,
+    "KCS_KOR_CTRY_NM": "나미비아"
+  },
+  {
+    "ENG_CTRY_NM": "Niger",
+    "STD_INFRM_CTRY_CD": "NE",
+    "KCS_KOR_CTRY_NM": "니제르"
+  },
+  {
+    "ENG_CTRY_NM": "Nigeria",
+    "STD_INFRM_CTRY_CD": "NG",
+    "KCS_KOR_CTRY_NM": "나이지리아"
+  },
+  {
+    "ENG_CTRY_NM": "Nicaragua",
+    "STD_INFRM_CTRY_CD": "NI",
+    "KCS_KOR_CTRY_NM": "니카라과"
+  },
+  {
+    "ENG_CTRY_NM": "Netherlands",
+    "STD_INFRM_CTRY_CD": "NL",
+    "KCS_KOR_CTRY_NM": "네덜란드"
+  },
+  {
+    "ENG_CTRY_NM": "Norway",
+    "STD_INFRM_CTRY_CD": "NO",
+    "KCS_KOR_CTRY_NM": "노르웨이"
+  },
+  {
+    "ENG_CTRY_NM": "New Zealand",
+    "STD_INFRM_CTRY_CD": "NZ",
+    "KCS_KOR_CTRY_NM": "뉴질랜드"
+  },
+  {
+    "ENG_CTRY_NM": "Oman",
+    "STD_INFRM_CTRY_CD": "OM",
+    "KCS_KOR_CTRY_NM": "오만"
+  },
+  {
+    "ENG_CTRY_NM": "Panama",
+    "STD_INFRM_CTRY_CD": "PA",
+    "KCS_KOR_CTRY_NM": "파나마"
+  },
+  {
+    "ENG_CTRY_NM": "Peru",
+    "STD_INFRM_CTRY_CD": "PE",
+    "KCS_KOR_CTRY_NM": "페루"
+  },
+  {
+    "ENG_CTRY_NM": "Papua New Guinea",
+    "STD_INFRM_CTRY_CD": "PG",
+    "KCS_KOR_CTRY_NM": "파푸아 뉴기니"
+  },
+  {
+    "ENG_CTRY_NM": "Philippines",
+    "STD_INFRM_CTRY_CD": "PH",
+    "KCS_KOR_CTRY_NM": "필리핀"
+  },
+  {
+    "ENG_CTRY_NM": "Pakistan",
+    "STD_INFRM_CTRY_CD": "PK",
+    "KCS_KOR_CTRY_NM": "파키스탄"
+  },
+  {
+    "ENG_CTRY_NM": "Poland",
+    "STD_INFRM_CTRY_CD": "PL",
+    "KCS_KOR_CTRY_NM": "폴란드"
+  },
+  {
+    "ENG_CTRY_NM": "Portugal",
+    "STD_INFRM_CTRY_CD": "PT",
+    "KCS_KOR_CTRY_NM": "포루투갈"
+  },
+  {
+    "ENG_CTRY_NM": "Paraguay",
+    "STD_INFRM_CTRY_CD": "PY",
+    "KCS_KOR_CTRY_NM": "파라과이"
+  },
+  {
+    "ENG_CTRY_NM": "Qatar",
+    "STD_INFRM_CTRY_CD": "QA",
+    "KCS_KOR_CTRY_NM": "카타르"
+  },
+  {
+    "ENG_CTRY_NM": "Romania",
+    "STD_INFRM_CTRY_CD": "RO",
+    "KCS_KOR_CTRY_NM": "루마니아"
+  },
+  {
+    "ENG_CTRY_NM": "Russia",
+    "STD_INFRM_CTRY_CD": "RU",
+    "KCS_KOR_CTRY_NM": "러시아 연방"
+  },
+  {
+    "ENG_CTRY_NM": "Rwanda",
+    "STD_INFRM_CTRY_CD": "RW",
+    "KCS_KOR_CTRY_NM": "르완다"
+  },
+  {
+    "ENG_CTRY_NM": "Saudi Arabia",
+    "STD_INFRM_CTRY_CD": "SA",
+    "KCS_KOR_CTRY_NM": "사우디아라비아"
+  },
+  {
+    "ENG_CTRY_NM": "Solomon Islands",
+    "STD_INFRM_CTRY_CD": "SB",
+    "KCS_KOR_CTRY_NM": "솔로몬 군도"
+  },
+  {
+    "ENG_CTRY_NM": "Seychelles",
+    "STD_INFRM_CTRY_CD": "SC",
+    "KCS_KOR_CTRY_NM": "세이쉘"
+  },
+  {
+    "ENG_CTRY_NM": "Sudan",
+    "STD_INFRM_CTRY_CD": "SD",
+    "KCS_KOR_CTRY_NM": "수단"
+  },
+  {
+    "ENG_CTRY_NM": "Sweden",
+    "STD_INFRM_CTRY_CD": "SE",
+    "KCS_KOR_CTRY_NM": "스웨덴"
+  },
+  {
+    "ENG_CTRY_NM": "Singapore",
+    "STD_INFRM_CTRY_CD": "SG",
+    "KCS_KOR_CTRY_NM": "싱가포르"
+  },
+  {
+    "ENG_CTRY_NM": "Slovenia",
+    "STD_INFRM_CTRY_CD": "SI",
+    "KCS_KOR_CTRY_NM": "슬로베니아"
+  },
+  {
+    "ENG_CTRY_NM": "Slovakia",
+    "STD_INFRM_CTRY_CD": "SK",
+    "KCS_KOR_CTRY_NM": "슬로바키아"
+  },
+  {
+    "ENG_CTRY_NM": "Sierra Leone",
+    "STD_INFRM_CTRY_CD": "SL",
+    "KCS_KOR_CTRY_NM": "시에라 리온"
+  },
+  {
+    "ENG_CTRY_NM": "Senegal",
+    "STD_INFRM_CTRY_CD": "SN",
+    "KCS_KOR_CTRY_NM": "세네갈"
+  },
+  {
+    "ENG_CTRY_NM": "Suriname",
+    "STD_INFRM_CTRY_CD": "SR",
+    "KCS_KOR_CTRY_NM": "수리남"
+  },
+  {
+    "ENG_CTRY_NM": "S?o Tom? and Pr?ncipe",
+    "STD_INFRM_CTRY_CD": "ST",
+    "KCS_KOR_CTRY_NM": "상토메 프린스페"
+  },
+  {
+    "ENG_CTRY_NM": "El Salvador",
+    "STD_INFRM_CTRY_CD": "SV",
+    "KCS_KOR_CTRY_NM": "엘살바도르"
+  },
+  {
+    "ENG_CTRY_NM": "Syria",
+    "STD_INFRM_CTRY_CD": "SY",
+    "KCS_KOR_CTRY_NM": "시리아"
+  },
+  {
+    "ENG_CTRY_NM": "Eswatini",
+    "STD_INFRM_CTRY_CD": "SZ",
+    "KCS_KOR_CTRY_NM": "스와질랜드"
+  },
+  {
+    "ENG_CTRY_NM": "Chad",
+    "STD_INFRM_CTRY_CD": "TD",
+    "KCS_KOR_CTRY_NM": "챠드"
+  },
+  {
+    "ENG_CTRY_NM": "Togo",
+    "STD_INFRM_CTRY_CD": "TG",
+    "KCS_KOR_CTRY_NM": "토고"
+  },
+  {
+    "ENG_CTRY_NM": "Thailand",
+    "STD_INFRM_CTRY_CD": "TH",
+    "KCS_KOR_CTRY_NM": "태국"
+  },
+  {
+    "ENG_CTRY_NM": "Tajikistan",
+    "STD_INFRM_CTRY_CD": "TJ",
+    "KCS_KOR_CTRY_NM": "타지크"
+  },
+  {
+    "ENG_CTRY_NM": "Turkmenistan",
+    "STD_INFRM_CTRY_CD": "TM",
+    "KCS_KOR_CTRY_NM": "투르크멘"
+  },
+  {
+    "ENG_CTRY_NM": "Tunisia",
+    "STD_INFRM_CTRY_CD": "TN",
+    "KCS_KOR_CTRY_NM": "튀니지"
+  },
+  {
+    "ENG_CTRY_NM": "Turkey",
+    "STD_INFRM_CTRY_CD": "TR",
+    "KCS_KOR_CTRY_NM": "튀르키예"
+  },
+  {
+    "ENG_CTRY_NM": "Trinidad and Tobago",
+    "STD_INFRM_CTRY_CD": "TT",
+    "KCS_KOR_CTRY_NM": "트리니다드 토바고"
+  },
+  {
+    "ENG_CTRY_NM": "Taiwan",
+    "STD_INFRM_CTRY_CD": "TW",
+    "KCS_KOR_CTRY_NM": "대만"
+  },
+  {
+    "ENG_CTRY_NM": "Tanzania",
+    "STD_INFRM_CTRY_CD": "TZ",
+    "KCS_KOR_CTRY_NM": "탄자니아"
+  },
+  {
+    "ENG_CTRY_NM": "UK",
+    "STD_INFRM_CTRY_CD": "UA",
+    "KCS_KOR_CTRY_NM": "우크라이나"
+  },
+  {
+    "ENG_CTRY_NM": "Uganda",
+    "STD_INFRM_CTRY_CD": "UG",
+    "KCS_KOR_CTRY_NM": "우간다"
+  },
+  {
+    "ENG_CTRY_NM": "United States of America",
+    "STD_INFRM_CTRY_CD": "US",
+    "KCS_KOR_CTRY_NM": "미국"
+  },
+  {
+    "ENG_CTRY_NM": "Uruguay",
+    "STD_INFRM_CTRY_CD": "UY",
+    "KCS_KOR_CTRY_NM": "우루과이"
+  },
+  {
+    "ENG_CTRY_NM": "Venezuela",
+    "STD_INFRM_CTRY_CD": "VE",
+    "KCS_KOR_CTRY_NM": "베네주엘라"
+  },
+  {
+    "ENG_CTRY_NM": "Vietnam",
+    "STD_INFRM_CTRY_CD": "VN",
+    "KCS_KOR_CTRY_NM": "베트남"
+  },
+  {
+    "ENG_CTRY_NM": "Samoa",
+    "STD_INFRM_CTRY_CD": "WS",
+    "KCS_KOR_CTRY_NM": "사모아"
+  },
+  {
+    "ENG_CTRY_NM": "Yemen",
+    "STD_INFRM_CTRY_CD": "YE",
+    "KCS_KOR_CTRY_NM": "예맨"
+  },
+  {
+    "ENG_CTRY_NM": "Serbia",
+    "STD_INFRM_CTRY_CD": "YG",
+    "KCS_KOR_CTRY_NM": NaN
+  },
+  {
+    "ENG_CTRY_NM": "South Africa",
+    "STD_INFRM_CTRY_CD": "ZA",
+    "KCS_KOR_CTRY_NM": "남아프리카공화국"
+  },
+  {
+    "ENG_CTRY_NM": "Zimbabwe",
+    "STD_INFRM_CTRY_CD": "ZW",
+    "KCS_KOR_CTRY_NM": "짐바브웨"
+  },
+  {
+    "ENG_CTRY_NM": "French Southern Territories",
+    "STD_INFRM_CTRY_CD": "TF",
+    "KCS_KOR_CTRY_NM": "불령 남부지역"
+  },
+  {
+    "ENG_CTRY_NM": "Heard Island and McDonald Islands",
+    "STD_INFRM_CTRY_CD": "HM",
+    "KCS_KOR_CTRY_NM": "허드 앤 맥도날드 군도"
+  },
+  {
+    "ENG_CTRY_NM": "British Indian Ocean Territory",
+    "STD_INFRM_CTRY_CD": "IO",
+    "KCS_KOR_CTRY_NM": "영령 인도양"
+  },
+  {
+    "ENG_CTRY_NM": "Christmas Island",
+    "STD_INFRM_CTRY_CD": "CX",
+    "KCS_KOR_CTRY_NM": "크리스마스 아일랜드"
+  },
+  {
+    "ENG_CTRY_NM": "Cocos (Keeling) Islands",
+    "STD_INFRM_CTRY_CD": "CC",
+    "KCS_KOR_CTRY_NM": "코스 군도"
+  },
+  {
+    "ENG_CTRY_NM": "Sint Maarten (Dutch part)",
+    "STD_INFRM_CTRY_CD": "SX",
+    "KCS_KOR_CTRY_NM": "프랑스령 생마르탱"
+  },
+  {
+    "ENG_CTRY_NM": "South Georgia and the South Sandwich Islands",
+    "STD_INFRM_CTRY_CD": "GS",
+    "KCS_KOR_CTRY_NM": "남조지아 & 남샌드위치 군도"
+  },
+  {
+    "ENG_CTRY_NM": "Cura?ao",
+    "STD_INFRM_CTRY_CD": "CW",
+    "KCS_KOR_CTRY_NM": "큐라소"
+  },
+  {
+    "ENG_CTRY_NM": "Isle of Man",
+    "STD_INFRM_CTRY_CD": "IM",
+    "KCS_KOR_CTRY_NM": "맨섬"
+  },
+  {
+    "ENG_CTRY_NM": "Guernsey",
+    "STD_INFRM_CTRY_CD": "GG",
+    "KCS_KOR_CTRY_NM": "건지"
+  },
+  {
+    "ENG_CTRY_NM": "Jersey",
+    "STD_INFRM_CTRY_CD": "JE",
+    "KCS_KOR_CTRY_NM": "저어지"
+  },
+  {
+    "ENG_CTRY_NM": "Ukraine",
+    "STD_INFRM_CTRY_CD": "GB",
+    "KCS_KOR_CTRY_NM": "영국"
+  },
+  {
+    "ENG_CTRY_NM": "Svalbard and Jan Mayen",
+    "STD_INFRM_CTRY_CD": "SJ",
+    "KCS_KOR_CTRY_NM": "스발비드 군도"
+  },
+  {
+    "ENG_CTRY_NM": "Czechia",
+    "STD_INFRM_CTRY_CD": "CZ",
+    "KCS_KOR_CTRY_NM": "체코공화국"
+  },
+  {
+    "ENG_CTRY_NM": "Andorra",
+    "STD_INFRM_CTRY_CD": "AD",
+    "KCS_KOR_CTRY_NM": "안도라"
+  },
+  {
+    "ENG_CTRY_NM": "Gibraltar",
+    "STD_INFRM_CTRY_CD": "GI",
+    "KCS_KOR_CTRY_NM": "지브랄타"
+  },
+  {
+    "ENG_CTRY_NM": "Liechtenstein",
+    "STD_INFRM_CTRY_CD": "LI",
+    "KCS_KOR_CTRY_NM": "리히텐슈타인"
+  },
+  {
+    "ENG_CTRY_NM": "Russian Federation",
+    "STD_INFRM_CTRY_CD": "RU",
+    "KCS_KOR_CTRY_NM": "러시아 연방"
+  },
+  {
+    "ENG_CTRY_NM": "Montenegro",
+    "STD_INFRM_CTRY_CD": "ME",
+    "KCS_KOR_CTRY_NM": "몬테네그로"
+  },
+  {
+    "ENG_CTRY_NM": "Serbia",
+    "STD_INFRM_CTRY_CD": "RS",
+    "KCS_KOR_CTRY_NM": "세르비아"
+  },
+  {
+    "ENG_CTRY_NM": "Monaco",
+    "STD_INFRM_CTRY_CD": "MC",
+    "KCS_KOR_CTRY_NM": "모나코"
+  },
+  {
+    "ENG_CTRY_NM": "Holy See",
+    "STD_INFRM_CTRY_CD": "VA",
+    "KCS_KOR_CTRY_NM": "바티칸 시국"
+  },
+  {
+    "ENG_CTRY_NM": "Bosnia and Herzegovina",
+    "STD_INFRM_CTRY_CD": "BA",
+    "KCS_KOR_CTRY_NM": "보스니아-헤르체고비나"
+  },
+  {
+    "ENG_CTRY_NM": "Faroe Islands",
+    "STD_INFRM_CTRY_CD": "FO",
+    "KCS_KOR_CTRY_NM": "파로에 군도"
+  },
+  {
+    "ENG_CTRY_NM": "San Marino",
+    "STD_INFRM_CTRY_CD": "SM",
+    "KCS_KOR_CTRY_NM": "산마리노"
+  },
+  {
+    "ENG_CTRY_NM": "Aland Islands",
+    "STD_INFRM_CTRY_CD": "AX",
+    "KCS_KOR_CTRY_NM": "알랜드아일랜드"
+  },
+  {
+    "ENG_CTRY_NM": "Brunei",
+    "STD_INFRM_CTRY_CD": "BN",
+    "KCS_KOR_CTRY_NM": "브루나이"
+  },
+  {
+    "ENG_CTRY_NM": "Kyrgyzstan",
+    "STD_INFRM_CTRY_CD": "KG",
+    "KCS_KOR_CTRY_NM": "키르기스스탄"
+  },
+  {
+    "ENG_CTRY_NM": "Uzbekistan",
+    "STD_INFRM_CTRY_CD": "UZ",
+    "KCS_KOR_CTRY_NM": "우즈베키스탄"
+  },
+  {
+    "ENG_CTRY_NM": "Syrian Arab Republic",
+    "STD_INFRM_CTRY_CD": "SY",
+    "KCS_KOR_CTRY_NM": "시리아"
+  },
+  {
+    "ENG_CTRY_NM": "Palestine",
+    "STD_INFRM_CTRY_CD": "PS",
+    "KCS_KOR_CTRY_NM": "팔레스타인 해방기구"
+  },
+  {
+    "ENG_CTRY_NM": "Timor-Leste",
+    "STD_INFRM_CTRY_CD": "TL",
+    "KCS_KOR_CTRY_NM": "티모르"
+  },
+  {
+    "ENG_CTRY_NM": "Viet Nam",
+    "STD_INFRM_CTRY_CD": "VN",
+    "KCS_KOR_CTRY_NM": "베트남"
+  },
+  {
+    "ENG_CTRY_NM": "Lao People's Democratic Republic",
+    "STD_INFRM_CTRY_CD": "LA",
+    "KCS_KOR_CTRY_NM": "라오스"
+  },
+  {
+    "ENG_CTRY_NM": "Nepal",
+    "STD_INFRM_CTRY_CD": "AF",
+    "KCS_KOR_CTRY_NM": "아프카니스탄"
+  },
+  {
+    "ENG_CTRY_NM": "Bhutan",
+    "STD_INFRM_CTRY_CD": "BT",
+    "KCS_KOR_CTRY_NM": "부탄"
+  },
+  {
+    "ENG_CTRY_NM": "Macau",
+    "STD_INFRM_CTRY_CD": "MO",
+    "KCS_KOR_CTRY_NM": "마카오"
+  },
+  {
+    "ENG_CTRY_NM": "North Korea",
+    "STD_INFRM_CTRY_CD": "KP",
+    "KCS_KOR_CTRY_NM": "북한"
+  },
+  {
+    "ENG_CTRY_NM": "Greenland",
+    "STD_INFRM_CTRY_CD": "GL",
+    "KCS_KOR_CTRY_NM": "그린랜드"
+  },
+  {
+    "ENG_CTRY_NM": "Saint Pierre and Miquelon",
+    "STD_INFRM_CTRY_CD": "PM",
+    "KCS_KOR_CTRY_NM": "세인트 피에르 미켈론"
+  },
+  {
+    "ENG_CTRY_NM": "Martinique",
+    "STD_INFRM_CTRY_CD": "MQ",
+    "KCS_KOR_CTRY_NM": "마티니크"
+  },
+  {
+    "ENG_CTRY_NM": "Montserrat",
+    "STD_INFRM_CTRY_CD": "MS",
+    "KCS_KOR_CTRY_NM": "몬트세라트"
+  },
+  {
+    "ENG_CTRY_NM": "French Guiana",
+    "STD_INFRM_CTRY_CD": "GF",
+    "KCS_KOR_CTRY_NM": "불령 가이아나"
+  },
+  {
+    "ENG_CTRY_NM": "Anguilla",
+    "STD_INFRM_CTRY_CD": "AI",
+    "KCS_KOR_CTRY_NM": "앙귈라"
+  },
+  {
+    "ENG_CTRY_NM": "Antigua & Barbuda",
+    "STD_INFRM_CTRY_CD": "AG",
+    "KCS_KOR_CTRY_NM": "안티가 바부다"
+  },
+  {
+    "ENG_CTRY_NM": "Aruba",
+    "STD_INFRM_CTRY_CD": "AW",
+    "KCS_KOR_CTRY_NM": "아루바"
+  },
+  {
+    "ENG_CTRY_NM": "Virgin Islands (British)",
+    "STD_INFRM_CTRY_CD": "VG",
+    "KCS_KOR_CTRY_NM": "영령 버진군도"
+  },
+  {
+    "ENG_CTRY_NM": "Falkland Islands (Malvinas)",
+    "STD_INFRM_CTRY_CD": "FK",
+    "KCS_KOR_CTRY_NM": "포클랜드 군도"
+  },
+  {
+    "ENG_CTRY_NM": "Grenada",
+    "STD_INFRM_CTRY_CD": "GD",
+    "KCS_KOR_CTRY_NM": "그레나다"
+  },
+  {
+    "ENG_CTRY_NM": "Turks and Caicos Islands",
+    "STD_INFRM_CTRY_CD": "TC",
+    "KCS_KOR_CTRY_NM": "투르크 & 카이코스 군도"
+  },
+  {
+    "ENG_CTRY_NM": "Cayman Islands",
+    "STD_INFRM_CTRY_CD": "KY",
+    "KCS_KOR_CTRY_NM": "영령 캐이맨 군도"
+  },
+  {
+    "ENG_CTRY_NM": "Bermuda",
+    "STD_INFRM_CTRY_CD": "BM",
+    "KCS_KOR_CTRY_NM": "버뮤다"
+  },
+  {
+    "ENG_CTRY_NM": "Dominica",
+    "STD_INFRM_CTRY_CD": "DM",
+    "KCS_KOR_CTRY_NM": "도미니카"
+  },
+  {
+    "ENG_CTRY_NM": "Puerto Rico",
+    "STD_INFRM_CTRY_CD": "PR",
+    "KCS_KOR_CTRY_NM": "푸에르토리코"
+  },
+  {
+    "ENG_CTRY_NM": "St Kitts & Nevis",
+    "STD_INFRM_CTRY_CD": "KN",
+    "KCS_KOR_CTRY_NM": "세인트 키츠 네비스"
+  },
+  {
+    "ENG_CTRY_NM": "St Lucia",
+    "STD_INFRM_CTRY_CD": "LC",
+    "KCS_KOR_CTRY_NM": "세인트 루시아"
+  },
+  {
+    "ENG_CTRY_NM": "St Vincent & The Grenadines",
+    "STD_INFRM_CTRY_CD": "VC",
+    "KCS_KOR_CTRY_NM": "세인트 빈센트 그레나딘"
+  },
+  {
+    "ENG_CTRY_NM": "Guadeloupe",
+    "STD_INFRM_CTRY_CD": "GP",
+    "KCS_KOR_CTRY_NM": "과델로프"
+  },
+  {
+    "ENG_CTRY_NM": "Nauru",
+    "STD_INFRM_CTRY_CD": "NR",
+    "KCS_KOR_CTRY_NM": "나우루"
+  },
+  {
+    "ENG_CTRY_NM": "Palau",
+    "STD_INFRM_CTRY_CD": "PW",
+    "KCS_KOR_CTRY_NM": "팔라우"
+  },
+  {
+    "ENG_CTRY_NM": "Norfolk Island",
+    "STD_INFRM_CTRY_CD": "NF",
+    "KCS_KOR_CTRY_NM": "노포크 아일랜드"
+  },
+  {
+    "ENG_CTRY_NM": "Tonga",
+    "STD_INFRM_CTRY_CD": "TO",
+    "KCS_KOR_CTRY_NM": "통가"
+  },
+  {
+    "ENG_CTRY_NM": "American Samoa",
+    "STD_INFRM_CTRY_CD": "AS",
+    "KCS_KOR_CTRY_NM": "아메리칸 사모아"
+  },
+  {
+    "ENG_CTRY_NM": "Tuvalu",
+    "STD_INFRM_CTRY_CD": "TV",
+    "KCS_KOR_CTRY_NM": "투발루"
+  },
+  {
+    "ENG_CTRY_NM": "Cook Islands",
+    "STD_INFRM_CTRY_CD": "CK",
+    "KCS_KOR_CTRY_NM": "쿡 아일랜드"
+  },
+  {
+    "ENG_CTRY_NM": "Kiribati",
+    "STD_INFRM_CTRY_CD": "KI",
+    "KCS_KOR_CTRY_NM": "키리바티"
+  },
+  {
+    "ENG_CTRY_NM": "Marshall Islands",
+    "STD_INFRM_CTRY_CD": "MH",
+    "KCS_KOR_CTRY_NM": "마샬군도"
+  },
+  {
+    "ENG_CTRY_NM": "Niue",
+    "STD_INFRM_CTRY_CD": "NU",
+    "KCS_KOR_CTRY_NM": "니우에"
+  },
+  {
+    "ENG_CTRY_NM": "Pitcairn",
+    "STD_INFRM_CTRY_CD": "PN",
+    "KCS_KOR_CTRY_NM": "피트카이른"
+  },
+  {
+    "ENG_CTRY_NM": "Tokelau",
+    "STD_INFRM_CTRY_CD": "TK",
+    "KCS_KOR_CTRY_NM": "토켈라우"
+  },
+  {
+    "ENG_CTRY_NM": "Vanuatu",
+    "STD_INFRM_CTRY_CD": "VU",
+    "KCS_KOR_CTRY_NM": "바누아투"
+  },
+  {
+    "ENG_CTRY_NM": "Guam",
+    "STD_INFRM_CTRY_CD": "GU",
+    "KCS_KOR_CTRY_NM": "괌"
+  },
+  {
+    "ENG_CTRY_NM": "Northern Mariana Islands",
+    "STD_INFRM_CTRY_CD": "MP",
+    "KCS_KOR_CTRY_NM": "북마리아나 군도"
+  },
+  {
+    "ENG_CTRY_NM": "New Caledonia",
+    "STD_INFRM_CTRY_CD": "NC",
+    "KCS_KOR_CTRY_NM": "뉴 칼레도니아"
+  },
+  {
+    "ENG_CTRY_NM": "French Polynesia",
+    "STD_INFRM_CTRY_CD": "PF",
+    "KCS_KOR_CTRY_NM": "불령 폴리네시아"
+  },
+  {
+    "ENG_CTRY_NM": "Sao Tome and Principe",
+    "STD_INFRM_CTRY_CD": "ST",
+    "KCS_KOR_CTRY_NM": "상토메 프린스페"
+  },
+  {
+    "ENG_CTRY_NM": "Congo",
+    "STD_INFRM_CTRY_CD": "CG",
+    "KCS_KOR_CTRY_NM": "콩고"
+  },
+  {
+    "ENG_CTRY_NM": "South Sudan",
+    "STD_INFRM_CTRY_CD": "SS",
+    "KCS_KOR_CTRY_NM": "남수단"
+  },
+  {
+    "ENG_CTRY_NM": "Somalia",
+    "STD_INFRM_CTRY_CD": "SO",
+    "KCS_KOR_CTRY_NM": "소말리아"
+  },
+  {
+    "ENG_CTRY_NM": "Zambia",
+    "STD_INFRM_CTRY_CD": "ZM",
+    "KCS_KOR_CTRY_NM": "잠비아"
+  },
+  {
+    "ENG_CTRY_NM": "Reunion",
+    "STD_INFRM_CTRY_CD": "RE",
+    "KCS_KOR_CTRY_NM": "불령 리유니온 코모도 제도"
+  },
+  {
+    "ENG_CTRY_NM": "Mayotte",
+    "STD_INFRM_CTRY_CD": "YT",
+    "KCS_KOR_CTRY_NM": "메요트"
+  },
+  {
+    "ENG_CTRY_NM": "Cote d'Ivoire",
+    "STD_INFRM_CTRY_CD": "CI",
+    "KCS_KOR_CTRY_NM": "코트디봐르"
+  },
+  {
+    "ENG_CTRY_NM": "Guinea-Bissau",
+    "STD_INFRM_CTRY_CD": "GW",
+    "KCS_KOR_CTRY_NM": "기네비소"
+  },
+  {
+    "ENG_CTRY_NM": "US",
+    "STD_INFRM_CTRY_CD": "US",
+    "KCS_KOR_CTRY_NM": "미국"
+  },
+  {
+    "ENG_CTRY_NM": "UAE",
+    "STD_INFRM_CTRY_CD": "AE",
+    "KCS_KOR_CTRY_NM": "아랍에미리트 연합"
+  },
+  {
+    "ENG_CTRY_NM": "BOSNIA",
+    "STD_INFRM_CTRY_CD": "BA",
+    "KCS_KOR_CTRY_NM": "보스니아-헤르체고비나"
+  },
+  {
+    "ENG_CTRY_NM": "Czech",
+    "STD_INFRM_CTRY_CD": "CZ",
+    "KCS_KOR_CTRY_NM": "체코공화국"
+  },
+  {
+    "ENG_CTRY_NM": "C?te dIvoire",
+    "STD_INFRM_CTRY_CD": "CI",
+    "KCS_KOR_CTRY_NM": "코트디봐르"
+  },
+  {
+    "ENG_CTRY_NM": "Trinidad",
+    "STD_INFRM_CTRY_CD": "TT",
+    "KCS_KOR_CTRY_NM": "트리니다드 토바고"
+  },
+  {
+    "ENG_CTRY_NM": "Democratic Republic of Congo",
+    "STD_INFRM_CTRY_CD": "CD",
+    "KCS_KOR_CTRY_NM": "콩고민주공화국"
+  },
+  {
+    "ENG_CTRY_NM": "RS",
+    "STD_INFRM_CTRY_CD": "RS",
+    "KCS_KOR_CTRY_NM": "세르비아"
+  },
+  {
+    "ENG_CTRY_NM": "Fed. States of Micronesia",
+    "STD_INFRM_CTRY_CD": "FM",
+    "KCS_KOR_CTRY_NM": "마이크로네시아"
+  },
+  {
+    "ENG_CTRY_NM": "Nepal",
+    "STD_INFRM_CTRY_CD": "NP",
+    "KCS_KOR_CTRY_NM": "네팔"
+  },
+  {
+    "ENG_CTRY_NM": "Aland Islands",
+    "STD_INFRM_CTRY_CD": "AX",
+    "KCS_KOR_CTRY_NM": "알랜드 군도"
+  },
+  {
+    "ENG_CTRY_NM": "Norfolk Island",
+    "STD_INFRM_CTRY_CD": "NF",
+    "KCS_KOR_CTRY_NM": "노폴크 아일랜드"
+  },
+  {
+    "ENG_CTRY_NM": "Saint Helena",
+    "STD_INFRM_CTRY_CD": "SH",
+    "KCS_KOR_CTRY_NM": "세인트 헬레나"
+  },
+  {
+    "ENG_CTRY_NM": "Holy See",
+    "STD_INFRM_CTRY_CD": "VA",
+    "KCS_KOR_CTRY_NM": "바티칸"
+  },
+  {
+    "ENG_CTRY_NM": "Virgin Islands (United States)",
+    "STD_INFRM_CTRY_CD": "VI",
+    "KCS_KOR_CTRY_NM": "미령 버진군도"
+  },
+  {
+    "ENG_CTRY_NM": "C?te dIvoire",
+    "STD_INFRM_CTRY_CD": "CI",
+    "KCS_KOR_CTRY_NM": "코트디봐르"
+  },
+  {
+    "ENG_CTRY_NM": "Hong Kong, China (SAR)",
+    "STD_INFRM_CTRY_CD": "HK",
+    "KCS_KOR_CTRY_NM": "홍콩"
+  },
+  {
+    "ENG_CTRY_NM": "Korea (Republic of)",
+    "STD_INFRM_CTRY_CD": "KR",
+    "KCS_KOR_CTRY_NM": "대한 민국"
+  },
+  {
+    "ENG_CTRY_NM": "T?rkiye",
+    "STD_INFRM_CTRY_CD": "TR",
+    "KCS_KOR_CTRY_NM": "터키"
+  },
+  {
+    "ENG_CTRY_NM": "United States",
+    "STD_INFRM_CTRY_CD": "US",
+    "KCS_KOR_CTRY_NM": "미합중국"
+  },
+  {
+    "ENG_CTRY_NM": "Saint Kitts and Nevis",
+    "STD_INFRM_CTRY_CD": "KN",
+    "KCS_KOR_CTRY_NM": "세인트 키츠 네비스"
+  },
+  {
+    "ENG_CTRY_NM": "Antigua and Barbuda",
+    "STD_INFRM_CTRY_CD": "AG",
+    "KCS_KOR_CTRY_NM": "안티가 바부다"
+  },
+  {
+    "ENG_CTRY_NM": "Brunei Darussalam",
+    "STD_INFRM_CTRY_CD": "BN",
+    "KCS_KOR_CTRY_NM": "브루나이"
+  },
+  {
+    "ENG_CTRY_NM": "Iran (Islamic Republic of)",
+    "STD_INFRM_CTRY_CD": "IR",
+    "KCS_KOR_CTRY_NM": "이란"
+  },
+  {
+    "ENG_CTRY_NM": "Saint Vincent and the Grenadines",
+    "STD_INFRM_CTRY_CD": "VC",
+    "KCS_KOR_CTRY_NM": "세인트 빈센트 그레나딘"
+  },
+  {
+    "ENG_CTRY_NM": "Moldova (Republic of)",
+    "STD_INFRM_CTRY_CD": "MD",
+    "KCS_KOR_CTRY_NM": "몰도바"
+  },
+  {
+    "ENG_CTRY_NM": "Saint Lucia",
+    "STD_INFRM_CTRY_CD": "LC",
+    "KCS_KOR_CTRY_NM": "세인트 루시아"
+  },
+  {
+    "ENG_CTRY_NM": "Palestine, State of",
+    "STD_INFRM_CTRY_CD": "PS",
+    "KCS_KOR_CTRY_NM": "팔레스타인"
+  },
+  {
+    "ENG_CTRY_NM": "Venezuela (Bolivarian Republic of)",
+    "STD_INFRM_CTRY_CD": "VE",
+    "KCS_KOR_CTRY_NM": "베네주엘라"
+  },
+  {
+    "ENG_CTRY_NM": "Bolivia (Plurinational State of)",
+    "STD_INFRM_CTRY_CD": "BO",
+    "KCS_KOR_CTRY_NM": "볼리비아"
+  },
+  {
+    "ENG_CTRY_NM": "Micronesia (Federated States of)",
+    "STD_INFRM_CTRY_CD": "FM",
+    "KCS_KOR_CTRY_NM": "마이크로네시아"
+  },
+  {
+    "ENG_CTRY_NM": "Eswatini (Kingdom of)",
+    "STD_INFRM_CTRY_CD": "SZ",
+    "KCS_KOR_CTRY_NM": "스와질랜드"
+  },
+  {
+    "ENG_CTRY_NM": "C?te d'Ivoire",
+    "STD_INFRM_CTRY_CD": "CI",
+    "KCS_KOR_CTRY_NM": "코트디봐르"
+  },
+  {
+    "ENG_CTRY_NM": "Tanzania (United Republic of)",
+    "STD_INFRM_CTRY_CD": "TZ",
+    "KCS_KOR_CTRY_NM": "탄자니아"
+  },
+  {
+    "ENG_CTRY_NM": "Congo (Democratic Republic of the)",
+    "STD_INFRM_CTRY_CD": "CG",
+    "KCS_KOR_CTRY_NM": "콩고"
+  },
+  {
+    "ENG_CTRY_NM": "Burma",
+    "STD_INFRM_CTRY_CD": "MM",
+    "KCS_KOR_CTRY_NM": "미얀마"
+  },
+  {
+    "ENG_CTRY_NM": "Micronesia",
+    "STD_INFRM_CTRY_CD": "FM",
+    "KCS_KOR_CTRY_NM": "마이크로네시아"
+  },
+  {
+    "ENG_CTRY_NM": "Republic of Congo",
+    "STD_INFRM_CTRY_CD": "CG",
+    "KCS_KOR_CTRY_NM": "콩고"
+  },
+  {
+    "ENG_CTRY_NM": "S?o Tom? and Pr?ncipe",
+    "STD_INFRM_CTRY_CD": "ST",
+    "KCS_KOR_CTRY_NM": "상투메 프리신페"
+  },
+  {
+    "ENG_CTRY_NM": "The Bahamas",
+    "STD_INFRM_CTRY_CD": "BS",
+    "KCS_KOR_CTRY_NM": "바하마"
+  },
+  {
+    "ENG_CTRY_NM": "The Gambia",
+    "STD_INFRM_CTRY_CD": "GM",
+    "KCS_KOR_CTRY_NM": "감비아"
+  },
+  {
+    "ENG_CTRY_NM": "Kosovo",
+    "STD_INFRM_CTRY_CD": "XK",
+    "KCS_KOR_CTRY_NM": "코소보"
+  },
+  {
+    "ENG_CTRY_NM": "The Philippines",
+    "STD_INFRM_CTRY_CD": "PH",
+    "KCS_KOR_CTRY_NM": "필리핀"
+  },
+  {
+    "ENG_CTRY_NM": "Korea, South",
+    "STD_INFRM_CTRY_CD": "KR",
+    "KCS_KOR_CTRY_NM": "한국"
+  },
+  {
+    "ENG_CTRY_NM": "Korea, North",
+    "STD_INFRM_CTRY_CD": "KP",
+    "KCS_KOR_CTRY_NM": "북한"
+  },
+  {
+    "ENG_CTRY_NM": "Democratic Republic of the Congo",
+    "STD_INFRM_CTRY_CD": "CG",
+    "KCS_KOR_CTRY_NM": "콩고"
+  }
+]

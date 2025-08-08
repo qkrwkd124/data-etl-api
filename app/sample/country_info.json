@@ -1,0 +1,1604 @@
+[
+  {
+    "TRGTPSN_NO": "1100000000",
+    "TRGTPSN_NM": "대한민국",
+    "TRGTPSN_ENG_NM": "Republic of Korea",
+    "STD_INFRM_CTRY_CD": "KR"
+  },
+  {
+    "TRGTPSN_NO": "1104000000",
+    "TRGTPSN_NM": "북한",
+    "TRGTPSN_ENG_NM": "Democratic People's Republic of Korea",
+    "STD_INFRM_CTRY_CD": "KP"
+  },
+  {
+    "TRGTPSN_NO": "1110000000",
+    "TRGTPSN_NM": "아프가니스탄",
+    "TRGTPSN_ENG_NM": "Islamic Republic of Afghanistan",
+    "STD_INFRM_CTRY_CD": "AF"
+  },
+  {
+    "TRGTPSN_NO": "1115000000",
+    "TRGTPSN_NM": "방글라데시",
+    "TRGTPSN_ENG_NM": "People's Republic of Bangladesh",
+    "STD_INFRM_CTRY_CD": "BD"
+  },
+  {
+    "TRGTPSN_NO": "1116000000",
+    "TRGTPSN_NM": "부탄",
+    "TRGTPSN_ENG_NM": "Kingdom of Bhutan",
+    "STD_INFRM_CTRY_CD": "BT"
+  },
+  {
+    "TRGTPSN_NO": "1117000000",
+    "TRGTPSN_NM": "미얀마",
+    "TRGTPSN_ENG_NM": "Republic of the Union of Myanmar",
+    "STD_INFRM_CTRY_CD": "MM"
+  },
+  {
+    "TRGTPSN_NO": "1118000000",
+    "TRGTPSN_NM": "브루나이",
+    "TRGTPSN_ENG_NM": "Brunei Darussalam",
+    "STD_INFRM_CTRY_CD": "BN"
+  },
+  {
+    "TRGTPSN_NO": "1120000000",
+    "TRGTPSN_NM": "대만",
+    "TRGTPSN_ENG_NM": "Republic of China",
+    "STD_INFRM_CTRY_CD": "TW"
+  },
+  {
+    "TRGTPSN_NO": "1121000000",
+    "TRGTPSN_NM": "중국",
+    "TRGTPSN_ENG_NM": "People's Republic of China",
+    "STD_INFRM_CTRY_CD": "CN"
+  },
+  {
+    "TRGTPSN_NO": "1125000000",
+    "TRGTPSN_NM": "괌",
+    "TRGTPSN_ENG_NM": "Territory of Guam",
+    "STD_INFRM_CTRY_CD": "GU"
+  },
+  {
+    "TRGTPSN_NO": "1130000000",
+    "TRGTPSN_NM": "홍콩",
+    "TRGTPSN_ENG_NM": "Hong Kong Special Administrative Region of The People's Republic of China)",
+    "STD_INFRM_CTRY_CD": "HK"
+  },
+  {
+    "TRGTPSN_NO": "1135000000",
+    "TRGTPSN_NM": "인도",
+    "TRGTPSN_ENG_NM": "Republic of India",
+    "STD_INFRM_CTRY_CD": "IN"
+  },
+  {
+    "TRGTPSN_NO": "1136000000",
+    "TRGTPSN_NM": "인도네시아",
+    "TRGTPSN_ENG_NM": "Republic of Indonesia",
+    "STD_INFRM_CTRY_CD": "ID"
+  },
+  {
+    "TRGTPSN_NO": "1137000000",
+    "TRGTPSN_NM": "영국령 인도양지역",
+    "TRGTPSN_ENG_NM": "British Indian Ocean Territory",
+    "STD_INFRM_CTRY_CD": "IO"
+  },
+  {
+    "TRGTPSN_NO": "1140000000",
+    "TRGTPSN_NM": "일본",
+    "TRGTPSN_ENG_NM": "Japan",
+    "STD_INFRM_CTRY_CD": "JP"
+  },
+  {
+    "TRGTPSN_NO": "1145000000",
+    "TRGTPSN_NM": "라오스",
+    "TRGTPSN_ENG_NM": "Lao People's Democratic Republic",
+    "STD_INFRM_CTRY_CD": "LA"
+  },
+  {
+    "TRGTPSN_NO": "1150000000",
+    "TRGTPSN_NM": "마카오",
+    "TRGTPSN_ENG_NM": "Macau Special Administrative Region",
+    "STD_INFRM_CTRY_CD": "MO"
+  },
+  {
+    "TRGTPSN_NO": "1151000000",
+    "TRGTPSN_NM": "말레이시아",
+    "TRGTPSN_ENG_NM": "Malaysia",
+    "STD_INFRM_CTRY_CD": "MY"
+  },
+  {
+    "TRGTPSN_NO": "1152000000",
+    "TRGTPSN_NM": "몰디브",
+    "TRGTPSN_ENG_NM": "Republic of Maldives",
+    "STD_INFRM_CTRY_CD": "MV"
+  },
+  {
+    "TRGTPSN_NO": "1153000000",
+    "TRGTPSN_NM": "북마리아나 군도",
+    "TRGTPSN_ENG_NM": "Commonwealth of the Northern Mariana Islands",
+    "STD_INFRM_CTRY_CD": "MP"
+  },
+  {
+    "TRGTPSN_NO": "1154000000",
+    "TRGTPSN_NM": "몽골",
+    "TRGTPSN_ENG_NM": "Mongolian Peoples's Republic",
+    "STD_INFRM_CTRY_CD": "MN"
+  },
+  {
+    "TRGTPSN_NO": "1155000000",
+    "TRGTPSN_NM": "네팔",
+    "TRGTPSN_ENG_NM": "Kingdom of Nepal",
+    "STD_INFRM_CTRY_CD": "NP"
+  },
+  {
+    "TRGTPSN_NO": "1160000000",
+    "TRGTPSN_NM": "파키스탄",
+    "TRGTPSN_ENG_NM": "Islamic Republic of Pakistan",
+    "STD_INFRM_CTRY_CD": "PK"
+  },
+  {
+    "TRGTPSN_NO": "1165000000",
+    "TRGTPSN_NM": "필리핀",
+    "TRGTPSN_ENG_NM": "Republic of the Philippines",
+    "STD_INFRM_CTRY_CD": "PH"
+  },
+  {
+    "TRGTPSN_NO": "1170000000",
+    "TRGTPSN_NM": "시킴",
+    "TRGTPSN_ENG_NM": "SIKKIM",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1171000000",
+    "TRGTPSN_NM": "싱가포르",
+    "TRGTPSN_ENG_NM": "Republic of Singapore",
+    "STD_INFRM_CTRY_CD": "SG"
+  },
+  {
+    "TRGTPSN_NO": "1175000000",
+    "TRGTPSN_NM": "스리랑카",
+    "TRGTPSN_ENG_NM": "Democratic Socialist Republic of Sri Lanka",
+    "STD_INFRM_CTRY_CD": "LK"
+  },
+  {
+    "TRGTPSN_NO": "1176000000",
+    "TRGTPSN_NM": "베트남",
+    "TRGTPSN_ENG_NM": "Sociallist Republic of Vietnam",
+    "STD_INFRM_CTRY_CD": "VN"
+  },
+  {
+    "TRGTPSN_NO": "1180000000",
+    "TRGTPSN_NM": "태국",
+    "TRGTPSN_ENG_NM": "Kingdom of Thailand",
+    "STD_INFRM_CTRY_CD": "TH"
+  },
+  {
+    "TRGTPSN_NO": "1181000000",
+    "TRGTPSN_NM": "캄보디아",
+    "TRGTPSN_ENG_NM": "Kingdom of Cambodia",
+    "STD_INFRM_CTRY_CD": "KH"
+  },
+  {
+    "TRGTPSN_NO": "1210000000",
+    "TRGTPSN_NM": "바레인",
+    "TRGTPSN_ENG_NM": "Kingdom of Bahrain",
+    "STD_INFRM_CTRY_CD": "BH"
+  },
+  {
+    "TRGTPSN_NO": "1215000000",
+    "TRGTPSN_NM": "사이프러스",
+    "TRGTPSN_ENG_NM": "Republic of Cyprus",
+    "STD_INFRM_CTRY_CD": "CY"
+  },
+  {
+    "TRGTPSN_NO": "1220000000",
+    "TRGTPSN_NM": "이란",
+    "TRGTPSN_ENG_NM": "Islamic Republic of Iran",
+    "STD_INFRM_CTRY_CD": "IR"
+  },
+  {
+    "TRGTPSN_NO": "1221000000",
+    "TRGTPSN_NM": "이라크",
+    "TRGTPSN_ENG_NM": "Republic of Iraq",
+    "STD_INFRM_CTRY_CD": "IQ"
+  },
+  {
+    "TRGTPSN_NO": "1223000000",
+    "TRGTPSN_NM": "이스라엘",
+    "TRGTPSN_ENG_NM": "State of Israel",
+    "STD_INFRM_CTRY_CD": "IL"
+  },
+  {
+    "TRGTPSN_NO": "1230000000",
+    "TRGTPSN_NM": "요르단",
+    "TRGTPSN_ENG_NM": "Hashemite Kingdom of Jordan",
+    "STD_INFRM_CTRY_CD": "JO"
+  },
+  {
+    "TRGTPSN_NO": "1235000000",
+    "TRGTPSN_NM": "쿠웨이트",
+    "TRGTPSN_ENG_NM": "State of Kuwait",
+    "STD_INFRM_CTRY_CD": "KW"
+  },
+  {
+    "TRGTPSN_NO": "1240000000",
+    "TRGTPSN_NM": "레바논",
+    "TRGTPSN_ENG_NM": "Lebanese Republic",
+    "STD_INFRM_CTRY_CD": "LB"
+  },
+  {
+    "TRGTPSN_NO": "1245000000",
+    "TRGTPSN_NM": "오만",
+    "TRGTPSN_ENG_NM": "Sultanate of Oman",
+    "STD_INFRM_CTRY_CD": "OM"
+  },
+  {
+    "TRGTPSN_NO": "1248000000",
+    "TRGTPSN_NM": "팔레스타인",
+    "TRGTPSN_ENG_NM": "Palestinian Authority",
+    "STD_INFRM_CTRY_CD": "PS"
+  },
+  {
+    "TRGTPSN_NO": "1250000000",
+    "TRGTPSN_NM": "카타르",
+    "TRGTPSN_ENG_NM": "State of Qatar",
+    "STD_INFRM_CTRY_CD": "QA"
+  },
+  {
+    "TRGTPSN_NO": "1255000000",
+    "TRGTPSN_NM": "사우디아라비아",
+    "TRGTPSN_ENG_NM": "Kingdom of Saudi Arabia",
+    "STD_INFRM_CTRY_CD": "SA"
+  },
+  {
+    "TRGTPSN_NO": "1259000000",
+    "TRGTPSN_NM": "시리아",
+    "TRGTPSN_ENG_NM": "Syrian Arab Republic",
+    "STD_INFRM_CTRY_CD": "SY"
+  },
+  {
+    "TRGTPSN_NO": "1275000000",
+    "TRGTPSN_NM": "튀르키예(구 터키)",
+    "TRGTPSN_ENG_NM": "Republic of Turkiye(Turkey)",
+    "STD_INFRM_CTRY_CD": "TR"
+  },
+  {
+    "TRGTPSN_NO": "1280000000",
+    "TRGTPSN_NM": "아랍에미리트 연합",
+    "TRGTPSN_ENG_NM": "United Arab Emirates",
+    "STD_INFRM_CTRY_CD": "AE"
+  },
+  {
+    "TRGTPSN_NO": "1285000000",
+    "TRGTPSN_NM": "예멘",
+    "TRGTPSN_ENG_NM": "Republic of Yemen",
+    "STD_INFRM_CTRY_CD": "YE"
+  },
+  {
+    "TRGTPSN_NO": "1305000000",
+    "TRGTPSN_NM": "알바니아",
+    "TRGTPSN_ENG_NM": "Republic of Albania",
+    "STD_INFRM_CTRY_CD": "AL"
+  },
+  {
+    "TRGTPSN_NO": "1306000000",
+    "TRGTPSN_NM": "아르메니아",
+    "TRGTPSN_ENG_NM": "Republic of Armenia",
+    "STD_INFRM_CTRY_CD": "AM"
+  },
+  {
+    "TRGTPSN_NO": "1307000000",
+    "TRGTPSN_NM": "아제르바이잔",
+    "TRGTPSN_ENG_NM": "Republic of Azerbaijan",
+    "STD_INFRM_CTRY_CD": "AZ"
+  },
+  {
+    "TRGTPSN_NO": "1310000000",
+    "TRGTPSN_NM": "안도라",
+    "TRGTPSN_ENG_NM": "Principality of Andorra",
+    "STD_INFRM_CTRY_CD": "AD"
+  },
+  {
+    "TRGTPSN_NO": "1311000000",
+    "TRGTPSN_NM": "오스트리아",
+    "TRGTPSN_ENG_NM": "Republic of Austria",
+    "STD_INFRM_CTRY_CD": "AT"
+  },
+  {
+    "TRGTPSN_NO": "1312000000",
+    "TRGTPSN_NM": "크로아티아",
+    "TRGTPSN_ENG_NM": "Republic of Croatia",
+    "STD_INFRM_CTRY_CD": "HR"
+  },
+  {
+    "TRGTPSN_NO": "1313000000",
+    "TRGTPSN_NM": "보스니아-헤르체코비나",
+    "TRGTPSN_ENG_NM": "Republic of Bosnia and Herzegovina",
+    "STD_INFRM_CTRY_CD": "BA"
+  },
+  {
+    "TRGTPSN_NO": "1314000000",
+    "TRGTPSN_NM": "불가리아",
+    "TRGTPSN_ENG_NM": "Republic of Bulgaria",
+    "STD_INFRM_CTRY_CD": "BG"
+  },
+  {
+    "TRGTPSN_NO": "1315000000",
+    "TRGTPSN_NM": "벨기에",
+    "TRGTPSN_ENG_NM": "Kingdom of Belgium",
+    "STD_INFRM_CTRY_CD": "BE"
+  },
+  {
+    "TRGTPSN_NO": "1316000000",
+    "TRGTPSN_NM": "벨라루스",
+    "TRGTPSN_ENG_NM": "Republic of Belarus",
+    "STD_INFRM_CTRY_CD": "BY"
+  },
+  {
+    "TRGTPSN_NO": "1317000000",
+    "TRGTPSN_NM": "덴마크",
+    "TRGTPSN_ENG_NM": "Kingdom of Denmark",
+    "STD_INFRM_CTRY_CD": "DK"
+  },
+  {
+    "TRGTPSN_NO": "1318000000",
+    "TRGTPSN_NM": "체코",
+    "TRGTPSN_ENG_NM": "Czech Republic",
+    "STD_INFRM_CTRY_CD": "CZ"
+  },
+  {
+    "TRGTPSN_NO": "1319000000",
+    "TRGTPSN_NM": "슬로바키아",
+    "TRGTPSN_ENG_NM": "Slovak Republic",
+    "STD_INFRM_CTRY_CD": "SK"
+  },
+  {
+    "TRGTPSN_NO": "1320000000",
+    "TRGTPSN_NM": "핀란드",
+    "TRGTPSN_ENG_NM": "Republic of Finland",
+    "STD_INFRM_CTRY_CD": "FI"
+  },
+  {
+    "TRGTPSN_NO": "1321000000",
+    "TRGTPSN_NM": "프랑스",
+    "TRGTPSN_ENG_NM": "French Republic",
+    "STD_INFRM_CTRY_CD": "FR"
+  },
+  {
+    "TRGTPSN_NO": "1322000000",
+    "TRGTPSN_NM": "에스토니아",
+    "TRGTPSN_ENG_NM": "Republic of Estonia",
+    "STD_INFRM_CTRY_CD": "EE"
+  },
+  {
+    "TRGTPSN_NO": "1323000000",
+    "TRGTPSN_NM": "조지아",
+    "TRGTPSN_ENG_NM": "Georgia",
+    "STD_INFRM_CTRY_CD": "GE"
+  },
+  {
+    "TRGTPSN_NO": "1325000000",
+    "TRGTPSN_NM": "독일",
+    "TRGTPSN_ENG_NM": "Federal Republic of Germany",
+    "STD_INFRM_CTRY_CD": "DE"
+  },
+  {
+    "TRGTPSN_NO": "1326000000",
+    "TRGTPSN_NM": "지브랄타",
+    "TRGTPSN_ENG_NM": "Gibraltar",
+    "STD_INFRM_CTRY_CD": "GI"
+  },
+  {
+    "TRGTPSN_NO": "1327000000",
+    "TRGTPSN_NM": "그리스",
+    "TRGTPSN_ENG_NM": "Hellentic Republic(GREECE)",
+    "STD_INFRM_CTRY_CD": "GR"
+  },
+  {
+    "TRGTPSN_NO": "1328000000",
+    "TRGTPSN_NM": "헝가리",
+    "TRGTPSN_ENG_NM": "Republic of Hungary",
+    "STD_INFRM_CTRY_CD": "HU"
+  },
+  {
+    "TRGTPSN_NO": "1329000000",
+    "TRGTPSN_NM": "그린랜드",
+    "TRGTPSN_ENG_NM": "Greenland",
+    "STD_INFRM_CTRY_CD": "GL"
+  },
+  {
+    "TRGTPSN_NO": "1330000000",
+    "TRGTPSN_NM": "아이슬란드",
+    "TRGTPSN_ENG_NM": "Republic of Iceland",
+    "STD_INFRM_CTRY_CD": "IS"
+  },
+  {
+    "TRGTPSN_NO": "1331000000",
+    "TRGTPSN_NM": "아일랜드",
+    "TRGTPSN_ENG_NM": "Ireland",
+    "STD_INFRM_CTRY_CD": "IE"
+  },
+  {
+    "TRGTPSN_NO": "1332000000",
+    "TRGTPSN_NM": "이탈리아",
+    "TRGTPSN_ENG_NM": "Italian Republic",
+    "STD_INFRM_CTRY_CD": "IT"
+  },
+  {
+    "TRGTPSN_NO": "1333000000",
+    "TRGTPSN_NM": "카자흐스탄",
+    "TRGTPSN_ENG_NM": "Republic of Kazakhstan",
+    "STD_INFRM_CTRY_CD": "KZ"
+  },
+  {
+    "TRGTPSN_NO": "1334000000",
+    "TRGTPSN_NM": "키르기즈공화국",
+    "TRGTPSN_ENG_NM": "Kyrgyz Republic",
+    "STD_INFRM_CTRY_CD": "KG"
+  },
+  {
+    "TRGTPSN_NO": "1335000000",
+    "TRGTPSN_NM": "맨섬",
+    "TRGTPSN_ENG_NM": "Isle of Man",
+    "STD_INFRM_CTRY_CD": "IM"
+  },
+  {
+    "TRGTPSN_NO": "1338000000",
+    "TRGTPSN_NM": "리히텐슈타인",
+    "TRGTPSN_ENG_NM": "Principality of Liechtenstein",
+    "STD_INFRM_CTRY_CD": "LI"
+  },
+  {
+    "TRGTPSN_NO": "1339000000",
+    "TRGTPSN_NM": "라트비아",
+    "TRGTPSN_ENG_NM": "Republic of Latvia",
+    "STD_INFRM_CTRY_CD": "LV"
+  },
+  {
+    "TRGTPSN_NO": "1340000000",
+    "TRGTPSN_NM": "룩셈부르크",
+    "TRGTPSN_ENG_NM": "Grand Duchy of Luxembourg",
+    "STD_INFRM_CTRY_CD": "LU"
+  },
+  {
+    "TRGTPSN_NO": "1341000000",
+    "TRGTPSN_NM": "리투아니아",
+    "TRGTPSN_ENG_NM": "Republic of Lithuania",
+    "STD_INFRM_CTRY_CD": "LT"
+  },
+  {
+    "TRGTPSN_NO": "1343000000",
+    "TRGTPSN_NM": "북마케도니아",
+    "TRGTPSN_ENG_NM": "Republic of North Macedonia",
+    "STD_INFRM_CTRY_CD": "MK"
+  },
+  {
+    "TRGTPSN_NO": "1345000000",
+    "TRGTPSN_NM": "몰타",
+    "TRGTPSN_ENG_NM": "Republic of Malta",
+    "STD_INFRM_CTRY_CD": "MT"
+  },
+  {
+    "TRGTPSN_NO": "1346000000",
+    "TRGTPSN_NM": "몰도바",
+    "TRGTPSN_ENG_NM": "Republic of Moldova",
+    "STD_INFRM_CTRY_CD": "MD"
+  },
+  {
+    "TRGTPSN_NO": "1347000000",
+    "TRGTPSN_NM": "모나코",
+    "TRGTPSN_ENG_NM": "Principality of Monaco",
+    "STD_INFRM_CTRY_CD": "MC"
+  },
+  {
+    "TRGTPSN_NO": "1349000000",
+    "TRGTPSN_NM": "네덜란드",
+    "TRGTPSN_ENG_NM": "Kingdom of the Netherlands",
+    "STD_INFRM_CTRY_CD": "NL"
+  },
+  {
+    "TRGTPSN_NO": "1350000000",
+    "TRGTPSN_NM": "노르웨이",
+    "TRGTPSN_ENG_NM": "Kingdom of Norway",
+    "STD_INFRM_CTRY_CD": "NO"
+  },
+  {
+    "TRGTPSN_NO": "1351000000",
+    "TRGTPSN_NM": "폴란드",
+    "TRGTPSN_ENG_NM": "Republic of Poland",
+    "STD_INFRM_CTRY_CD": "PL"
+  },
+  {
+    "TRGTPSN_NO": "1352000000",
+    "TRGTPSN_NM": "포르투갈",
+    "TRGTPSN_ENG_NM": "Portuguese Republic",
+    "STD_INFRM_CTRY_CD": "PT"
+  },
+  {
+    "TRGTPSN_NO": "1353000000",
+    "TRGTPSN_NM": "루마니아",
+    "TRGTPSN_ENG_NM": "Romania",
+    "STD_INFRM_CTRY_CD": "RO"
+  },
+  {
+    "TRGTPSN_NO": "1354000000",
+    "TRGTPSN_NM": "산 마리노",
+    "TRGTPSN_ENG_NM": "Republic of San Marino",
+    "STD_INFRM_CTRY_CD": "SM"
+  },
+  {
+    "TRGTPSN_NO": "1355000000",
+    "TRGTPSN_NM": "스페인",
+    "TRGTPSN_ENG_NM": "Kingdom of Spain",
+    "STD_INFRM_CTRY_CD": "ES"
+  },
+  {
+    "TRGTPSN_NO": "1356000000",
+    "TRGTPSN_NM": "세르비아",
+    "TRGTPSN_ENG_NM": "Republic of Serbia",
+    "STD_INFRM_CTRY_CD": "RS"
+  },
+  {
+    "TRGTPSN_NO": "1357000000",
+    "TRGTPSN_NM": "스웨덴",
+    "TRGTPSN_ENG_NM": "Kingdom of Sweden",
+    "STD_INFRM_CTRY_CD": "SE"
+  },
+  {
+    "TRGTPSN_NO": "1358000000",
+    "TRGTPSN_NM": "스위스",
+    "TRGTPSN_ENG_NM": "Swiss Confederation",
+    "STD_INFRM_CTRY_CD": "CH"
+  },
+  {
+    "TRGTPSN_NO": "1360000000",
+    "TRGTPSN_NM": "영국",
+    "TRGTPSN_ENG_NM": "United Kingdom of Great Britain and Northern Ireland",
+    "STD_INFRM_CTRY_CD": "GB"
+  },
+  {
+    "TRGTPSN_NO": "1361000000",
+    "TRGTPSN_NM": "러시아",
+    "TRGTPSN_ENG_NM": "Russian Federation",
+    "STD_INFRM_CTRY_CD": "RU"
+  },
+  {
+    "TRGTPSN_NO": "1362000000",
+    "TRGTPSN_NM": "바티칸",
+    "TRGTPSN_ENG_NM": "Vatican City State",
+    "STD_INFRM_CTRY_CD": "VA"
+  },
+  {
+    "TRGTPSN_NO": "1363000000",
+    "TRGTPSN_NM": "차넬군도(저지)",
+    "TRGTPSN_ENG_NM": "Bailiwick of Jersey",
+    "STD_INFRM_CTRY_CD": "JE"
+  },
+  {
+    "TRGTPSN_NO": "1364000000",
+    "TRGTPSN_NM": "타지키스탄",
+    "TRGTPSN_ENG_NM": "Republic of Tajikistan",
+    "STD_INFRM_CTRY_CD": "TJ"
+  },
+  {
+    "TRGTPSN_NO": "1365000000",
+    "TRGTPSN_NM": "투르크메니스탄",
+    "TRGTPSN_ENG_NM": "Turkmenistan",
+    "STD_INFRM_CTRY_CD": "TM"
+  },
+  {
+    "TRGTPSN_NO": "1366000000",
+    "TRGTPSN_NM": "우크라이나",
+    "TRGTPSN_ENG_NM": "Ukraine",
+    "STD_INFRM_CTRY_CD": "UA"
+  },
+  {
+    "TRGTPSN_NO": "1367000000",
+    "TRGTPSN_NM": "우즈베키스탄",
+    "TRGTPSN_ENG_NM": "Republic of Uzbekistan",
+    "STD_INFRM_CTRY_CD": "UZ"
+  },
+  {
+    "TRGTPSN_NO": "1368000000",
+    "TRGTPSN_NM": "차넬군도(건지)",
+    "TRGTPSN_ENG_NM": "Bailiwick of Guernsey",
+    "STD_INFRM_CTRY_CD": "GG"
+  },
+  {
+    "TRGTPSN_NO": "1370000000",
+    "TRGTPSN_NM": "슬로베니아",
+    "TRGTPSN_ENG_NM": "Republic of Slovenia",
+    "STD_INFRM_CTRY_CD": "SI"
+  },
+  {
+    "TRGTPSN_NO": "1371000000",
+    "TRGTPSN_NM": "알랜드아일랜드",
+    "TRGTPSN_ENG_NM": "ALAND ISLANDS",
+    "STD_INFRM_CTRY_CD": "AX"
+  },
+  {
+    "TRGTPSN_NO": "1372000000",
+    "TRGTPSN_NM": "스발바르",
+    "TRGTPSN_ENG_NM": "SVALBARD AND JAN MAYEN",
+    "STD_INFRM_CTRY_CD": "SJ"
+  },
+  {
+    "TRGTPSN_NO": "1373000000",
+    "TRGTPSN_NM": "얀마옌",
+    "TRGTPSN_ENG_NM": "JAN MAYEN",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1375000000",
+    "TRGTPSN_NM": "몬테네그로",
+    "TRGTPSN_ENG_NM": "Republic of Montenegro",
+    "STD_INFRM_CTRY_CD": "ME"
+  },
+  {
+    "TRGTPSN_NO": "1376000000",
+    "TRGTPSN_NM": "코소보",
+    "TRGTPSN_ENG_NM": "Republic of Kosovo",
+    "STD_INFRM_CTRY_CD": "xk"
+  },
+  {
+    "TRGTPSN_NO": "1410000000",
+    "TRGTPSN_NM": "캐나다",
+    "TRGTPSN_ENG_NM": "Canada",
+    "STD_INFRM_CTRY_CD": "CA"
+  },
+  {
+    "TRGTPSN_NO": "1450000000",
+    "TRGTPSN_NM": "미국",
+    "TRGTPSN_ENG_NM": "United States of America",
+    "STD_INFRM_CTRY_CD": "US"
+  },
+  {
+    "TRGTPSN_NO": "1490000000",
+    "TRGTPSN_NM": "세인트 피에르 미켈론",
+    "TRGTPSN_ENG_NM": "Territorial collectivity of St. Pierre and Miquelon",
+    "STD_INFRM_CTRY_CD": "PM"
+  },
+  {
+    "TRGTPSN_NO": "1501000000",
+    "TRGTPSN_NM": "앵귈라",
+    "TRGTPSN_ENG_NM": "Anguilla",
+    "STD_INFRM_CTRY_CD": "AI"
+  },
+  {
+    "TRGTPSN_NO": "1503000000",
+    "TRGTPSN_NM": "아르헨티나",
+    "TRGTPSN_ENG_NM": "Argentine Republic",
+    "STD_INFRM_CTRY_CD": "AR"
+  },
+  {
+    "TRGTPSN_NO": "1504000000",
+    "TRGTPSN_NM": "앤티가 바부다",
+    "TRGTPSN_ENG_NM": "Antigua and Barbuda",
+    "STD_INFRM_CTRY_CD": "AG"
+  },
+  {
+    "TRGTPSN_NO": "1505000000",
+    "TRGTPSN_NM": "아루바",
+    "TRGTPSN_ENG_NM": "Aruba",
+    "STD_INFRM_CTRY_CD": "AW"
+  },
+  {
+    "TRGTPSN_NO": "1506000000",
+    "TRGTPSN_NM": "영국령 버진군도",
+    "TRGTPSN_ENG_NM": "British Virgin Isalnds",
+    "STD_INFRM_CTRY_CD": "VG"
+  },
+  {
+    "TRGTPSN_NO": "1507000000",
+    "TRGTPSN_NM": "바하마",
+    "TRGTPSN_ENG_NM": "Commonwealth of the Bahamas",
+    "STD_INFRM_CTRY_CD": "BS"
+  },
+  {
+    "TRGTPSN_NO": "1508000000",
+    "TRGTPSN_NM": "바베이도스",
+    "TRGTPSN_ENG_NM": "Barbados",
+    "STD_INFRM_CTRY_CD": "BB"
+  },
+  {
+    "TRGTPSN_NO": "1509000000",
+    "TRGTPSN_NM": "버뮤다",
+    "TRGTPSN_ENG_NM": "Bermuda",
+    "STD_INFRM_CTRY_CD": "BM"
+  },
+  {
+    "TRGTPSN_NO": "1510000000",
+    "TRGTPSN_NM": "볼리비아",
+    "TRGTPSN_ENG_NM": "Plurinational State of Bolivia",
+    "STD_INFRM_CTRY_CD": "BO"
+  },
+  {
+    "TRGTPSN_NO": "1511000000",
+    "TRGTPSN_NM": "브라질",
+    "TRGTPSN_ENG_NM": "Federative Republic of Brazil",
+    "STD_INFRM_CTRY_CD": "BR"
+  },
+  {
+    "TRGTPSN_NO": "1512000000",
+    "TRGTPSN_NM": "벨리즈",
+    "TRGTPSN_ENG_NM": "Belize",
+    "STD_INFRM_CTRY_CD": "BZ"
+  },
+  {
+    "TRGTPSN_NO": "1513000000",
+    "TRGTPSN_NM": "케이만군도",
+    "TRGTPSN_ENG_NM": "Cayman Islands",
+    "STD_INFRM_CTRY_CD": "KY"
+  },
+  {
+    "TRGTPSN_NO": "1514000000",
+    "TRGTPSN_NM": "아조레스",
+    "TRGTPSN_ENG_NM": "Azores",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1516000000",
+    "TRGTPSN_NM": "칠레",
+    "TRGTPSN_ENG_NM": "Republic of Chile",
+    "STD_INFRM_CTRY_CD": "CL"
+  },
+  {
+    "TRGTPSN_NO": "1517000000",
+    "TRGTPSN_NM": "콜롬비아",
+    "TRGTPSN_ENG_NM": "Republic of Colombia",
+    "STD_INFRM_CTRY_CD": "CO"
+  },
+  {
+    "TRGTPSN_NO": "1518000000",
+    "TRGTPSN_NM": "코스타리카",
+    "TRGTPSN_ENG_NM": "Republic of Costa Rica",
+    "STD_INFRM_CTRY_CD": "CR"
+  },
+  {
+    "TRGTPSN_NO": "1519000000",
+    "TRGTPSN_NM": "쿠바",
+    "TRGTPSN_ENG_NM": "Republic of Cuba",
+    "STD_INFRM_CTRY_CD": "CU"
+  },
+  {
+    "TRGTPSN_NO": "1520000000",
+    "TRGTPSN_NM": "도미니카공화국",
+    "TRGTPSN_ENG_NM": "Dominican Republic",
+    "STD_INFRM_CTRY_CD": "DO"
+  },
+  {
+    "TRGTPSN_NO": "1521000000",
+    "TRGTPSN_NM": "도미니카 연방",
+    "TRGTPSN_ENG_NM": "Commonwealth of Dominica",
+    "STD_INFRM_CTRY_CD": "DM"
+  },
+  {
+    "TRGTPSN_NO": "1525000000",
+    "TRGTPSN_NM": "에콰도르",
+    "TRGTPSN_ENG_NM": "Republic of Ecuador",
+    "STD_INFRM_CTRY_CD": "EC"
+  },
+  {
+    "TRGTPSN_NO": "1527000000",
+    "TRGTPSN_NM": "엘살바도르",
+    "TRGTPSN_ENG_NM": "Republic of El Salvador",
+    "STD_INFRM_CTRY_CD": "SV"
+  },
+  {
+    "TRGTPSN_NO": "1528000000",
+    "TRGTPSN_NM": "포클랜드군도",
+    "TRGTPSN_ENG_NM": "Falkland Islands(Malvinas)",
+    "STD_INFRM_CTRY_CD": "FK"
+  },
+  {
+    "TRGTPSN_NO": "1529000000",
+    "TRGTPSN_NM": "프랑스령 기아나",
+    "TRGTPSN_ENG_NM": "FRENCH GUIANA",
+    "STD_INFRM_CTRY_CD": "GF"
+  },
+  {
+    "TRGTPSN_NO": "1530000000",
+    "TRGTPSN_NM": "과테말라",
+    "TRGTPSN_ENG_NM": "Republic of Guatemala",
+    "STD_INFRM_CTRY_CD": "GT"
+  },
+  {
+    "TRGTPSN_NO": "1531000000",
+    "TRGTPSN_NM": "그레나다",
+    "TRGTPSN_ENG_NM": "Grenada",
+    "STD_INFRM_CTRY_CD": "GD"
+  },
+  {
+    "TRGTPSN_NO": "1532000000",
+    "TRGTPSN_NM": "과달루프",
+    "TRGTPSN_ENG_NM": "Department of Guadeloupe",
+    "STD_INFRM_CTRY_CD": "GP"
+  },
+  {
+    "TRGTPSN_NO": "1534000000",
+    "TRGTPSN_NM": "가이아나",
+    "TRGTPSN_ENG_NM": "Cooperative Republic of Guyana",
+    "STD_INFRM_CTRY_CD": "GY"
+  },
+  {
+    "TRGTPSN_NO": "1540000000",
+    "TRGTPSN_NM": "아이티",
+    "TRGTPSN_ENG_NM": "Republic of Haiti",
+    "STD_INFRM_CTRY_CD": "HT"
+  },
+  {
+    "TRGTPSN_NO": "1542000000",
+    "TRGTPSN_NM": "온두라스",
+    "TRGTPSN_ENG_NM": "Republic of Honduras",
+    "STD_INFRM_CTRY_CD": "HN"
+  },
+  {
+    "TRGTPSN_NO": "1544000000",
+    "TRGTPSN_NM": "자메이카",
+    "TRGTPSN_ENG_NM": "Jamaica",
+    "STD_INFRM_CTRY_CD": "JM"
+  },
+  {
+    "TRGTPSN_NO": "1547000000",
+    "TRGTPSN_NM": "말티니크",
+    "TRGTPSN_ENG_NM": "Department of Martinique",
+    "STD_INFRM_CTRY_CD": "MQ"
+  },
+  {
+    "TRGTPSN_NO": "1548000000",
+    "TRGTPSN_NM": "몬트세라트",
+    "TRGTPSN_ENG_NM": "Montserrat",
+    "STD_INFRM_CTRY_CD": "MS"
+  },
+  {
+    "TRGTPSN_NO": "1550000000",
+    "TRGTPSN_NM": "멕시코",
+    "TRGTPSN_ENG_NM": "United Mexican States",
+    "STD_INFRM_CTRY_CD": "MX"
+  },
+  {
+    "TRGTPSN_NO": "1552000000",
+    "TRGTPSN_NM": "니카라과",
+    "TRGTPSN_ENG_NM": "Republic of Nicaragua",
+    "STD_INFRM_CTRY_CD": "NI"
+  },
+  {
+    "TRGTPSN_NO": "1557000000",
+    "TRGTPSN_NM": "파나마",
+    "TRGTPSN_ENG_NM": "Republic of Panama",
+    "STD_INFRM_CTRY_CD": "PA"
+  },
+  {
+    "TRGTPSN_NO": "1558000000",
+    "TRGTPSN_NM": "파라과이",
+    "TRGTPSN_ENG_NM": "Republic of Paraguay",
+    "STD_INFRM_CTRY_CD": "PY"
+  },
+  {
+    "TRGTPSN_NO": "1560000000",
+    "TRGTPSN_NM": "페루",
+    "TRGTPSN_ENG_NM": "Republic of Peru",
+    "STD_INFRM_CTRY_CD": "PE"
+  },
+  {
+    "TRGTPSN_NO": "1562000000",
+    "TRGTPSN_NM": "푸에르토리코",
+    "TRGTPSN_ENG_NM": "Commonwealth of Puerto Rico",
+    "STD_INFRM_CTRY_CD": "PR"
+  },
+  {
+    "TRGTPSN_NO": "1563000000",
+    "TRGTPSN_NM": "세인트 키츠 네비스",
+    "TRGTPSN_ENG_NM": "Saint Kitts and Nevis",
+    "STD_INFRM_CTRY_CD": "KN"
+  },
+  {
+    "TRGTPSN_NO": "1566000000",
+    "TRGTPSN_NM": "세인트 루시아",
+    "TRGTPSN_ENG_NM": "Saint Lucia",
+    "STD_INFRM_CTRY_CD": "LC"
+  },
+  {
+    "TRGTPSN_NO": "1570000000",
+    "TRGTPSN_NM": "수리남",
+    "TRGTPSN_ENG_NM": "Republic of Suriname",
+    "STD_INFRM_CTRY_CD": "SR"
+  },
+  {
+    "TRGTPSN_NO": "1571000000",
+    "TRGTPSN_NM": "세인트 빈센트 그레나딘",
+    "TRGTPSN_ENG_NM": "Saint Vincent and the Grenadines",
+    "STD_INFRM_CTRY_CD": "VC"
+  },
+  {
+    "TRGTPSN_NO": "1572000000",
+    "TRGTPSN_NM": "트리니다드토바고",
+    "TRGTPSN_ENG_NM": "Republic of Trinidad and Tobago",
+    "STD_INFRM_CTRY_CD": "TT"
+  },
+  {
+    "TRGTPSN_NO": "1573000000",
+    "TRGTPSN_NM": "터크스 카이코스군도",
+    "TRGTPSN_ENG_NM": "Turks and Caicos Islands",
+    "STD_INFRM_CTRY_CD": "TC"
+  },
+  {
+    "TRGTPSN_NO": "1575000000",
+    "TRGTPSN_NM": "우루과이",
+    "TRGTPSN_ENG_NM": "Oriental Republic of Uruguay",
+    "STD_INFRM_CTRY_CD": "UY"
+  },
+  {
+    "TRGTPSN_NO": "1580000000",
+    "TRGTPSN_NM": "베네수엘라",
+    "TRGTPSN_ENG_NM": "Bolivarian Republic of Venezuela",
+    "STD_INFRM_CTRY_CD": "VE"
+  },
+  {
+    "TRGTPSN_NO": "1581000000",
+    "TRGTPSN_NM": "미국령 버진군도",
+    "TRGTPSN_ENG_NM": "United States Virgin Islands",
+    "STD_INFRM_CTRY_CD": "VI"
+  },
+  {
+    "TRGTPSN_NO": "1582000000",
+    "TRGTPSN_NM": "나바사섬",
+    "TRGTPSN_ENG_NM": "Navassa Island",
+    "STD_INFRM_CTRY_CD": "UM"
+  },
+  {
+    "TRGTPSN_NO": "1599000000",
+    "TRGTPSN_NM": "중남미 기타국가",
+    "TRGTPSN_ENG_NM": "-",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1602000000",
+    "TRGTPSN_NM": "알제리",
+    "TRGTPSN_ENG_NM": "People's Democratic Republic of Algeria",
+    "STD_INFRM_CTRY_CD": "DZ"
+  },
+  {
+    "TRGTPSN_NO": "1603000000",
+    "TRGTPSN_NM": "앙골라",
+    "TRGTPSN_ENG_NM": "Republic of Angola",
+    "STD_INFRM_CTRY_CD": "AO"
+  },
+  {
+    "TRGTPSN_NO": "1605000000",
+    "TRGTPSN_NM": "베넹",
+    "TRGTPSN_ENG_NM": "Republic of Benin",
+    "STD_INFRM_CTRY_CD": "BJ"
+  },
+  {
+    "TRGTPSN_NO": "1606000000",
+    "TRGTPSN_NM": "보츠와나",
+    "TRGTPSN_ENG_NM": "Replblic of Botswana",
+    "STD_INFRM_CTRY_CD": "BW"
+  },
+  {
+    "TRGTPSN_NO": "1607000000",
+    "TRGTPSN_NM": "부룬디",
+    "TRGTPSN_ENG_NM": "Republic of Burundi",
+    "STD_INFRM_CTRY_CD": "BI"
+  },
+  {
+    "TRGTPSN_NO": "1608000000",
+    "TRGTPSN_NM": "코모로",
+    "TRGTPSN_ENG_NM": "Union of the Comoros",
+    "STD_INFRM_CTRY_CD": "KM"
+  },
+  {
+    "TRGTPSN_NO": "1610000000",
+    "TRGTPSN_NM": "카메룬",
+    "TRGTPSN_ENG_NM": "Republic of Cameroon",
+    "STD_INFRM_CTRY_CD": "CM"
+  },
+  {
+    "TRGTPSN_NO": "1611000000",
+    "TRGTPSN_NM": "카나리 군도",
+    "TRGTPSN_ENG_NM": "Canary Islands",
+    "STD_INFRM_CTRY_CD": "IC"
+  },
+  {
+    "TRGTPSN_NO": "1612000000",
+    "TRGTPSN_NM": "카보베르데",
+    "TRGTPSN_ENG_NM": "Republic of Cabo Verde",
+    "STD_INFRM_CTRY_CD": "CV"
+  },
+  {
+    "TRGTPSN_NO": "1613000000",
+    "TRGTPSN_NM": "중앙아프리카공화국",
+    "TRGTPSN_ENG_NM": "Central African Republic",
+    "STD_INFRM_CTRY_CD": "CF"
+  },
+  {
+    "TRGTPSN_NO": "1614000000",
+    "TRGTPSN_NM": "차드",
+    "TRGTPSN_ENG_NM": "Republic of Chad",
+    "STD_INFRM_CTRY_CD": "TD"
+  },
+  {
+    "TRGTPSN_NO": "1615000000",
+    "TRGTPSN_NM": "콩고",
+    "TRGTPSN_ENG_NM": "Republic of the Congo",
+    "STD_INFRM_CTRY_CD": "CG"
+  },
+  {
+    "TRGTPSN_NO": "1616000000",
+    "TRGTPSN_NM": "코트디부아르",
+    "TRGTPSN_ENG_NM": "Republic of Cote d'Ivoire",
+    "STD_INFRM_CTRY_CD": "CI"
+  },
+  {
+    "TRGTPSN_NO": "1617000000",
+    "TRGTPSN_NM": "지부티",
+    "TRGTPSN_ENG_NM": "Republic of Djibouti",
+    "STD_INFRM_CTRY_CD": "DJ"
+  },
+  {
+    "TRGTPSN_NO": "1618000000",
+    "TRGTPSN_NM": "이집트",
+    "TRGTPSN_ENG_NM": "Arab Republic of Egypt",
+    "STD_INFRM_CTRY_CD": "EG"
+  },
+  {
+    "TRGTPSN_NO": "1619000000",
+    "TRGTPSN_NM": "적도기니",
+    "TRGTPSN_ENG_NM": "Republic of Equatorial Guinea",
+    "STD_INFRM_CTRY_CD": "GQ"
+  },
+  {
+    "TRGTPSN_NO": "1620000000",
+    "TRGTPSN_NM": "에티오피아",
+    "TRGTPSN_ENG_NM": "Federal Democratic Repubic of Ethiopia",
+    "STD_INFRM_CTRY_CD": "ET"
+  },
+  {
+    "TRGTPSN_NO": "1621000000",
+    "TRGTPSN_NM": "에리트리아",
+    "TRGTPSN_ENG_NM": "State of Eritrea",
+    "STD_INFRM_CTRY_CD": "ER"
+  },
+  {
+    "TRGTPSN_NO": "1623000000",
+    "TRGTPSN_NM": "부르키나파소",
+    "TRGTPSN_ENG_NM": "Burkina Faso",
+    "STD_INFRM_CTRY_CD": "BF"
+  },
+  {
+    "TRGTPSN_NO": "1625000000",
+    "TRGTPSN_NM": "가봉",
+    "TRGTPSN_ENG_NM": "Gabonese Republic",
+    "STD_INFRM_CTRY_CD": "GA"
+  },
+  {
+    "TRGTPSN_NO": "1626000000",
+    "TRGTPSN_NM": "감비아",
+    "TRGTPSN_ENG_NM": "Republic of The Gambia",
+    "STD_INFRM_CTRY_CD": "GM"
+  },
+  {
+    "TRGTPSN_NO": "1627000000",
+    "TRGTPSN_NM": "가나",
+    "TRGTPSN_ENG_NM": "Republic of Ghana",
+    "STD_INFRM_CTRY_CD": "GH"
+  },
+  {
+    "TRGTPSN_NO": "1628000000",
+    "TRGTPSN_NM": "기니",
+    "TRGTPSN_ENG_NM": "Republic of Guinea",
+    "STD_INFRM_CTRY_CD": "GN"
+  },
+  {
+    "TRGTPSN_NO": "1629000000",
+    "TRGTPSN_NM": "기니비사우",
+    "TRGTPSN_ENG_NM": "Republic of Guinea-Bissau",
+    "STD_INFRM_CTRY_CD": "GW"
+  },
+  {
+    "TRGTPSN_NO": "1630000000",
+    "TRGTPSN_NM": "케냐",
+    "TRGTPSN_ENG_NM": "Republic of Kenya",
+    "STD_INFRM_CTRY_CD": "KE"
+  },
+  {
+    "TRGTPSN_NO": "1635000000",
+    "TRGTPSN_NM": "레소토",
+    "TRGTPSN_ENG_NM": "Kingdom of Lesotho",
+    "STD_INFRM_CTRY_CD": "LS"
+  },
+  {
+    "TRGTPSN_NO": "1636000000",
+    "TRGTPSN_NM": "라이베리아",
+    "TRGTPSN_ENG_NM": "Republic of Liberia",
+    "STD_INFRM_CTRY_CD": "LR"
+  },
+  {
+    "TRGTPSN_NO": "1637000000",
+    "TRGTPSN_NM": "리비아",
+    "TRGTPSN_ENG_NM": "Great Socialist People's Libyan Arab Jamahiriya",
+    "STD_INFRM_CTRY_CD": "LY"
+  },
+  {
+    "TRGTPSN_NO": "1638000000",
+    "TRGTPSN_NM": "마다가스카르",
+    "TRGTPSN_ENG_NM": "Republic of Madagascar",
+    "STD_INFRM_CTRY_CD": "MG"
+  },
+  {
+    "TRGTPSN_NO": "1641000000",
+    "TRGTPSN_NM": "말라위",
+    "TRGTPSN_ENG_NM": "Republic of Malawi",
+    "STD_INFRM_CTRY_CD": "MW"
+  },
+  {
+    "TRGTPSN_NO": "1642000000",
+    "TRGTPSN_NM": "말리",
+    "TRGTPSN_ENG_NM": "Republic of Mali",
+    "STD_INFRM_CTRY_CD": "ML"
+  },
+  {
+    "TRGTPSN_NO": "1643000000",
+    "TRGTPSN_NM": "모리타니아",
+    "TRGTPSN_ENG_NM": "Islamic Republic of Mauritania",
+    "STD_INFRM_CTRY_CD": "MR"
+  },
+  {
+    "TRGTPSN_NO": "1644000000",
+    "TRGTPSN_NM": "모리셔스",
+    "TRGTPSN_ENG_NM": "Republic of Mauritius",
+    "STD_INFRM_CTRY_CD": "MU"
+  },
+  {
+    "TRGTPSN_NO": "1645000000",
+    "TRGTPSN_NM": "모로코",
+    "TRGTPSN_ENG_NM": "Kingdom of Morocco",
+    "STD_INFRM_CTRY_CD": "MA"
+  },
+  {
+    "TRGTPSN_NO": "1646000000",
+    "TRGTPSN_NM": "모잠비크",
+    "TRGTPSN_ENG_NM": "Republic of Mozambique",
+    "STD_INFRM_CTRY_CD": "MZ"
+  },
+  {
+    "TRGTPSN_NO": "1647000000",
+    "TRGTPSN_NM": "마요뜨",
+    "TRGTPSN_ENG_NM": "Department Collectivity of Mayotte",
+    "STD_INFRM_CTRY_CD": "YT"
+  },
+  {
+    "TRGTPSN_NO": "1650000000",
+    "TRGTPSN_NM": "니제르",
+    "TRGTPSN_ENG_NM": "Republic of Niger",
+    "STD_INFRM_CTRY_CD": "NE"
+  },
+  {
+    "TRGTPSN_NO": "1651000000",
+    "TRGTPSN_NM": "나이지리아",
+    "TRGTPSN_ENG_NM": "Federal Republic of Nigeria",
+    "STD_INFRM_CTRY_CD": "NG"
+  },
+  {
+    "TRGTPSN_NO": "1652000000",
+    "TRGTPSN_NM": "나미비아",
+    "TRGTPSN_ENG_NM": "Republic of Namibia",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1655000000",
+    "TRGTPSN_NM": "레위니옹",
+    "TRGTPSN_ENG_NM": "Reunion",
+    "STD_INFRM_CTRY_CD": "RE"
+  },
+  {
+    "TRGTPSN_NO": "1657000000",
+    "TRGTPSN_NM": "남아프리카공화국",
+    "TRGTPSN_ENG_NM": "Republic of South Africa",
+    "STD_INFRM_CTRY_CD": "ZA"
+  },
+  {
+    "TRGTPSN_NO": "1659000000",
+    "TRGTPSN_NM": "르완다",
+    "TRGTPSN_ENG_NM": "Rwandese Republic",
+    "STD_INFRM_CTRY_CD": "RW"
+  },
+  {
+    "TRGTPSN_NO": "1666000000",
+    "TRGTPSN_NM": "상투메프린시페",
+    "TRGTPSN_ENG_NM": "Democratic Republic of Sao Tome and Principe",
+    "STD_INFRM_CTRY_CD": "ST"
+  },
+  {
+    "TRGTPSN_NO": "1667000000",
+    "TRGTPSN_NM": "세네갈",
+    "TRGTPSN_ENG_NM": "Republic of Senegal",
+    "STD_INFRM_CTRY_CD": "SN"
+  },
+  {
+    "TRGTPSN_NO": "1668000000",
+    "TRGTPSN_NM": "세이셸",
+    "TRGTPSN_ENG_NM": "Republic of Seychelles",
+    "STD_INFRM_CTRY_CD": "SC"
+  },
+  {
+    "TRGTPSN_NO": "1669000000",
+    "TRGTPSN_NM": "시에라리온",
+    "TRGTPSN_ENG_NM": "Republic of Sierra Leone",
+    "STD_INFRM_CTRY_CD": "SL"
+  },
+  {
+    "TRGTPSN_NO": "1670000000",
+    "TRGTPSN_NM": "소말리아",
+    "TRGTPSN_ENG_NM": "Somalia",
+    "STD_INFRM_CTRY_CD": "SO"
+  },
+  {
+    "TRGTPSN_NO": "1673000000",
+    "TRGTPSN_NM": "수단",
+    "TRGTPSN_ENG_NM": "Republic of the Sudan",
+    "STD_INFRM_CTRY_CD": "SD"
+  },
+  {
+    "TRGTPSN_NO": "1674000000",
+    "TRGTPSN_NM": "에스와티니",
+    "TRGTPSN_ENG_NM": "Kingdom of Eswatini",
+    "STD_INFRM_CTRY_CD": "SZ"
+  },
+  {
+    "TRGTPSN_NO": "1675000000",
+    "TRGTPSN_NM": "세인트헬레나",
+    "TRGTPSN_ENG_NM": "Saint Helena and Dependencies",
+    "STD_INFRM_CTRY_CD": "SH"
+  },
+  {
+    "TRGTPSN_NO": "1680000000",
+    "TRGTPSN_NM": "토고",
+    "TRGTPSN_ENG_NM": "Togolese Republic",
+    "STD_INFRM_CTRY_CD": "TG"
+  },
+  {
+    "TRGTPSN_NO": "1681000000",
+    "TRGTPSN_NM": "튀니지",
+    "TRGTPSN_ENG_NM": "Tunisian Republic",
+    "STD_INFRM_CTRY_CD": "TN"
+  },
+  {
+    "TRGTPSN_NO": "1683000000",
+    "TRGTPSN_NM": "트리스탄 다 쿠냐",
+    "TRGTPSN_ENG_NM": "Tristan Da Cunha",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1687000000",
+    "TRGTPSN_NM": "우간다",
+    "TRGTPSN_ENG_NM": "Republic of Uganda",
+    "STD_INFRM_CTRY_CD": "UG"
+  },
+  {
+    "TRGTPSN_NO": "1690000000",
+    "TRGTPSN_NM": "탄자니아",
+    "TRGTPSN_ENG_NM": "United Republic of Tanzania",
+    "STD_INFRM_CTRY_CD": "TZ"
+  },
+  {
+    "TRGTPSN_NO": "1691000000",
+    "TRGTPSN_NM": "콩고민주공화국",
+    "TRGTPSN_ENG_NM": "Democratic Republic of Congo",
+    "STD_INFRM_CTRY_CD": "CD"
+  },
+  {
+    "TRGTPSN_NO": "1692000000",
+    "TRGTPSN_NM": "잠비아",
+    "TRGTPSN_ENG_NM": "Republic of Zambia",
+    "STD_INFRM_CTRY_CD": "ZM"
+  },
+  {
+    "TRGTPSN_NO": "1694000000",
+    "TRGTPSN_NM": "짐바브웨",
+    "TRGTPSN_ENG_NM": "Republic of Zimbabwe",
+    "STD_INFRM_CTRY_CD": "ZW"
+  },
+  {
+    "TRGTPSN_NO": "1701000000",
+    "TRGTPSN_NM": "호주",
+    "TRGTPSN_ENG_NM": "Commonwealth of Australia",
+    "STD_INFRM_CTRY_CD": "AU"
+  },
+  {
+    "TRGTPSN_NO": "1702000000",
+    "TRGTPSN_NM": "피지",
+    "TRGTPSN_ENG_NM": "Republic of the Fiji Islands",
+    "STD_INFRM_CTRY_CD": "FJ"
+  },
+  {
+    "TRGTPSN_NO": "1703000000",
+    "TRGTPSN_NM": "뉴질랜드",
+    "TRGTPSN_ENG_NM": "New Zealand",
+    "STD_INFRM_CTRY_CD": "NZ"
+  },
+  {
+    "TRGTPSN_NO": "1704000000",
+    "TRGTPSN_NM": "뉴칼레도니아",
+    "TRGTPSN_ENG_NM": "Territory of New Caledonia and Dependencies",
+    "STD_INFRM_CTRY_CD": "NC"
+  },
+  {
+    "TRGTPSN_NO": "1705000000",
+    "TRGTPSN_NM": "호주남극속령",
+    "TRGTPSN_ENG_NM": "Australian Antarctic Territory",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1706000000",
+    "TRGTPSN_NM": "베이커홀랜드섬",
+    "TRGTPSN_ENG_NM": "Baker and Howland Islands",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1707000000",
+    "TRGTPSN_NM": "영국남극속령",
+    "TRGTPSN_ENG_NM": "British Antarctic Territory",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1708000000",
+    "TRGTPSN_NM": "코랄섬",
+    "TRGTPSN_ENG_NM": "Coral Sea Islands Territory",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1709000000",
+    "TRGTPSN_NM": "프랑스령 극남군도",
+    "TRGTPSN_ENG_NM": "French Southern and Antarctic Territory",
+    "STD_INFRM_CTRY_CD": "TF"
+  },
+  {
+    "TRGTPSN_NO": "1711000000",
+    "TRGTPSN_NM": "프랑스령 폴리네시아",
+    "TRGTPSN_ENG_NM": "Overseas Lands of French Polynesia",
+    "STD_INFRM_CTRY_CD": "PF"
+  },
+  {
+    "TRGTPSN_NO": "1712000000",
+    "TRGTPSN_NM": "허드섬",
+    "TRGTPSN_ENG_NM": "Heard Island and McDonald Islands",
+    "STD_INFRM_CTRY_CD": "HM"
+  },
+  {
+    "TRGTPSN_NO": "1713000000",
+    "TRGTPSN_NM": "미크로네시아",
+    "TRGTPSN_ENG_NM": "Federated States of Micronesia",
+    "STD_INFRM_CTRY_CD": "FM"
+  },
+  {
+    "TRGTPSN_NO": "1714000000",
+    "TRGTPSN_NM": "자비스섬",
+    "TRGTPSN_ENG_NM": "JARVIS(JAVIS) ISLAND",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1715000000",
+    "TRGTPSN_NM": "마리아나 군도",
+    "TRGTPSN_ENG_NM": "Mariana Islands",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1716000000",
+    "TRGTPSN_NM": "킹맨리프",
+    "TRGTPSN_ENG_NM": "Kingman Reef",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1717000000",
+    "TRGTPSN_NM": "미드웨이섬",
+    "TRGTPSN_ENG_NM": "Midway Island",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1719000000",
+    "TRGTPSN_NM": "노르웨이속령",
+    "TRGTPSN_ENG_NM": "Norwegian Dependencies",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1720000000",
+    "TRGTPSN_NM": "나우루",
+    "TRGTPSN_ENG_NM": "Republic of Nauru",
+    "STD_INFRM_CTRY_CD": "NR"
+  },
+  {
+    "TRGTPSN_NO": "1721000000",
+    "TRGTPSN_NM": "팔미라",
+    "TRGTPSN_ENG_NM": "Palmyra",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1722000000",
+    "TRGTPSN_NM": "로스속령",
+    "TRGTPSN_ENG_NM": "Ross Dependency",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1723000000",
+    "TRGTPSN_NM": "웨이크아일랜드",
+    "TRGTPSN_ENG_NM": "Wake Island",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1730000000",
+    "TRGTPSN_NM": "팔라우",
+    "TRGTPSN_ENG_NM": "Republic of Palau",
+    "STD_INFRM_CTRY_CD": "PW"
+  },
+  {
+    "TRGTPSN_NO": "1732000000",
+    "TRGTPSN_NM": "파푸아뉴기니",
+    "TRGTPSN_ENG_NM": "Indepedent State of Papua New Guinea",
+    "STD_INFRM_CTRY_CD": "PG"
+  },
+  {
+    "TRGTPSN_NO": "1740000000",
+    "TRGTPSN_NM": "솔로몬제도",
+    "TRGTPSN_ENG_NM": "Solomon Islands",
+    "STD_INFRM_CTRY_CD": "SB"
+  },
+  {
+    "TRGTPSN_NO": "1741000000",
+    "TRGTPSN_NM": "남조지아.남샌드위치군도",
+    "TRGTPSN_ENG_NM": "South Georgia and South Sandwich Islands",
+    "STD_INFRM_CTRY_CD": "GS"
+  },
+  {
+    "TRGTPSN_NO": "1742000000",
+    "TRGTPSN_NM": "아쉬모아 카르티어 아일랜드",
+    "TRGTPSN_ENG_NM": "ASHMORE AND CARTIER ISLANDS",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1743000000",
+    "TRGTPSN_NM": "크리스마스섬",
+    "TRGTPSN_ENG_NM": "CHRISTMAS ISLAND",
+    "STD_INFRM_CTRY_CD": "CX"
+  },
+  {
+    "TRGTPSN_NO": "1744000000",
+    "TRGTPSN_NM": "코코스 군도",
+    "TRGTPSN_ENG_NM": "Territory of Cocos (Keeling) Islands",
+    "STD_INFRM_CTRY_CD": "CC"
+  },
+  {
+    "TRGTPSN_NO": "1745000000",
+    "TRGTPSN_NM": "노포크 아일랜드",
+    "TRGTPSN_ENG_NM": "Territory of Norfolk Island",
+    "STD_INFRM_CTRY_CD": "NF"
+  },
+  {
+    "TRGTPSN_NO": "1755000000",
+    "TRGTPSN_NM": "통가",
+    "TRGTPSN_ENG_NM": "Kingdom of Tonga",
+    "STD_INFRM_CTRY_CD": "TO"
+  },
+  {
+    "TRGTPSN_NO": "1760000000",
+    "TRGTPSN_NM": "사모아",
+    "TRGTPSN_ENG_NM": "Independent State of Samoa",
+    "STD_INFRM_CTRY_CD": "WS"
+  },
+  {
+    "TRGTPSN_NO": "1761000000",
+    "TRGTPSN_NM": "미국령 사모아",
+    "TRGTPSN_ENG_NM": "Territory of American Samoa",
+    "STD_INFRM_CTRY_CD": "AS"
+  },
+  {
+    "TRGTPSN_NO": "1762000000",
+    "TRGTPSN_NM": "투발루",
+    "TRGTPSN_ENG_NM": "Tuvalu",
+    "STD_INFRM_CTRY_CD": "TV"
+  },
+  {
+    "TRGTPSN_NO": "1763000000",
+    "TRGTPSN_NM": "쿡제도",
+    "TRGTPSN_ENG_NM": "Cook Islands",
+    "STD_INFRM_CTRY_CD": "CK"
+  },
+  {
+    "TRGTPSN_NO": "1764000000",
+    "TRGTPSN_NM": "존스톤 아일랜드",
+    "TRGTPSN_ENG_NM": "Johnston ATOLL I.S.",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1765000000",
+    "TRGTPSN_NM": "키리바시",
+    "TRGTPSN_ENG_NM": "Republic of Kiribati",
+    "STD_INFRM_CTRY_CD": "KI"
+  },
+  {
+    "TRGTPSN_NO": "1766000000",
+    "TRGTPSN_NM": "마샬군도",
+    "TRGTPSN_ENG_NM": "Republic of the Marshall Islands",
+    "STD_INFRM_CTRY_CD": "MH"
+  },
+  {
+    "TRGTPSN_NO": "1768000000",
+    "TRGTPSN_NM": "니우에",
+    "TRGTPSN_ENG_NM": "Niue",
+    "STD_INFRM_CTRY_CD": "NU"
+  },
+  {
+    "TRGTPSN_NO": "1769000000",
+    "TRGTPSN_NM": "피트케안군도",
+    "TRGTPSN_ENG_NM": "Pitcairn Islands",
+    "STD_INFRM_CTRY_CD": "PN"
+  },
+  {
+    "TRGTPSN_NO": "1770000000",
+    "TRGTPSN_NM": "토켈라우",
+    "TRGTPSN_ENG_NM": "Tokelau",
+    "STD_INFRM_CTRY_CD": "TK"
+  },
+  {
+    "TRGTPSN_NO": "1772000000",
+    "TRGTPSN_NM": "바누아투",
+    "TRGTPSN_ENG_NM": "Republic of Vanuatu",
+    "STD_INFRM_CTRY_CD": "VU"
+  },
+  {
+    "TRGTPSN_NO": "1774000000",
+    "TRGTPSN_NM": "월리스푸투나제도",
+    "TRGTPSN_ENG_NM": "Territory of the Wallis and Futuna Islands",
+    "STD_INFRM_CTRY_CD": "WF"
+  },
+  {
+    "TRGTPSN_NO": "1781000000",
+    "TRGTPSN_NM": "페로군도",
+    "TRGTPSN_ENG_NM": "Faroe Islands",
+    "STD_INFRM_CTRY_CD": "FO"
+  },
+  {
+    "TRGTPSN_NO": "1782000000",
+    "TRGTPSN_NM": "동티모르",
+    "TRGTPSN_ENG_NM": "Democratic Republic of Timor-Leste",
+    "STD_INFRM_CTRY_CD": "TL"
+  },
+  {
+    "TRGTPSN_NO": "1999000000",
+    "TRGTPSN_NM": "기타",
+    "TRGTPSN_ENG_NM": "기타",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "1ZZZ000000",
+    "TRGTPSN_NM": "기타",
+    "TRGTPSN_ENG_NM": "기타",
+    "STD_INFRM_CTRY_CD": NaN
+  },
+  {
+    "TRGTPSN_NO": "6000308712",
+    "TRGTPSN_NM": "남수단",
+    "TRGTPSN_ENG_NM": "The Republic of South Sudan",
+    "STD_INFRM_CTRY_CD": "SS"
+  },
+  {
+    "TRGTPSN_NO": "6000633588",
+    "TRGTPSN_NM": "퀴라소",
+    "TRGTPSN_ENG_NM": "CURACAO",
+    "STD_INFRM_CTRY_CD": "CW"
+  },
+  {
+    "TRGTPSN_NO": "6000853417",
+    "TRGTPSN_NM": "프랑스령 생마르탱",
+    "TRGTPSN_ENG_NM": "Overseas Collectivity of Saint Martin",
+    "STD_INFRM_CTRY_CD": "MF"
+  },
+  {
+    "TRGTPSN_NO": "6005223988",
+    "TRGTPSN_NM": "프랑스령 생바르텔레미",
+    "TRGTPSN_ENG_NM": "Collectivite de Saint Barthelemy",
+    "STD_INFRM_CTRY_CD": NaN
+  }
+]
